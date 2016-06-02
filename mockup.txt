@@ -1,0 +1,53 @@
+var bar = {
+	type: type,
+	lot: lot,
+	expire: expire,
+	country: country,
+	location: location,
+	id: BAR001
+}
+
+var pop = {
+	type: bar.type,
+	lot: bar.lot,
+	expire: bar.expire,
+	country: bar.country,
+	location: location,
+	id: POP001,
+	bars: [
+		bar,
+		...
+	]
+}
+
+var case = {
+	type: pop.type,
+	lot: pop.lot,
+	expire: pop.expire,
+	country: pop.country,
+	location: location,
+	id: CASE001,
+	pops: [
+		pop,
+		...
+	]
+}
+
+ var Pallet = {
+ 	type: case.type,
+ 	lot: case.lot,
+ 	expire: case.expire,
+ 	country: case.country,
+ 	location: location,
+ 	id: PLT0001,
+ 	cases: [
+ 		case,
+ 		...
+ 	]
+ }
+
+ separate Order object with own properties
+
+ find out how customer orders are entered, expectations of user
+
+ create inventory master list - current totals of each

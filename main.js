@@ -19,17 +19,14 @@ Bar['expire'] = function() {
 Bar['country'] = function() {
 	// add code to choose between USA and Canada; determines type available
 };
-Bar['location'] = function() {
-	// add code to set location to specific pop, case, or pallet (depending upon incompletes)
-};
-Bar['hasParent'] = hasParent();
+Bar['location'] = setLocation();
 
 var Pop = {};
 Pop['type'] = bar.type;
 Pop['lot'] = bar.lot;
 Pop['expire'] = bar.expire;
 Pop['country'] = bar.country;
-Pop['location'] = bar.location;
+Pop['location'] = setLocation();
 Pop['addBar'] = addBar();
 
 var Case = {};
@@ -37,7 +34,7 @@ Case['type'] = Pop.type;
 Case['lot'] = Pop.lot;
 Case['expire'] = Pop.expire;
 Case['country'] = Pop.country;
-Case['location'] = Pop.location;
+Case['location'] = setLocation();
 Case['size'] = function() {
 	// set two arrays: one for small cases and other for large
 	// search via 'type' property with if/else
@@ -51,7 +48,7 @@ Pallet['type'] = Case.type;
 Pallet['lot'] = Case.lot;
 Pallet['expire'] = Case.expire;
 Pallet['country'] = Case.country;
-Pallet['location'] = Case.location;
+Pallet['location'] = setLocation();
 Pallet['addCase'] = addCase();
 Pallet['addPop'] = addPop();
 Pallet['addBar'] = addBar();
@@ -101,4 +98,11 @@ function addCase() {
 			console.log("Pallet full. 56 cases.");
 		}
 	}
+}
+
+function setLocation() {
+	// add code that sets a bar's location to a pop, case, or pallet
+	// add code that sets a pop's location to a case or pallet
+	// add code that sets a case's location to a pallet
+	// add code that sets a pallet's location to a physical spot
 }
