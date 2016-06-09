@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Inventory Management System</title>
+</head>
+<body>
+	
+	<section id="inventoryDisplay">
+			<!-- a rack is the individual row of shelves -->
+		<div id="rack1">
+			<!-- this is the rack along the alley-side wall -->
+			<!-- three levels high (A,B,C) -->
+			<!-- 18 total locations (ie.- A1, C18) -->
+		</div>
+		<div id="rack2">
+			<!-- the next rack out -->
+			<!-- three levels high (A,B,C) -->
+			<!-- 16 total locations (ie.- A1, C16) -->
+			</div>
+		<div id="rack3">
+			<!-- the next rack past that last one -->
+			<!-- three levels high (A,B,C) -->
+			<!-- 10 total locations (ie.- A1, C10) -->
+			<!-- two additional locations: A9+ and A10+ just between A9 & B9 and A10 & B10 respectively -->
+		</div>
+		<div id="rack4">
+			<!-- the rack next to Innovations -->
+			<!-- three levels high (A,B,C) -->
+			<!-- 12 total locations (ie.- A1, C12) -->	
+		</div>
+		<div id="canadaRack">
+			<!-- at the far end between rack1 on the right and rack2 on the left -->
+			<!-- three levels, three locations per level, Canada-A1 bottom left, Canada-C3 top right -->
+		</div>
+
+		<!-- a lane is a delivery lane; no max number of pallets due to half-sized pallets -->
+		<div id="lane1">
+			<!-- an ordered list adding just enough spots as pallets get added -->
+			<!-- designed to flash individual locations of orders to easily find to completely finish or deliver -->
+		</div>
+		<div id="lane2">
+			<!-- all lanes follow lane1's structure -->
+		</div>
+		<div id="lane3"></div>
+		<div id="lane4"></div>
+		<div id="lane5"></div>
+		<div id="lane6"></div>
+		<div id="grandTotals">
+			<!-- a place to list all product totals by type, status(pending{waiting to be picked}, ordered{added to an order}), expiration, lot -->
+			<!-- also totals: orders waiting to be fulfilled, orders waiting to be inspected, orders waiting for delivery, orders delivered -->
+		</div>
+	</section>
+
+	<section id="createPallet" class="hidden">
+	<!-- 'allow mixed' option to put more than one product type on a pallet- as in the case of discontinued SKU's -->
+	<!-- 'product type' <input type="text"> -->
+	<!-- 'lot number' <input type="text"> -->
+	<!-- 'expiration' <input type="text"> -->
+	<!-- 'add case' enter number of cases <input type="text"> -->
+	<!-- 'add pop' enter number of pops <input type="text"> -->
+	<!-- 'add bar' enter number of bars <input type="text"> -->
+	<!-- 'created date' -->
+	<!-- 'palletID' unique number consisting of PLT + (three capital letters representing product type) + last 5 digits of lot number + two digits indicating number of pallet from that lot/type, ie.- PLT-CHA-38308-01 -->
+	</section>
+
+	<section id="locatePallet" class="hidden">
+	<!-- search for which locations are holding a certain product type -->
+	<!-- search for which locations are holding a certain lot number -->
+	<!-- search by created date to find locations holding the oldest pallets -->
+	</section>
+
+	<section id="movePallet" class="hidden">
+	<!-- this allows a user to change which pallets are located where -->
+	<!-- can also be used to relocate cases, pops, and bars -->
+	</section>
+
+	<button id="showRacksButton">Show Racks/Lanes</button> 
+	<!-- this button hides/shows inventoryDisplay -->
+
+	<button id="createPalletButton">Create a New Pallet</button>
+	<!-- this button hides/shows section to create a new pallet -->
+
+	<button id="locatePalletButton">Locate a Pallet</button>
+	<!-- this button hides/shows section to search out locations of pallets -->
+
+	<button id="movePalletButton">Update a Pallet's Location</button>
+	<!-- this button hides/shows section to update locations -->
+
+	<script src="index.js"></script>
+</body>
+</html>
