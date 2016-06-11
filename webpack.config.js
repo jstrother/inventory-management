@@ -4,13 +4,12 @@ var webpack = require('webpack');
 
 var packageData = require('./package.json');
 
-var filename = [packageData.name, 'js'];
-
 module.exports = {
-	entry: path.resolve(__dirname, packageData.devJS),
+	entry: {
+			path: './main.js'
+	},
 	output: {
-		path: (__dirname, './finished'),
-		filename: packageData.main
+		filename: 'scripts.js'
 	},
 	devtool: 'source-map',
 	module: {
