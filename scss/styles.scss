@@ -1,0 +1,31 @@
+@import 'normalize';
+@import 'bourbon/bourbon';
+@import 'neat/neat';
+@import 'base/base';
+@import 'myVariables';
+
+
+body {
+	// background: url('../img/background1.JPG');
+	background-size: cover;
+}
+
+#rack1, #rack2, #rack3 {
+	@include outer-container;
+	@include shift(1);
+	display: inline-block;
+	.rowC, .rowB, .rowA {
+		@include span-columns(12);
+		.place {
+			display: inline;
+		}
+	}
+}
+
+.firstColor {
+	background-color: yellow;
+}
+
+.secondColor {
+	background-color: pink;
+}

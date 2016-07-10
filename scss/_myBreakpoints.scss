@@ -1,0 +1,20 @@
+$iphoneP: max-width em(480) 4 !default;
+$gtiphoneP: min-width em(481) 4 !default;
+
+$mobile: max-width em(639) 4 !default;
+$gtMobile: min-width em(640) 12 !default;
+
+$tabletP: max-width em(767) 12 !default;
+$gtTabletP: min-width em(768) 12 !default;
+
+$tabletPH: max-height em(768) 4 !default;
+$gtTabletPH: min-height em(769) 4 !default;
+
+$desktop: max-width em(990) 12 !default;
+$gtDesktop: min-width em(991) 12 !default;
+
+$tabletL: max-width em(1024) 12 !default;
+$gtTabletL: min-width em(1025) 12 !default;
+
+$cinema: max-width em(1400) 12 !default;
+$gtCinema: min-width em(1401) 12 !default;
