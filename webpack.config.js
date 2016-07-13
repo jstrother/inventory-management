@@ -6,10 +6,10 @@ var packageData = require('./package.json');
 
 module.exports = {
 	entry: {
-			path: './main.js'
+			path: './index.jsx'
 	},
 	output: {
-		filename: 'scripts.js'
+		filename: 'public/js/scripts.js'
 	},
 	watch: true,
 	devtool: 'source-map',
@@ -30,7 +30,7 @@ module.exports = {
 		]
 	},
   sassLoader: {
-    includePaths: [path.resolve(__dirname, "./finished")]
+    includePaths: [path.resolve(__dirname, "./public")]
   },
 	resolve: {
 		extentions: ['', '.js', '.jsx']
