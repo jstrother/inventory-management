@@ -6,10 +6,11 @@ var packageData = require('./package.json');
 
 module.exports = {
 	entry: {
-			path: './index.jsx'
+			path: path.resolve(__dirname, packageData.devJS),
 	},
 	output: {
-		filename: 'public/js/scripts.js'
+		path: 'public',
+		filename: packageData.main
 	},
 	watch: true,
 	devtool: 'source-map',
