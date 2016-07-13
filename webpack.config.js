@@ -11,6 +11,7 @@ module.exports = {
 	output: {
 		filename: 'scripts.js'
 	},
+	watch: true,
 	devtool: 'source-map',
 	module: {
 		loaders: [
