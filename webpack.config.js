@@ -9,7 +9,7 @@ module.exports = {
 			path: path.resolve(__dirname, packageData.devJS),
 	},
 	output: {
-		path: 'public',
+		path: './public',
 		filename: packageData.main
 	},
 	watch: true,
