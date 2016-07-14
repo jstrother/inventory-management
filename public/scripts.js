@@ -58,10 +58,14 @@
 	
 	var _reactRouter = __webpack_require__(194);
 	
+	var _store = __webpack_require__(254);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var store = __webpack_require__(257);
-	var Rack = __webpack_require__(254);
+	// const store = require('./flow/store.js');
+	var Rack = __webpack_require__(257);
 	
 	var routes = _react2.default.createElement(
 		_reactRouter.Router,
@@ -72,7 +76,7 @@
 	document.addEventListener('DOMContentLoaded', function () {
 		_reactDom2.default.render(_react2.default.createElement(
 			_reactRedux.Provider,
-			{ store: store },
+			{ store: _store2.default },
 			routes
 		), document.getElementById('app'));
 	});
@@ -28107,6 +28111,50 @@
 
 	'use strict';
 	
+	var _redux = __webpack_require__(179);
+	
+	var _reduxLogger = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"redux-logger\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	
+	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
+	
+	function _interopRequireDefault(obj) {
+	  return obj && obj.__esModule ? obj : { default: obj };
+	}
+	
+	var thunk = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"redux-thunk\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())).default;
+	
+	var reducers = __webpack_require__(255).reducers;
+	
+	var store = (0, _redux.createStore)(reducers, (0, _redux.applyMiddleware)(thunk));
+	
+	module.exports = store;
+
+/***/ },
+/* 255 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var actions = __webpack_require__(256);
+	var fetchLeastGuesses = __webpack_require__(256).fetchLeastGuesses;
+	var compareNumbers = __webpack_require__(256).compareNumbers;
+	
+	var reducers = function reducers() {
+	  // create several individual reducers and then combine them here
+	};
+
+/***/ },
+/* 256 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+/***/ },
+/* 257 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
 	var _react = __webpack_require__(1);
 	
 	var _react2 = _interopRequireDefault(_react);
@@ -28125,51 +28173,7 @@
 	
 	// called into index.jsx
 	
-	var Location = __webpack_require__(255);
-
-/***/ },
-/* 255 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var React = __webpack_require__(1);
-	var ReactDom = __webpack_require__(33);
-	var Provider = __webpack_require__(172).Provider;
-	
-	var Pallet = __webpack_require__(256);
-
-/***/ },
-/* 256 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var React = __webpack_require__(1);
-	var ReactDom = __webpack_require__(33);
-	var Provider = __webpack_require__(172).Provider;
-
-/***/ },
-/* 257 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _redux = __webpack_require__(179);
-	
-	var _reduxLogger = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"redux-logger\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-	
-	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var thunk = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"redux-thunk\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())).default;
-	
-	var reducers = __webpack_require__(258).reducers;
-	
-	var store = (0, _redux.createStore)(reducers, (0, _redux.applyMiddleware)(thunk));
-	
-	module.exports = store;
+	var Location = __webpack_require__(258);
 
 /***/ },
 /* 258 */
@@ -28177,19 +28181,21 @@
 
 	'use strict';
 	
-	var actions = __webpack_require__(259);
-	var fetchLeastGuesses = __webpack_require__(259).fetchLeastGuesses;
-	var compareNumbers = __webpack_require__(259).compareNumbers;
+	var React = __webpack_require__(1);
+	var ReactDom = __webpack_require__(33);
+	var Provider = __webpack_require__(172).Provider;
 	
-	var reducers = function reducers() {
-	  // create several individual reducers and then combine them here
-	};
+	var Pallet = __webpack_require__(259);
 
 /***/ },
 /* 259 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
+	
+	var React = __webpack_require__(1);
+	var ReactDom = __webpack_require__(33);
+	var Provider = __webpack_require__(172).Provider;
 
 /***/ }
 /******/ ]);

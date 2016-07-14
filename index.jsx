@@ -3,7 +3,8 @@ import ReactDom from 'react-dom';
 import {Provider} from 'react-redux';
 import {Router, Route, hashHistory} from 'react-router';
 
-const store = require('./flow/store.js');
+import store from './flow/store.js';
+// const store = require('./flow/store.js');
 const Rack = require('./components/rack.jsx');
  
 const routes = (
