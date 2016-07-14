@@ -1,3 +1,16 @@
-const React = require('react');
-const ReactDom = require('react-dom');
-const Provider = require('react-redux').Provider;
+// called into location.jsx
+
+import React from 'react';
+import {connect} from 'react-redux';
+
+const Pallet = React.createClass({
+	render: function() {
+		return {
+
+		};
+	}
+});
+
+const Container = connect()(Pallet);
+
+module.exports = Container;

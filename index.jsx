@@ -4,8 +4,7 @@ import {Provider} from 'react-redux';
 import {Router, Route, hashHistory} from 'react-router';
 
 import store from './flow/store.js';
-// const store = require('./flow/store.js');
-const Rack = require('./components/rack.jsx');
+import Rack from './components/rack.jsx';
  
 const routes = (
 	<Router history={hashHistory}>
