@@ -28403,8 +28403,6 @@
 	
 	var _redux = __webpack_require__(179);
 	
-	var _redux2 = _interopRequireDefault(_redux);
-	
 	var _actions = __webpack_require__(258);
 	
 	var _actions2 = _interopRequireDefault(_actions);
