@@ -27,7 +27,15 @@ module.exports = {
 			{
         test: /\.scss$/,
         loaders: ["style", "css", "sass"]
+      },
+      {
+      test: /\.js$/,
+      exclude: /(node_modules|bower_components)/,
+      loader: 'babel',
+      query: {
+        presets: ['es2015']
       }
+    }
 		]
 	},
   sassLoader: {
