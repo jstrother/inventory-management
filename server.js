@@ -13,12 +13,20 @@ const inventory = new Inventory();
 const app = express();
 app.use('/inventory', static('public'));
 
-app.get();
+app.get('/inventory', function(request, response) {
 
-app.post();
+});
 
-app.put();
+app.post('/inventory', function(request, response) {
 
-app.delete();
+});
+
+app.put('/inventory', function(request, response) {
+
+});
+
+app.delete('/inventory', function(request, response) {
+
+});
 
 app.listen(process.env.PORT || 8080);
