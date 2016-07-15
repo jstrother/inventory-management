@@ -12,32 +12,17 @@ const Inventory = function() {
 
 const inventory = new Inventory();
 
+const app = express();
+app.use('/inventory', static('public'));
+
 const server = http.Server(app);
 const io = socket_io(server);
 
 io.on('connection', function(socket) {
+	console.log('client connected');
 	socket.on('', function() {
 
 	});
 });
 
-const app = express();
-app.use('/inventory', static('public'));
-
-app.get('/inventory', function(request, response) {
-
-});
-
-app.post('/inventory', function(request, response) {
-
-});
-
-app.put('/inventory', function(request, response) {
-
-});
-
-app.delete('/inventory', function(request, response) {
-
-});
-
-app.listen(process.env.PORT || 8080);
+server.listen(process.env.PORT || 8080);
