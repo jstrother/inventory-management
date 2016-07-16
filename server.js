@@ -10,6 +10,22 @@ const Inventory = function() {
 
 };
 
+Inventory.prototype.createPallet = (inputs) => {
+// inputs should equal:
+// 1. type
+// 2. expiration
+// 3. destination country (usa or canada)
+// 4. lot number
+// 5. number of cases
+// 6. number of pops (if necessary)
+// 7. number of bars (if necessary)
+// creates a pallet with unique ID
+};
+
+Inventory.prototype.setLocation = (inputs) => {
+// this method will add a pallet to a location, and remove it from a previous one if needed
+};
+
 const inventory = new Inventory();
 
 const app = express();
