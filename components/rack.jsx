@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import Link from 'react-router';
 
 import Location from './location.jsx';
+import Inventory from './inventory.jsx';
 
 // Note about rack.length: each rackId will have a corresponding number of locations needed.  should it be passed through props?  i think so, but i'm not too sure
 
@@ -29,6 +30,7 @@ const Rack = React.createClass({
 						palletId
 						locationId />
 				}}
+				<Inventory />
 			</div>
 		);
 	};

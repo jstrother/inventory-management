@@ -7,4 +7,12 @@ const reducers = () => {
 // create several individual reducers and then combine them here
 };
 
+const createPalletReducer = () => {
+
+};
+
+const setPalletLocationReducer = () => {
+
+};
+
 exports.reducers = reducers;
