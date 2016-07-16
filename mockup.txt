@@ -59,6 +59,6 @@ don't forget necessary buttons!
 
  rack1 - 3 levels, 18 locations each
  rack2 - 3 levels, 16 locations each
- rack3 - 3 levels, 10 locations each, also has to additional at 9 and 10 spots
+ rack3 - 3 levels, 10 locations each, also has two additional at 9 and 10 spots
  rack4 - 3 levels, 12 locations
  canadaRack - 3 levels, 3 locations each
