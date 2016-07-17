@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 import port from '../ports.js';
 
-// is the port set correctly?
 mongoose.connect(port);
 
 mongoose.connection.on('error', function(err) {
@@ -14,6 +13,8 @@ mongoose.connection.once('open', function() {
 	});
 	let Snippet = mongoose.model('Snippet', snippetSchema);
 });
+
+// data ok to be sent via sockets
 
 // do i need these CRUD functions?
 let create = (name, content) => {
