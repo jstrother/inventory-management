@@ -3,6 +3,7 @@ import {static} from 'express';
 import http from 'http';
 import socket_io from 'socket.io'
 import bodyParser from 'body-parser';
+import port from './ports.js';
 
 const jsonParser = bodyParser.json();
 
@@ -41,4 +42,4 @@ io.on('connection', function(socket) {
 	});
 });
 
-server.listen(process.env.PORT || 8080);
+server.listen(port);
