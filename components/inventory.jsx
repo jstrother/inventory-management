@@ -11,7 +11,7 @@ const Inventory = createClass({
 			<div className='inventory'>
 				<Type />
 			</div>
-		)
+		);
 	}
 });
 

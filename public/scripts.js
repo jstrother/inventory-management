@@ -28139,6 +28139,10 @@
 	
 	var _socket2 = _interopRequireDefault(_socket);
 	
+	var _reduxLogger = __webpack_require__(313);
+	
+	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
+	
 	var _ports = __webpack_require__(305);
 	
 	var _ports2 = _interopRequireDefault(_ports);
@@ -28151,11 +28155,14 @@
 	  return obj && obj.__esModule ? obj : { default: obj };
 	}
 	
+	var logger = (0, _reduxLogger2.default)();
+	
 	var socket = (0, _socket2.default)(_ports2.default);
 	
 	var socketIoMiddleware = (0, _reduxSocket2.default)(socket, "server/");
 	
-	var store = (0, _redux.applyMiddleware)(socketIoMiddleware)(_redux.createStore)(_reducers2.default);
+	// due to the change in middle-ware format, is logger in the correct place? or should it still come at the end?
+	var store = (0, _redux.applyMiddleware)(socketIoMiddleware)(logger)(_redux.createStore)(_reducers2.default);
 	
 	module.exports = store;
 
@@ -35697,21 +35704,9 @@
 	var state = state || initialState;
 	
 	var reducers = (0, _redux.combineReducers)({
-		newPallet: createPalletReducer,
 		setLocation: setPalletLocationReducer,
 		selectRack: selectRackReducer
 	});
-	
-	var createPalletReducer = function createPalletReducer(state, action) {
-		switch (action.type) {
-			case 'CREATE_PALLET':
-				return state.concat({
-					// code to change state concerning creating pallets
-				});
-			default:
-				return state;
-		};
-	};
 	
 	var setPalletLocationReducer = function setPalletLocationReducer(state, action) {
 		switch (action.type) {
@@ -35745,13 +35740,6 @@
 	
 	// called into reducers.js
 	
-	var CREATE_PALLET = 'CREATE_PALLET';
-	var createPallet = function createPallet() {
-		return {
-			type: CREATE_PALLET
-		};
-	};
-	
 	var SELECT_RACK = 'SELECT_RACK';
 	var selectRack = function selectRack(rackId) {
 		return {
@@ -35769,8 +35757,6 @@
 		};
 	};
 	
-	exports.CREATE_PALLET = CREATE_PALLET;
-	exports.createPallet = createPallet;
 	exports.SELECT_RACK = SELECT_RACK;
 	exports.selectRack = selectRack;
 	exports.SET_PALLET_LOCATION = SET_PALLET_LOCATION;
@@ -35802,15 +35788,12 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	// Note about rack.length: each rackId will have a corresponding number of locations needed.  should it be passed through props?  i think so, but i'm not too sure
-	
 	// rack1 needs 18 locations across three levels for 54 total
 	// rack2 needs 16 locations across three levels for 48 total
 	// rack3 needs 10 locations across three levels, plus 2 additional at spots 9 and 10, for 32 total
 	// rack4 needs 12 locations across three levels for 36 total
 	// canada needs a total of 9 (3 locations on each of 3 levels)
 	
-	// getting an error thrown on the for loop - doesn't like for
 	// called into index.jsx
 	
 	var Rack = (0, _react.createClass)({
@@ -35822,15 +35805,50 @@
 		},
 		render: function render() {
 			var locations = [];
+			var number = void 0,
+			    modulo = void 0,
+			    rack = void 0,
+			    location = void 0;
+			switch (this.state.rackId) {
+				case 'rack1':
+					number = 54;
+					modulo = 18;
+					rack = 'R1';
+					break;
+				case 'rack2':
+					number = 48;
+					modulo = 16;
+					rack = 'R2';
+					break;
+				case 'rack3':
+					number = 32;
+					modulo = 10;
+					rack = 'R3';
+					break;
+				case 'rack4':
+					number = 36;
+					modulo = 12;
+					rack = 'R4';
+					break;
+				case 'canadaRack':
+					number = 9;
+					modulo = 3;
+					rack = 'Canada';
+					break;
 	
-			for (i = 0; i < rack.length; i++) {
+			}
+	
+			for (i = 0; i < number; i++) {
+				locationSetter(number, modulo);
+				console.log('rack', rack, 'location', location);
+				var locationId = rack + '-' + location;
 				locations.push(React.createElement(_location2.default, {
 					type: this.props.type,
 					lot: this.props.lot,
 					expire: this.props.expire,
 					country: this.props.country,
 					palletId: this.props.palletId,
-					locationId: this.props.locationId
+					locationId: locationId
 				}));
 			};
 	
@@ -35850,8 +35868,24 @@
 			expire: state.expire,
 			country: state.country,
 			palletId: state.palletId,
-			locationId: state.locationId,
 			rackId: state.rackId
+		};
+	};
+	
+	var locationSetter = function locationSetter(number, modulo) {
+		for (i = 0; i <= number; i++) {
+			if (i % modulo === 0) {
+				var rowTotal = i;
+				for (j = 0; j <= rowTotal; j++) {
+					if (j <= modulo) {
+						location = 'A' + j;
+					} else if (j > modulo * 2) {
+						location = 'C' + (j - modulo * 2);
+					} else {
+						location = 'B' + (j - modulo);
+					}
+				};
+			}
 		};
 	};
 	
@@ -36030,6 +36064,239 @@
 	var Container = (0, _reactRedux.connect)()(Type);
 	
 	module.exports = Container;
+
+/***/ },
+/* 313 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+	
+	function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
+	
+	var repeat = function repeat(str, times) {
+	  return new Array(times + 1).join(str);
+	};
+	var pad = function pad(num, maxLength) {
+	  return repeat("0", maxLength - num.toString().length) + num;
+	};
+	var formatTime = function formatTime(time) {
+	  return "@ " + pad(time.getHours(), 2) + ":" + pad(time.getMinutes(), 2) + ":" + pad(time.getSeconds(), 2) + "." + pad(time.getMilliseconds(), 3);
+	};
+	
+	// Use the new performance api to get better precision if available
+	var timer = typeof performance !== "undefined" && typeof performance.now === "function" ? performance : Date;
+	
+	/**
+	 * parse the level option of createLogger
+	 *
+	 * @property {string | function | object} level - console[level]
+	 * @property {object} action
+	 * @property {array} payload
+	 * @property {string} type
+	 */
+	
+	function getLogLevel(level, action, payload, type) {
+	  switch (typeof level === "undefined" ? "undefined" : _typeof(level)) {
+	    case "object":
+	      return typeof level[type] === "function" ? level[type].apply(level, _toConsumableArray(payload)) : level[type];
+	    case "function":
+	      return level(action);
+	    default:
+	      return level;
+	  }
+	}
+	
+	/**
+	 * Creates logger with followed options
+	 *
+	 * @namespace
+	 * @property {object} options - options for logger
+	 * @property {string | function | object} options.level - console[level]
+	 * @property {boolean} options.duration - print duration of each action?
+	 * @property {boolean} options.timestamp - print timestamp with each action?
+	 * @property {object} options.colors - custom colors
+	 * @property {object} options.logger - implementation of the `console` API
+	 * @property {boolean} options.logErrors - should errors in action execution be caught, logged, and re-thrown?
+	 * @property {boolean} options.collapsed - is group collapsed?
+	 * @property {boolean} options.predicate - condition which resolves logger behavior
+	 * @property {function} options.stateTransformer - transform state before print
+	 * @property {function} options.actionTransformer - transform action before print
+	 * @property {function} options.errorTransformer - transform error before print
+	 */
+	
+	function createLogger() {
+	  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	  var _options$level = options.level;
+	  var level = _options$level === undefined ? "log" : _options$level;
+	  var _options$logger = options.logger;
+	  var logger = _options$logger === undefined ? console : _options$logger;
+	  var _options$logErrors = options.logErrors;
+	  var logErrors = _options$logErrors === undefined ? true : _options$logErrors;
+	  var collapsed = options.collapsed;
+	  var predicate = options.predicate;
+	  var _options$duration = options.duration;
+	  var duration = _options$duration === undefined ? false : _options$duration;
+	  var _options$timestamp = options.timestamp;
+	  var timestamp = _options$timestamp === undefined ? true : _options$timestamp;
+	  var transformer = options.transformer;
+	  var _options$stateTransfo = options.stateTransformer;
+	  var // deprecated
+	  stateTransformer = _options$stateTransfo === undefined ? function (state) {
+	    return state;
+	  } : _options$stateTransfo;
+	  var _options$actionTransf = options.actionTransformer;
+	  var actionTransformer = _options$actionTransf === undefined ? function (actn) {
+	    return actn;
+	  } : _options$actionTransf;
+	  var _options$errorTransfo = options.errorTransformer;
+	  var errorTransformer = _options$errorTransfo === undefined ? function (error) {
+	    return error;
+	  } : _options$errorTransfo;
+	  var _options$colors = options.colors;
+	  var colors = _options$colors === undefined ? {
+	    title: function title() {
+	      return "#000000";
+	    },
+	    prevState: function prevState() {
+	      return "#9E9E9E";
+	    },
+	    action: function action() {
+	      return "#03A9F4";
+	    },
+	    nextState: function nextState() {
+	      return "#4CAF50";
+	    },
+	    error: function error() {
+	      return "#F20404";
+	    }
+	  } : _options$colors;
+	
+	  // exit if console undefined
+	
+	  if (typeof logger === "undefined") {
+	    return function () {
+	      return function (next) {
+	        return function (action) {
+	          return next(action);
+	        };
+	      };
+	    };
+	  }
+	
+	  if (transformer) {
+	    console.error("Option 'transformer' is deprecated, use stateTransformer instead");
+	  }
+	
+	  var logBuffer = [];
+	  function printBuffer() {
+	    logBuffer.forEach(function (logEntry, key) {
+	      var started = logEntry.started;
+	      var startedTime = logEntry.startedTime;
+	      var action = logEntry.action;
+	      var prevState = logEntry.prevState;
+	      var error = logEntry.error;
+	      var took = logEntry.took;
+	      var nextState = logEntry.nextState;
+	
+	      var nextEntry = logBuffer[key + 1];
+	      if (nextEntry) {
+	        nextState = nextEntry.prevState;
+	        took = nextEntry.started - started;
+	      }
+	      // message
+	      var formattedAction = actionTransformer(action);
+	      var isCollapsed = typeof collapsed === "function" ? collapsed(function () {
+	        return nextState;
+	      }, action) : collapsed;
+	
+	      var formattedTime = formatTime(startedTime);
+	      var titleCSS = colors.title ? "color: " + colors.title(formattedAction) + ";" : null;
+	      var title = "action " + (timestamp ? formattedTime : "") + " " + formattedAction.type + " " + (duration ? "(in " + took.toFixed(2) + " ms)" : "");
+	
+	      // render
+	      try {
+	        if (isCollapsed) {
+	          if (colors.title) logger.groupCollapsed("%c " + title, titleCSS);else logger.groupCollapsed(title);
+	        } else {
+	          if (colors.title) logger.group("%c " + title, titleCSS);else logger.group(title);
+	        }
+	      } catch (e) {
+	        logger.log(title);
+	      }
+	
+	      var prevStateLevel = getLogLevel(level, formattedAction, [prevState], "prevState");
+	      var actionLevel = getLogLevel(level, formattedAction, [formattedAction], "action");
+	      var errorLevel = getLogLevel(level, formattedAction, [error, prevState], "error");
+	      var nextStateLevel = getLogLevel(level, formattedAction, [nextState], "nextState");
+	
+	      if (prevStateLevel) {
+	        if (colors.prevState) logger[prevStateLevel]("%c prev state", "color: " + colors.prevState(prevState) + "; font-weight: bold", prevState);else logger[prevStateLevel]("prev state", prevState);
+	      }
+	
+	      if (actionLevel) {
+	        if (colors.action) logger[actionLevel]("%c action", "color: " + colors.action(formattedAction) + "; font-weight: bold", formattedAction);else logger[actionLevel]("action", formattedAction);
+	      }
+	
+	      if (error && errorLevel) {
+	        if (colors.error) logger[errorLevel]("%c error", "color: " + colors.error(error, prevState) + "; font-weight: bold", error);else logger[errorLevel]("error", error);
+	      }
+	
+	      if (nextStateLevel) {
+	        if (colors.nextState) logger[nextStateLevel]("%c next state", "color: " + colors.nextState(nextState) + "; font-weight: bold", nextState);else logger[nextStateLevel]("next state", nextState);
+	      }
+	
+	      try {
+	        logger.groupEnd();
+	      } catch (e) {
+	        logger.log("—— log end ——");
+	      }
+	    });
+	    logBuffer.length = 0;
+	  }
+	
+	  return function (_ref) {
+	    var getState = _ref.getState;
+	    return function (next) {
+	      return function (action) {
+	        // exit early if predicate function returns false
+	        if (typeof predicate === "function" && !predicate(getState, action)) {
+	          return next(action);
+	        }
+	
+	        var logEntry = {};
+	        logBuffer.push(logEntry);
+	
+	        logEntry.started = timer.now();
+	        logEntry.startedTime = new Date();
+	        logEntry.prevState = stateTransformer(getState());
+	        logEntry.action = action;
+	
+	        var returnedValue = undefined;
+	        if (logErrors) {
+	          try {
+	            returnedValue = next(action);
+	          } catch (e) {
+	            logEntry.error = errorTransformer(e);
+	          }
+	        } else {
+	          returnedValue = next(action);
+	        }
+	
+	        logEntry.took = timer.now() - logEntry.started;
+	        logEntry.nextState = stateTransformer(getState());
+	
+	        printBuffer();
+	
+	        if (logEntry.error) throw logEntry.error;
+	        return returnedValue;
+	      };
+	    };
+	  };
+	}
+	
+	module.exports = createLogger;
 
 /***/ }
 /******/ ]);
