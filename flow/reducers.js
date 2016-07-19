@@ -16,4 +16,8 @@ const setPalletLocationReducer = () => {
 
 };
 
+const selectRackReducer = () => {
+
+};
+
 exports.reducers = reducers;

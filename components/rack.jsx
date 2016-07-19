@@ -5,6 +5,8 @@ import {connect} from 'react-redux';
 import Link from 'react-router';
 
 import Location from './location.jsx';
+import RackSelector from './rack-selector.jsx';
+import {fetchInventory} from '../flow/actions.js';
 
 // Note about rack.length: each rackId will have a corresponding number of locations needed.  should it be passed through props?  i think so, but i'm not too sure
 
@@ -21,13 +23,12 @@ const Rack = React.createClass({
 			fetchInventory(this.refs.rackSelector.value)
 		);
 	},
-	onRackSelectClick: function(event) {
-		event.preventDefault();
-		this.props.onRackSelectClick(this.refs.rackSelector.value);
+	onRackSelectClick: function() {
+		this.props.dispatch(this.refs.rackSelector.value);
 	},
 	render: function() {
 		let locations = [];
-		let number;
+
 		for (i=0; i<rack.length; i++) {
 			locations.push(
 				<Location
@@ -44,14 +45,7 @@ const Rack = React.createClass({
 
 		return (
 			<div className='rack' key={rackId}>
-				<select ref='rackSelector'>
-					<option value="rack1">Rack 1</option>
-					<option value="rack2">Rack 2</option>
-					<option value="rack3">Rack 3</option>
-					<option value="rack4">Rack 4</option>
-					<option value="canadaRack">Canada</option>
-				</select>
-				<button onClick={this.onRackSelectClick}>Select</button>
+				<RackSelector />
 				{locations}
 			</div>
 		);
