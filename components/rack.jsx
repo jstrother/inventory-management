@@ -1,6 +1,6 @@
 // called into index.jsx
 
-import React from 'react';
+import {createClass} from 'react';
 import {connect} from 'react-redux';
 import Link from 'react-router';
 
@@ -17,7 +17,7 @@ import {fetchInventory} from '../flow/actions.js';
 // canada needs a total of 9 (3 locations on each of 3 levels)
 
 // getting an error thrown on the for loop - doesn't like for
-const Rack = React.createClass({
+const Rack = createClass({
 	componentDidMount: function() {
 		this.props.dispatch(
 			fetchInventory(this.refs.rackSelector.value)
@@ -32,12 +32,11 @@ const Rack = React.createClass({
 		for (i=0; i<rack.length; i++) {
 			locations.push(
 				<Location
-					key={`${rackId}_${i}`}
-					type={this.props.type},
-					lot={this.props.lot},
-					expire{this.props.expire},
-					country={this.props.country},
-					palletId={this.props.palletId},
+					type={this.props.type}
+					lot={this.props.lot}
+					expire={this.props.expire}
+					country={this.props.country}
+					palletId={this.props.palletId}
 					locationId={this.props.locationId}
 				/>
 			);
@@ -49,7 +48,7 @@ const Rack = React.createClass({
 				{locations}
 			</div>
 		);
-	};
+	}
 });
 
 const mapStateToProps = (state, props) => {

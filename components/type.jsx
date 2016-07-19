@@ -1,9 +1,9 @@
 // imported into inventory.jsx
 
-import React from 'react';
+import {createClass} from 'react';
 import {connect} from 'react-redux';
 
-const Type = React.createClass({
+const Type = createClass({
 	render: function() {
 		return (
 			<div className='type' key={this.props.type}>

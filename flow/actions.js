@@ -9,16 +9,16 @@ const createPallet = () => {
 
 const SELECT_RACK = 'SELECT_RACK';
 const selectRack = (rackId) => {
-	return (
+	return {
 		type: SELECT_RACK,
 		rackId
-	);
+	};
 };
 
 const SET_PALLET_LOCATION = 'SET_PALLET_LOCATION';
 const setPalletLocation = (palletId, locationId) => {
 	return {
-		type: SET_PALLET_LOCATION
+		type: SET_PALLET_LOCATION,
 		pallet,
 		location
 	};

@@ -62,11 +62,11 @@
 	
 	var _store2 = _interopRequireDefault(_store);
 	
-	var _rack = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./components/rack.jsx\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _rack = __webpack_require__(308);
 	
 	var _rack2 = _interopRequireDefault(_rack);
 	
-	var _inventory = __webpack_require__(309);
+	var _inventory = __webpack_require__(311);
 	
 	var _inventory2 = _interopRequireDefault(_inventory);
 	
@@ -35688,16 +35688,52 @@
 	var _actions2 = _interopRequireDefault(_actions);
 	
 	function _interopRequireDefault(obj) {
-	  return obj && obj.__esModule ? obj : { default: obj };
+		return obj && obj.__esModule ? obj : { default: obj };
 	}
 	
-	var reducers = function reducers() {
-	  // create several individual reducers and then combine them here
-	}; // called into store.js
+	// called into store.js
 	
-	var createPalletReducer = function createPalletReducer() {};
+	var initialState = {};
+	var state = state || initialState;
 	
-	var setPalletLocationReducer = function setPalletLocationReducer() {};
+	var reducers = (0, _redux.combineReducers)({
+		newPallet: createPalletReducer,
+		setLocation: setPalletLocationReducer,
+		selectRack: selectRackReducer
+	});
+	
+	var createPalletReducer = function createPalletReducer(state, action) {
+		switch (action.type) {
+			case 'CREATE_PALLET':
+				return state.concat({
+					// code to change state concerning creating pallets
+				});
+			default:
+				return state;
+		};
+	};
+	
+	var setPalletLocationReducer = function setPalletLocationReducer(state, action) {
+		switch (action.type) {
+			case 'SET_PALLET_LOCATION':
+				return state.concat({
+					// code to change state concerning setting locations
+				});
+			default:
+				return state;
+		};
+	};
+	
+	var selectRackReducer = function selectRackReducer(state, action) {
+		switch (action.type) {
+			case 'SELECT_RACK':
+				return state.concat({
+					// code to change state concerning selecting the rack
+				});
+			default:
+				return state;
+		};
+	};
 	
 	exports.reducers = reducers;
 
@@ -35716,45 +35752,114 @@
 		};
 	};
 	
+	var SELECT_RACK = 'SELECT_RACK';
+	var selectRack = function selectRack(rackId) {
+		return {
+			type: SELECT_RACK,
+			rackId: rackId
+		};
+	};
+	
 	var SET_PALLET_LOCATION = 'SET_PALLET_LOCATION';
-	var setPalletLocation = function setPalletLocation(pallet, location) {
+	var setPalletLocation = function setPalletLocation(palletId, locationId) {
 		return {
-			type: SET_PALLET_LOCATION
-		};
-	};
-	
-	var FETCH_INVENTORY_SUCCESS = 'FETCH_INVENTORY_SUCCESS';
-	var fetchInventorySuccess = function fetchInventorySuccess(inventory) {
-		return {
-			type: FETCH_INVENTORY_SUCCESS,
-			inventory: inventory
-		};
-	};
-	
-	var FETCH_INVENTORY_ERROR = 'FETCH_INVENTORY_ERROR';
-	var fetchInventoryError = function fetchInventoryError(error) {
-		return {
-			type: FETCH_INVENTORY_ERROR,
-			error: error
-		};
-	};
-	
-	var fetchInventory = function fetchInventory(inventory) {
-		return function (dispatch) {
-			return inventoryFetcher(inventory);
+			type: SET_PALLET_LOCATION,
+			pallet: pallet,
+			location: location
 		};
 	};
 	
 	exports.CREATE_PALLET = CREATE_PALLET;
 	exports.createPallet = createPallet;
+	exports.SELECT_RACK = SELECT_RACK;
+	exports.selectRack = selectRack;
 	exports.SET_PALLET_LOCATION = SET_PALLET_LOCATION;
 	exports.setPalletLocation = setPalletLocation;
-	exports.FETCH_INVENTORY_SUCCESS = FETCH_INVENTORY_SUCCESS;
-	exports.FETCH_INVENTORY_ERROR = FETCH_INVENTORY_ERROR;
-	exports.fetchInventory = fetchInventory;
 
 /***/ },
-/* 308 */,
+/* 308 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _react = __webpack_require__(1);
+	
+	var _reactRedux = __webpack_require__(172);
+	
+	var _reactRouter = __webpack_require__(194);
+	
+	var _reactRouter2 = _interopRequireDefault(_reactRouter);
+	
+	var _location = __webpack_require__(309);
+	
+	var _location2 = _interopRequireDefault(_location);
+	
+	var _rackSelector = __webpack_require__(310);
+	
+	var _rackSelector2 = _interopRequireDefault(_rackSelector);
+	
+	var _actions = __webpack_require__(307);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	// Note about rack.length: each rackId will have a corresponding number of locations needed.  should it be passed through props?  i think so, but i'm not too sure
+	
+	// rack1 needs 18 locations across three levels for 54 total
+	// rack2 needs 16 locations across three levels for 48 total
+	// rack3 needs 10 locations across three levels, plus 2 additional at spots 9 and 10, for 32 total
+	// rack4 needs 12 locations across three levels for 36 total
+	// canada needs a total of 9 (3 locations on each of 3 levels)
+	
+	// getting an error thrown on the for loop - doesn't like for
+	// called into index.jsx
+	
+	var Rack = (0, _react.createClass)({
+		componentDidMount: function componentDidMount() {
+			this.props.dispatch((0, _actions.fetchInventory)(this.refs.rackSelector.value));
+		},
+		onRackSelectClick: function onRackSelectClick() {
+			this.props.dispatch(this.refs.rackSelector.value);
+		},
+		render: function render() {
+			var locations = [];
+	
+			for (i = 0; i < rack.length; i++) {
+				locations.push(React.createElement(_location2.default, {
+					type: this.props.type,
+					lot: this.props.lot,
+					expire: this.props.expire,
+					country: this.props.country,
+					palletId: this.props.palletId,
+					locationId: this.props.locationId
+				}));
+			};
+	
+			return React.createElement(
+				'div',
+				{ className: 'rack', key: rackId },
+				React.createElement(_rackSelector2.default, null),
+				locations
+			);
+		}
+	});
+	
+	var mapStateToProps = function mapStateToProps(state, props) {
+		return {
+			type: state.type,
+			lot: state.lot,
+			expire: state.expire,
+			country: state.country,
+			palletId: state.palletId,
+			locationId: state.locationId,
+			rackId: state.rackId
+		};
+	};
+	
+	var Container = (0, _reactRedux.connect)(mapStateToProps)(Rack);
+	
+	module.exports = Container;
+
+/***/ },
 /* 309 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -35762,29 +35867,48 @@
 	
 	var _react = __webpack_require__(1);
 	
-	var _react2 = _interopRequireDefault(_react);
-	
 	var _reactRedux = __webpack_require__(172);
 	
-	var _type = __webpack_require__(310);
+	// don't forget to set pallets to locations via palletId
 	
-	var _type2 = _interopRequireDefault(_type);
+	// locationId will be similar to R1-A1 (Rack1, location A1)
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	// called into rack.jsx
 	
-	var Inventory = _react2.default.createClass({
-		displayName: 'Inventory',
-	
+	var Location = (0, _react.createClass)({
 		render: function render() {
-			return _react2.default.createElement(
+			return React.createElement(
 				'div',
-				{ className: 'inventory' },
-				_react2.default.createElement(_type2.default, null)
+				{ className: 'location', key: this.props.locationId + '_' + this.props.palletId },
+				React.createElement(
+					'h3',
+					null,
+					'Type: ',
+					this.props.type
+				),
+				React.createElement(
+					'h5',
+					null,
+					'Lot: ',
+					this.props.lot
+				),
+				React.createElement(
+					'h5',
+					null,
+					'Expiration: ',
+					this.props.expire
+				),
+				React.createElement(
+					'h5',
+					null,
+					'Country: ',
+					this.props.country
+				)
 			);
 		}
-	}); // imported into rack.jsx
+	});
 	
-	var Container = (0, _reactRedux.connect)()(Inventory);
+	var Container = (0, _reactRedux.connect)()(Location);
 	
 	module.exports = Container;
 
@@ -35796,19 +35920,106 @@
 	
 	var _react = __webpack_require__(1);
 	
-	var _react2 = _interopRequireDefault(_react);
-	
 	var _reactRedux = __webpack_require__(172);
+	
+	var _reactRouter = __webpack_require__(194);
+	
+	var _reactRouter2 = _interopRequireDefault(_reactRouter);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	var RackSelector = (0, _react.createClass)({
+		onRackSelectClick: function onRackSelectClick(event) {
+			event.preventDefault();
+			this.props.onRackSelectClick(this.refs.rackSelector.value);
+		},
+		render: function render() {
+			return React.createElement(
+				'div',
+				null,
+				React.createElement(
+					'select',
+					{ ref: 'rackSelector' },
+					React.createElement(
+						'option',
+						{ value: 'rack1' },
+						'Rack 1'
+					),
+					React.createElement(
+						'option',
+						{ value: 'rack2' },
+						'Rack 2'
+					),
+					React.createElement(
+						'option',
+						{ value: 'rack3' },
+						'Rack 3'
+					),
+					React.createElement(
+						'option',
+						{ value: 'rack4' },
+						'Rack 4'
+					),
+					React.createElement(
+						'option',
+						{ value: 'canadaRack' },
+						'Canada'
+					)
+				),
+				React.createElement(
+					'button',
+					{ onClick: this.onRackSelectClick },
+					'Select'
+				)
+			);
+		}
+	}); // called into rack.jsx
+
+/***/ },
+/* 311 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _react = __webpack_require__(1);
+	
+	var _reactRedux = __webpack_require__(172);
+	
+	var _type = __webpack_require__(312);
+	
+	var _type2 = _interopRequireDefault(_type);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Inventory = (0, _react.createClass)({
+		render: function render() {
+			return React.createElement(
+				'div',
+				{ className: 'inventory' },
+				React.createElement(_type2.default, null)
+			);
+		}
+	}); // imported into rack.jsx
+	
+	var Container = (0, _reactRedux.connect)()(Inventory);
+	
+	module.exports = Container;
+
+/***/ },
+/* 312 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _react = __webpack_require__(1);
+	
+	var _reactRedux = __webpack_require__(172);
+	
 	// imported into inventory.jsx
 	
-	var Type = _react2.default.createClass({
-		displayName: 'Type',
-	
+	var Type = (0, _react.createClass)({
 		render: function render() {
-			return _react2.default.createElement(
+			return React.createElement(
 				'div',
 				{ className: 'type', key: this.props.type },
 				'display info here for quantities, lots, expirations, and more for each type of product'

@@ -1,11 +1,11 @@
 // imported into rack.jsx
 
-import React from 'react';
+import {createClass} from 'react';
 import {connect} from 'react-redux';
 
 import Type from './type.jsx';
 
-const Inventory = React.createClass({
+const Inventory = createClass({
 	render: function() {
 		return (
 			<div className='inventory'>
