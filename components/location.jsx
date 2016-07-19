@@ -12,12 +12,11 @@ import Pallet from './pallet.jsx';
 const Location = React.createClass({
 	render: function() {
 		return (
-			<div className='location' key={this.props.locationId}>
-				<Pallet
-					type
-					lot
-					expire
-					country />
+			<div className='location' key={`${this.props.locationId}_${this.props.palletId}`}>				
+				<h3>Type: {this.props.type}</h3>
+				<h5>Lot: {this.props.lot}</h5>
+				<h5>Expiration: {this.props.expire}</h5>
+				<h5>Country: {this.props.country}</h5>
 			</div>
 		);
 	};

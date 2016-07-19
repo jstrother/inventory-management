@@ -16,22 +16,42 @@ import Location from './location.jsx';
 
 // getting an error thrown on the for loop - doesn't like for
 const Rack = React.createClass({
+	componentDidMount: function() {
+		this.props.dispatch(
+			fetchInventory(this.refs.rackSelector.value)
+		);
+	},
+	onRackSelectClick: function(event) {
+		event.preventDefault();
+		this.props.onRackSelectClick(this.refs.rackSelector.value);
+	},
 	render: function() {
 		let locations = [];
+		let number;
 		for (i=0; i<rack.length; i++) {
 			locations.push(
 				<Location
 					key={`${rackId}_${i}`}
 					type={this.props.type},
-					lot
-					expire
-					country
-					palletId
-					locationId />)
-		}
+					lot={this.props.lot},
+					expire{this.props.expire},
+					country={this.props.country},
+					palletId={this.props.palletId},
+					locationId={this.props.locationId}
+				/>
+			);
+		};
 
 		return (
 			<div className='rack' key={rackId}>
+				<select ref='rackSelector'>
+					<option value="rack1">Rack 1</option>
+					<option value="rack2">Rack 2</option>
+					<option value="rack3">Rack 3</option>
+					<option value="rack4">Rack 4</option>
+					<option value="canadaRack">Canada</option>
+				</select>
+				<button onClick={this.onRackSelectClick}>Select</button>
 				{locations}
 			</div>
 		);
@@ -45,8 +65,8 @@ const mapStateToProps = (state, props) => {
 		expire: state.expire,
 		country: state.country,
 		palletId: state.palletId,
-		locationId: state.locationId
-		// not entirely sure if i need to map palletId and locationId
+		locationId: state.locationId,
+		rackId: state.rackId
 	};
 };
 
