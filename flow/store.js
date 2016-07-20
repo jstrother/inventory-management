@@ -12,8 +12,7 @@ const socket = io(port);
 
 const socketIoMiddleware = createSocketIoMiddleware(socket, "server/");
 
-// due to the change in middle-ware format, is logger in the correct place? or should it still come at the end?
-const store = applyMiddleware(socketIoMiddleware)(logger)(createStore)(reducers);
+const store = applyMiddleware(socketIoMiddleware, logger)(createStore)(reducers);
 
 store.subscribe(() => {
 	store.getState();
@@ -21,6 +20,7 @@ store.subscribe(() => {
 
 store.dispatch({
 	// need to figure out what exactly goes here
+	
 });
 
 module.exports = store;

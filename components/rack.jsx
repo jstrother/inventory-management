@@ -68,7 +68,7 @@ const Rack = createClass({
 					locationId={locationId}
 				/>
 			);
-		};
+		}
 
 		return (
 			<div className='rack' key={rackId}>
@@ -78,17 +78,6 @@ const Rack = createClass({
 		);
 	}
 });
-
-const mapStateToProps = (state, props) => {
-	return {
-		type: state.type,
-		lot: state.lot,
-		expire: state.expire,
-		country: state.country,
-		palletId: state.palletId,
-		rackId: state.rackId
-	};
-};
 
 const locationSetter = (number, modulo) => {
 	for (i = 0; i <= number; i++) {
@@ -104,8 +93,21 @@ const locationSetter = (number, modulo) => {
 				else {
 					location = `B${j - modulo}`;
 				}
-			};
+			}
 		}
+		return location; 
+	}
+};
+
+const mapStateToProps = (state, props) => {
+	return {
+		type: state.type,
+		lot: state.lot,
+		expire: state.expire,
+		country: state.country,
+		palletId: state.palletId,
+		rackId: state.rackId,
+		store: state.store
 	};
 };
 

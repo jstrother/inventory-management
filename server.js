@@ -101,10 +101,13 @@ io.on('connection', function(socket) {
 	socket.on('action', (action) => {
 		switch (action.type) {
 			case 'SELECT_RACK':
+				socket.emit();
 				break;
 			case 'SET_PALLET_LOCATION':
+				socket.emit();
 				break;
 			case 'CREATE_PALLET':
+				socket.emit();
 				break;
 		};
 	});
