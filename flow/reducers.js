@@ -7,9 +7,21 @@ const initialState = {};
 let state = state || initialState;
 
 const reducers = combineReducers({
+	newPallet: createPalletReducer,
 	setLocation: setPalletLocationReducer,
 	selectRack: selectRackReducer
 });
+
+const createPalletReducer = (state, action) => {
+	switch (action.type) {
+		case 'CREATE_PALLET':
+			return state.concat({
+				// code to change state concerning creating pallets
+			});
+		default:
+			return state
+	};
+};
 
 const setPalletLocationReducer = (state, action) => {
 	switch (action.type) {

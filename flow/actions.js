@@ -1,5 +1,12 @@
 // called into reducers.js
 
+const CREATE_PALLET = 'CREATE_PALLET';
+const createPallet = () => {
+	return {
+		type: CREATE_PALLET
+	};
+};
+
 const SELECT_RACK = 'SELECT_RACK';
 const selectRack = (rackId) => {
 	return {
@@ -17,6 +24,8 @@ const setPalletLocation = (palletId, locationId) => {
 	};
 };
 
+exports.CREATE_PALLET = CREATE_PALLET;
+exports.createPallet = createPallet;
 exports.SELECT_RACK = SELECT_RACK;
 exports.selectRack = selectRack;
 exports.SET_PALLET_LOCATION = SET_PALLET_LOCATION;

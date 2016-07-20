@@ -57,7 +57,6 @@ const Rack = createClass({
 
 		for (i = 0; i < number; i++) {
 			locationSetter(number, modulo);
-			console.log('rack', rack, 'location', location);
 			let locationId = (`${rack}-${location}`);
 			locations.push(
 				<Location
@@ -100,10 +99,10 @@ const locationSetter = (number, modulo) => {
 					location = `A${j}`;
 				}
 				else if (j > modulo * 2) {
-					location = `C${j - (modulo * 2)}`
+					location = `C${j - (modulo * 2)}`;
 				}
 				else {
-					location = `B${j - modulo}`
+					location = `B${j - modulo}`;
 				}
 			};
 		}
