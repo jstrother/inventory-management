@@ -23,16 +23,15 @@
 
 let locationSetter = (number, modulo) => {
 	let rows = [];
-	let row = [];
 	let numRows = (number / modulo);  //should be 3 for our example
 	let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('').slice(0, numRows);
 
 	for (i = 1; i <= modulo; i++) {
 		alphabet.forEach((letter) => {
 			for (i = 0; i < alphabet.length; i++) {
-				row.push(letter, i);
+				rows.push(letter, i);
 			}
 		});
 	}
-	return rows.push(row);
+	return rows;
 };
