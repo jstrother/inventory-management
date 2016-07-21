@@ -38,6 +38,7 @@ let locationCreator = (number, modulo) => {
 	let locations = [];
 	for (i = 0; i < number; i++) {
 		let location = locationSetter(number, modulo);
+		// don't forget to change R1 back to ${rack} before copying back to rack.jsx
 		let locationId = (`R1-${location}`);
 		locations.push(locationId);
 	}
