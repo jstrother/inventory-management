@@ -26,12 +26,20 @@ let locationSetter = (number, modulo) => {
 	let numRows = (number / modulo);  //should be 3 for our example
 	let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('').slice(0, numRows);
 
-	for (i = 1; i <= modulo; i++) {
+	for (let i = 1; i <= modulo; i++) {
 		alphabet.forEach((letter) => {
-			for (i = 0; i < alphabet.length; i++) {
-				rows.push(letter, i);
-			}
+			rows.push(letter + i);
 		});
 	}
 	return rows;
 };
+
+let locationCreator = (number, modulo) => {
+	let locations = [];
+	for (i = 0; i < number; i++) {
+		let location = locationSetter(number, modulo);
+		let locationId = (`R1-${location}`);
+		locations.push(locationId);
+	}
+	return locations;
+}

@@ -8,10 +8,14 @@ mongoose.connection.on('error', function(err) {
 });
 
 mongoose.connection.once('open', function() {
-	let snippetSchema = mongoose.Schema({
-		// setup schema for pallets
+	let palletSchema = mongoose.Schema({
+		type: String,
+		lot: Number,
+		expire: String,
+		country: String,
+		quantity: String
 	});
-	let Snippet = mongoose.model('Snippet', snippetSchema);
+	let Snippet = mongoose.model('Snippet', palletSchema);
 });
 
 // data ok to be sent via sockets
@@ -21,7 +25,7 @@ let create = (name, content) => {
 	let snippet = {
 		type,
 		lot,
-		expiration,
+		expire,
 		country,
 		quantity
 	};
