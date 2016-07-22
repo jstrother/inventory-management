@@ -25,6 +25,6 @@ const RackSelector = createClass({
 	}
 });
 
+const Container = connect()(RackSelector);
 
-
-				
+module.exports = Container;

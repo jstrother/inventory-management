@@ -6,13 +6,9 @@ import Link from 'react-router';
 
 import Location from './location.jsx';
 import RackSelector from './rack-selector.jsx';
+import LocationSetter from './location-setter.jsx';
+import PalletCreator from './pallet-creator.jsx';
 import {fetchInventory} from '../flow/actions.js';
-
-// rack1 needs 18 locations across three levels for 54 total
-// rack2 needs 16 locations across three levels for 48 total
-// rack3 needs 10 locations across three levels, plus 2 additional at spots 9 and 10, for 32 total
-// rack4 needs 12 locations across three levels for 36 total
-// canada needs a total of 9 (3 locations on each of 3 levels)
 
 const Rack = createClass({
 	componentDidMount: function() {
@@ -23,9 +19,16 @@ const Rack = createClass({
 	onRackSelectClick: function() {
 		this.props.dispatch(this.refs.rackSelector.value);
 	},
+	onLocationSetClick: function() {
+		// add function that removes css hide class from LocationSetter component
+	},
+	onPalletCreateClick: function() {
+		// add function that removes css hide class from PalletCreator component
+	},
 	render: function() {
 		let locations = [];
 		let number, modulo, rack, location;
+		// rack1,2,etc. are the rackId's, not the rack variable
 		switch (this.state.rackId) {
 			case 'rack1':
 				number = 54;
@@ -73,6 +76,10 @@ const Rack = createClass({
 			<div className='rack' key={rackId}>
 				<RackSelector />
 				{locations}
+				<LocationSetter />
+				<PalletCreator />
+				<button className="locationSetter" onClick={this.onLocationSetClick} >Set Pallet Location</button>
+				<button className="palletcreator" onClick={this.onPalletCreateClick} >Create New Pallet</button>
 			</div>
 		);
 	}
@@ -80,7 +87,7 @@ const Rack = createClass({
 
 let locationSetter = (number, modulo) => {
 	let locations = [];
-	let numRows = (number / modulo);  //should be 3 for our example
+	let numRows = (number / modulo);
 	let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('').slice(0, numRows);
 	for (let i = 1; i <= modulo; i++) {
 		alphabet.forEach((letter) => {
