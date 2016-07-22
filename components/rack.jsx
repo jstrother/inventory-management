@@ -57,7 +57,6 @@ const Rack = createClass({
 
 		for (i = 0; i < number; i++) {
 			locationSetter(number, modulo);
-			let locationId = (`${rack}-${location}`);
 			locations.push(
 				<Location
 					type={this.props.type}
@@ -80,16 +79,15 @@ const Rack = createClass({
 });
 
 let locationSetter = (number, modulo) => {
-	let rows = [];
+	let locations = [];
 	let numRows = (number / modulo);  //should be 3 for our example
 	let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('').slice(0, numRows);
-
 	for (let i = 1; i <= modulo; i++) {
 		alphabet.forEach((letter) => {
-			rows.push(letter + i);
+			locations.push(`${rack}-${letter}${i}`);
 		});
 	}
-	return rows;
+	return locations;
 };
 
 const mapStateToProps = (state, props) => {
