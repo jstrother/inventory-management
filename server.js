@@ -5,6 +5,7 @@ import socket_io from 'socket.io'
 import bodyParser from 'body-parser';
 import {PORT, DATABASE_URL} from './config.js';
 import snippets from './snippets-mongoose/snippets.js';
+import Pallet from './models/pallet.js';
 
 // creates a single instance of Inventory
 const Inventory = function() {};
@@ -24,6 +25,32 @@ Inventory.prototype.createPallet = (type, expire, lot, numCases, numPops, numBar
 
 Inventory.prototype.setLocation = (locationId) => {
 	// this method will add a pallet to a location, and remove it from a previous one if needed
+	let locationId;
+	for (i = 0; i < number; i++) {
+		locationSetter(number, modulo);
+		locationId = `${rack}-${location}`;
+		locations.push(locationId);
+	};
+
+	const locationSetter = (number, modulo) => {
+		for (i = 0; i <= number; i++) {
+			if (i % modulo === 0) {
+				let rowTotal = i;
+				for (j = 0; j <= rowTotal; j++) {
+					if (j <= modulo) {
+						location = `A${j}`;
+					}
+					else if (j > modulo * 2) {
+						location = `C${j - (modulo * 2)}`;
+					}
+					else {
+						location = `B${j - modulo}`;
+					}
+				};
+			}
+		};
+	};
+
 	this.locationId = locationId;
 };
 
@@ -63,31 +90,6 @@ switch (rackId) {
 
 }
 
-for (i = 0; i < number; i++) {
-	locationSetter(number, modulo);
-	let locationId = (`${rack}-${location}`);
-	locations.push(locationId);
-};
-
-const locationSetter = (number, modulo) => {
-	for (i = 0; i <= number; i++) {
-		if (i % modulo === 0) {
-			let rowTotal = i;
-			for (j = 0; j <= rowTotal; j++) {
-				if (j <= modulo) {
-					location = `A${j}`;
-				}
-				else if (j > modulo * 2) {
-					location = `C${j - (modulo * 2)}`;
-				}
-				else {
-					location = `B${j - modulo}`;
-				}
-			};
-		}
-	};
-};
-
 const inventory = new Inventory();
 
 const app = express();
@@ -125,13 +127,25 @@ io.on('connection', function(socket) {
 	socket.on('action', (action) => {
 		switch (action.type) {
 			case 'SELECT_RACK':
-				socket.emit();
+				socket.emit('rackSelected', function() {
+					inventory.selectRack({
+
+					});
+				});
 				break;
 			case 'SET_PALLET_LOCATION':
-				socket.emit();
+				socket.emit('locationSet', function() {
+					inventory.setLocation({
+
+					});
+				});
 				break;
 			case 'CREATE_PALLET':
-				socket.emit();
+				socket.emit('palletCreated', function() {
+					inventory.createPallet({
+
+					});
+				});
 				break;
 		};
 	});

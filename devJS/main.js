@@ -1,3 +1,3 @@
-const $ = require('jquery');
-
-$('#R1A1').css("background-color", "blue");
+document.addEventListener('DOMContentLoaded', function() {
+	// placeholder for any pure JS i might need to add
+});
