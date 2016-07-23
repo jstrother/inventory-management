@@ -62,11 +62,11 @@
 	
 	var _store2 = _interopRequireDefault(_store);
 	
-	var _rack = __webpack_require__(308);
+	var _rack = __webpack_require__(309);
 	
 	var _rack2 = _interopRequireDefault(_rack);
 	
-	var _inventory = __webpack_require__(313);
+	var _inventory = __webpack_require__(314);
 	
 	var _inventory2 = _interopRequireDefault(_inventory);
 	
@@ -28137,9 +28137,9 @@
 	
 	var _reduxLogger = __webpack_require__(305);
 	
-	var _config = __webpack_require__(315);
+	var _config = __webpack_require__(306);
 	
-	var _reducers = __webpack_require__(306);
+	var _reducers = __webpack_require__(307);
 	
 	var _reducers2 = _interopRequireDefault(_reducers);
 	
@@ -35903,11 +35903,22 @@
 /* 306 */
 /***/ function(module, exports, __webpack_require__) {
 
+	/* WEBPACK VAR INJECTION */(function(process, global) {'use strict';
+	
+	exports.DATABASE_URL = process.env.DATABASE_URL || global.DATABASE_URL || (process.env.NODE_ENV === 'production' ? 'mongodb://localhost/inventory-management' : 'mongodb://localhost/inventory-management-dev');
+	
+	exports.PORT = process.env.PORT || 8080;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), (function() { return this; }())))
+
+/***/ },
+/* 307 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 	
 	var _redux = __webpack_require__(179);
 	
-	var _actions = __webpack_require__(307);
+	var _actions = __webpack_require__(308);
 	
 	var _actions2 = _interopRequireDefault(_actions);
 	
@@ -35962,7 +35973,7 @@
 	exports.reducers = reducers;
 
 /***/ },
-/* 307 */
+/* 308 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -36001,7 +36012,7 @@
 	exports.setPalletLocation = setPalletLocation;
 
 /***/ },
-/* 308 */
+/* 309 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36014,23 +36025,23 @@
 	
 	var _reactRouter2 = _interopRequireDefault(_reactRouter);
 	
-	var _location = __webpack_require__(309);
+	var _location = __webpack_require__(310);
 	
 	var _location2 = _interopRequireDefault(_location);
 	
-	var _rackSelector = __webpack_require__(310);
+	var _rackSelector = __webpack_require__(311);
 	
 	var _rackSelector2 = _interopRequireDefault(_rackSelector);
 	
-	var _locationSetter = __webpack_require__(311);
+	var _locationSetter = __webpack_require__(312);
 	
 	var _locationSetter2 = _interopRequireDefault(_locationSetter);
 	
-	var _palletCreator = __webpack_require__(312);
+	var _palletCreator = __webpack_require__(313);
 	
 	var _palletCreator2 = _interopRequireDefault(_palletCreator);
 	
-	var _actions = __webpack_require__(307);
+	var _actions = __webpack_require__(308);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -36152,7 +36163,7 @@
 	module.exports = Container;
 
 /***/ },
-/* 309 */
+/* 310 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36205,7 +36216,7 @@
 	module.exports = Container;
 
 /***/ },
-/* 310 */
+/* 311 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36272,7 +36283,7 @@
 	module.exports = Container;
 
 /***/ },
-/* 311 */
+/* 312 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36306,7 +36317,7 @@
 	module.exports = Container;
 
 /***/ },
-/* 312 */
+/* 313 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36340,7 +36351,7 @@
 	module.exports = Container;
 
 /***/ },
-/* 313 */
+/* 314 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36349,7 +36360,7 @@
 	
 	var _reactRedux = __webpack_require__(172);
 	
-	var _type = __webpack_require__(314);
+	var _type = __webpack_require__(315);
 	
 	var _type2 = _interopRequireDefault(_type);
 	
@@ -36370,7 +36381,7 @@
 	module.exports = Container;
 
 /***/ },
-/* 314 */
+/* 315 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36394,17 +36405,6 @@
 	var Container = (0, _reactRedux.connect)()(Type);
 	
 	module.exports = Container;
-
-/***/ },
-/* 315 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process, global) {'use strict';
-	
-	exports.DATABASE_URL = process.env.DATABASE_URL || global.DATABASE_URL || (process.env.NODE_ENV === 'production' ? 'mongodb://localhost/inventory-management' : 'mongodb://localhost/inventory-management-dev');
-	
-	exports.PORT = process.env.PORT || 8080;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), (function() { return this; }())))
 
 /***/ }
 /******/ ]);
