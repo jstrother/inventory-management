@@ -6,31 +6,30 @@ import bodyParser from 'body-parser';
 import {PORT, DATABASE_URL} from './config.js';
 import snippets from './snippets-mongoose/snippets.js';
 
-const jsonParser = bodyParser.json();
-
 // creates a single instance of Inventory
 const Inventory = function() {};
 
 Inventory.prototype.createPallet = (type, expire, lot, numCases, numPops, numBars, country) => {
-	function Pallet(type, expire, lot, numCases, numPops, numBars, country) {
-		this.type = type;
-		this.expire = expire;
-		this.lot = lot;
-		this.numCases = numCases;
-		this.numPops = numPops;
-		this.numBars = numBars;
-		this.country = country;
-	}
+	this.type = type;
+	this.expire = expire;
+	this.lot = lot;
+	this.numCases = numCases;
+	this.numPops = numPops;
+	this.numBars = numBars;
+	this.country = country;
 
-// creates a pallet with unique ID
+	return `${this}-${Date}`;
+	// creates a pallet with unique ID
 };
 
-Inventory.prototype.setLocation = (inputs) => {
-// this method will add a pallet to a location, and remove it from a previous one if needed
+Inventory.prototype.setLocation = (locationId) => {
+	// this method will add a pallet to a location, and remove it from a previous one if needed
+	this.locationId = locationId;
 };
 
-Inventory.prototype.selectRack = (inputs) => {
-
+Inventory.prototype.selectRack = (rackId) => {
+	// this method selects individual racks by ID
+	this.rackId = rackId;
 };
 
 let locations = [];
@@ -94,8 +93,32 @@ const inventory = new Inventory();
 const app = express();
 app.use('/inventory', static('public'));
 
+app.use(bodyParser.json());
+
 const server = http.Server(app);
 const io = socket_io(server);
+
+const runServer = function(callback) {
+	mongoose.connect(DATABASE_URL, function(err) {
+		if (err && callback) {
+			return callback(err);
+		}
+		app.listen(PORT, function() {
+			console.log(`Listening on localhost: ${PORT}`);
+			if (callback) {
+				callback();
+			}
+		});
+	});
+};
+
+if (require.main === module) {
+	runServer(function(err) {
+		if (err) {
+			console.error(err);
+		}
+	});
+};
 
 io.on('connection', function(socket) {
 	console.log('client connected');
@@ -114,4 +137,7 @@ io.on('connection', function(socket) {
 	});
 });
 
-server.listen(port);
+server.listen(PORT);
+
+exports.app = app;
+exports.runServer = runServer;
