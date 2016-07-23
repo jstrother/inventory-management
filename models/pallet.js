@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 let palletSchema = mongoose.Schema({
 	type: {type: String, required: true},

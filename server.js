@@ -1,11 +1,13 @@
-import express from 'express';
-import {static} from 'express';
-import http from 'http';
-import socket_io from 'socket.io'
-import bodyParser from 'body-parser';
-import {PORT, DATABASE_URL} from './config.js';
-import snippets from './snippets-mongoose/snippets.js';
-import Pallet from './models/pallet.js';
+const express = require('express');
+const static = express.static;
+const http = require('http');
+const socket_io = require('socket.io');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
+const PORT = require('./config.js').PORT;
+const DATABASE_URL = require('./config.js').DATABASE_URL;
+const Pallet = require('./models/pallet.js');
 
 // creates a single instance of Inventory
 const Inventory = function() {};
@@ -23,8 +25,9 @@ Inventory.prototype.createPallet = (type, expire, lot, numCases, numPops, numBar
 	// creates a pallet with unique ID
 };
 
-Inventory.prototype.setLocation = (locationId) => {
+Inventory.prototype.setLocation = (palletId) => {
 	// this method will add a pallet to a location, and remove it from a previous one if needed
+	let locations = [];
 	let locationId;
 	for (i = 0; i < number; i++) {
 		locationSetter(number, modulo);
@@ -56,10 +59,7 @@ Inventory.prototype.setLocation = (locationId) => {
 
 Inventory.prototype.selectRack = (rackId) => {
 	// this method selects individual racks by ID
-	this.rackId = rackId;
-};
 
-let locations = [];
 let number, modulo, rack, location;
 switch (rackId) {
 	case 'rack1':
@@ -89,6 +89,9 @@ switch (rackId) {
 		break;
 
 }
+	this.rackId = rackId;
+};
+
 
 const inventory = new Inventory();
 

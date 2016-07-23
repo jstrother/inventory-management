@@ -66,7 +66,7 @@
 	
 	var _rack2 = _interopRequireDefault(_rack);
 	
-	var _inventory = __webpack_require__(311);
+	var _inventory = __webpack_require__(313);
 	
 	var _inventory2 = _interopRequireDefault(_inventory);
 	
@@ -28133,36 +28133,31 @@
 	
 	var _reduxSocket = __webpack_require__(255);
 	
-	var _reduxSocket2 = _interopRequireDefault(_reduxSocket);
-	
 	var _socket = __webpack_require__(256);
 	
-	var _socket2 = _interopRequireDefault(_socket);
+	var _reduxLogger = __webpack_require__(305);
 	
-	var _reduxLogger = __webpack_require__(313);
-	
-	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
-	
-	var _ports = __webpack_require__(305);
-	
-	var _ports2 = _interopRequireDefault(_ports);
+	var _config = __webpack_require__(315);
 	
 	var _reducers = __webpack_require__(306);
 	
 	var _reducers2 = _interopRequireDefault(_reducers);
 	
 	function _interopRequireDefault(obj) {
-	  return obj && obj.__esModule ? obj : { default: obj };
+		return obj && obj.__esModule ? obj : { default: obj };
 	}
 	
-	var logger = (0, _reduxLogger2.default)();
+	var logger = (0, _reduxLogger.createLogger)();
 	
-	var socket = (0, _socket2.default)(_ports2.default);
+	var socket = (0, _socket.io)(port);
 	
-	var socketIoMiddleware = (0, _reduxSocket2.default)(socket, "server/");
+	var socketIoMiddleware = (0, _reduxSocket.createSocketIoMiddleware)(socket, "server/");
 	
-	// due to the change in middle-ware format, is logger in the correct place? or should it still come at the end?
-	var store = (0, _redux.applyMiddleware)(socketIoMiddleware)(logger)(_redux.createStore)(_reducers2.default);
+	var store = (0, _redux.applyMiddleware)(socketIoMiddleware, logger)(_redux.createStore)(_reducers2.default);
+	
+	store.subscribe(function () {
+		store.getState();
+	});
 	
 	module.exports = store;
 
@@ -35673,400 +35668,6 @@
 
 /***/ },
 /* 305 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
-	
-	port = process.env.PORT || 8080;
-	
-	exports.port = port;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
-
-/***/ },
-/* 306 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _redux = __webpack_require__(179);
-	
-	var _actions = __webpack_require__(307);
-	
-	var _actions2 = _interopRequireDefault(_actions);
-	
-	function _interopRequireDefault(obj) {
-		return obj && obj.__esModule ? obj : { default: obj };
-	}
-	
-	// called into store.js
-	
-	var initialState = {};
-	var state = state || initialState;
-	
-	var reducers = (0, _redux.combineReducers)({
-		setLocation: setPalletLocationReducer,
-		selectRack: selectRackReducer
-	});
-	
-	var setPalletLocationReducer = function setPalletLocationReducer(state, action) {
-		switch (action.type) {
-			case 'SET_PALLET_LOCATION':
-				return state.concat({
-					// code to change state concerning setting locations
-				});
-			default:
-				return state;
-		};
-	};
-	
-	var selectRackReducer = function selectRackReducer(state, action) {
-		switch (action.type) {
-			case 'SELECT_RACK':
-				return state.concat({
-					// code to change state concerning selecting the rack
-				});
-			default:
-				return state;
-		};
-	};
-	
-	exports.reducers = reducers;
-
-/***/ },
-/* 307 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	// called into reducers.js
-	
-	var SELECT_RACK = 'SELECT_RACK';
-	var selectRack = function selectRack(rackId) {
-		return {
-			type: SELECT_RACK,
-			rackId: rackId
-		};
-	};
-	
-	var SET_PALLET_LOCATION = 'SET_PALLET_LOCATION';
-	var setPalletLocation = function setPalletLocation(palletId, locationId) {
-		return {
-			type: SET_PALLET_LOCATION,
-			pallet: pallet,
-			location: location
-		};
-	};
-	
-	exports.SELECT_RACK = SELECT_RACK;
-	exports.selectRack = selectRack;
-	exports.SET_PALLET_LOCATION = SET_PALLET_LOCATION;
-	exports.setPalletLocation = setPalletLocation;
-
-/***/ },
-/* 308 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _react = __webpack_require__(1);
-	
-	var _reactRedux = __webpack_require__(172);
-	
-	var _reactRouter = __webpack_require__(194);
-	
-	var _reactRouter2 = _interopRequireDefault(_reactRouter);
-	
-	var _location = __webpack_require__(309);
-	
-	var _location2 = _interopRequireDefault(_location);
-	
-	var _rackSelector = __webpack_require__(310);
-	
-	var _rackSelector2 = _interopRequireDefault(_rackSelector);
-	
-	var _actions = __webpack_require__(307);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	// rack1 needs 18 locations across three levels for 54 total
-	// rack2 needs 16 locations across three levels for 48 total
-	// rack3 needs 10 locations across three levels, plus 2 additional at spots 9 and 10, for 32 total
-	// rack4 needs 12 locations across three levels for 36 total
-	// canada needs a total of 9 (3 locations on each of 3 levels)
-	
-	// called into index.jsx
-	
-	var Rack = (0, _react.createClass)({
-		componentDidMount: function componentDidMount() {
-			this.props.dispatch((0, _actions.fetchInventory)(this.refs.rackSelector.value));
-		},
-		onRackSelectClick: function onRackSelectClick() {
-			this.props.dispatch(this.refs.rackSelector.value);
-		},
-		render: function render() {
-			var locations = [];
-			var number = void 0,
-			    modulo = void 0,
-			    rack = void 0,
-			    location = void 0;
-			switch (this.state.rackId) {
-				case 'rack1':
-					number = 54;
-					modulo = 18;
-					rack = 'R1';
-					break;
-				case 'rack2':
-					number = 48;
-					modulo = 16;
-					rack = 'R2';
-					break;
-				case 'rack3':
-					number = 32;
-					modulo = 10;
-					rack = 'R3';
-					break;
-				case 'rack4':
-					number = 36;
-					modulo = 12;
-					rack = 'R4';
-					break;
-				case 'canadaRack':
-					number = 9;
-					modulo = 3;
-					rack = 'Canada';
-					break;
-	
-			}
-	
-			for (i = 0; i < number; i++) {
-				locationSetter(number, modulo);
-				console.log('rack', rack, 'location', location);
-				var locationId = rack + '-' + location;
-				locations.push(React.createElement(_location2.default, {
-					type: this.props.type,
-					lot: this.props.lot,
-					expire: this.props.expire,
-					country: this.props.country,
-					palletId: this.props.palletId,
-					locationId: locationId
-				}));
-			};
-	
-			return React.createElement(
-				'div',
-				{ className: 'rack', key: rackId },
-				React.createElement(_rackSelector2.default, null),
-				locations
-			);
-		}
-	});
-	
-	var mapStateToProps = function mapStateToProps(state, props) {
-		return {
-			type: state.type,
-			lot: state.lot,
-			expire: state.expire,
-			country: state.country,
-			palletId: state.palletId,
-			rackId: state.rackId
-		};
-	};
-	
-	var locationSetter = function locationSetter(number, modulo) {
-		for (i = 0; i <= number; i++) {
-			if (i % modulo === 0) {
-				var rowTotal = i;
-				for (j = 0; j <= rowTotal; j++) {
-					if (j <= modulo) {
-						location = 'A' + j;
-					} else if (j > modulo * 2) {
-						location = 'C' + (j - modulo * 2);
-					} else {
-						location = 'B' + (j - modulo);
-					}
-				};
-			}
-		};
-	};
-	
-	var Container = (0, _reactRedux.connect)(mapStateToProps)(Rack);
-	
-	module.exports = Container;
-
-/***/ },
-/* 309 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _react = __webpack_require__(1);
-	
-	var _reactRedux = __webpack_require__(172);
-	
-	// don't forget to set pallets to locations via palletId
-	
-	// locationId will be similar to R1-A1 (Rack1, location A1)
-	
-	// called into rack.jsx
-	
-	var Location = (0, _react.createClass)({
-		render: function render() {
-			return React.createElement(
-				'div',
-				{ className: 'location', key: this.props.locationId + '_' + this.props.palletId },
-				React.createElement(
-					'h3',
-					null,
-					'Type: ',
-					this.props.type
-				),
-				React.createElement(
-					'h5',
-					null,
-					'Lot: ',
-					this.props.lot
-				),
-				React.createElement(
-					'h5',
-					null,
-					'Expiration: ',
-					this.props.expire
-				),
-				React.createElement(
-					'h5',
-					null,
-					'Country: ',
-					this.props.country
-				)
-			);
-		}
-	});
-	
-	var Container = (0, _reactRedux.connect)()(Location);
-	
-	module.exports = Container;
-
-/***/ },
-/* 310 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _react = __webpack_require__(1);
-	
-	var _reactRedux = __webpack_require__(172);
-	
-	var _reactRouter = __webpack_require__(194);
-	
-	var _reactRouter2 = _interopRequireDefault(_reactRouter);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var RackSelector = (0, _react.createClass)({
-		onRackSelectClick: function onRackSelectClick(event) {
-			event.preventDefault();
-			this.props.onRackSelectClick(this.refs.rackSelector.value);
-		},
-		render: function render() {
-			return React.createElement(
-				'div',
-				null,
-				React.createElement(
-					'select',
-					{ ref: 'rackSelector' },
-					React.createElement(
-						'option',
-						{ value: 'rack1' },
-						'Rack 1'
-					),
-					React.createElement(
-						'option',
-						{ value: 'rack2' },
-						'Rack 2'
-					),
-					React.createElement(
-						'option',
-						{ value: 'rack3' },
-						'Rack 3'
-					),
-					React.createElement(
-						'option',
-						{ value: 'rack4' },
-						'Rack 4'
-					),
-					React.createElement(
-						'option',
-						{ value: 'canadaRack' },
-						'Canada'
-					)
-				),
-				React.createElement(
-					'button',
-					{ onClick: this.onRackSelectClick },
-					'Select'
-				)
-			);
-		}
-	}); // called into rack.jsx
-
-/***/ },
-/* 311 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _react = __webpack_require__(1);
-	
-	var _reactRedux = __webpack_require__(172);
-	
-	var _type = __webpack_require__(312);
-	
-	var _type2 = _interopRequireDefault(_type);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var Inventory = (0, _react.createClass)({
-		render: function render() {
-			return React.createElement(
-				'div',
-				{ className: 'inventory' },
-				React.createElement(_type2.default, null)
-			);
-		}
-	}); // imported into rack.jsx
-	
-	var Container = (0, _reactRedux.connect)()(Inventory);
-	
-	module.exports = Container;
-
-/***/ },
-/* 312 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _react = __webpack_require__(1);
-	
-	var _reactRedux = __webpack_require__(172);
-	
-	// imported into inventory.jsx
-	
-	var Type = (0, _react.createClass)({
-		render: function render() {
-			return React.createElement(
-				'div',
-				{ className: 'type', key: this.props.type },
-				'display info here for quantities, lots, expirations, and more for each type of product'
-			);
-		}
-	});
-	
-	var Container = (0, _reactRedux.connect)()(Type);
-	
-	module.exports = Container;
-
-/***/ },
-/* 313 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -36297,6 +35898,513 @@
 	}
 	
 	module.exports = createLogger;
+
+/***/ },
+/* 306 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _redux = __webpack_require__(179);
+	
+	var _actions = __webpack_require__(307);
+	
+	var _actions2 = _interopRequireDefault(_actions);
+	
+	function _interopRequireDefault(obj) {
+		return obj && obj.__esModule ? obj : { default: obj };
+	}
+	
+	// called into store.js
+	
+	var initialState = {};
+	var state = state || initialState;
+	
+	var reducers = (0, _redux.combineReducers)({
+		newPallet: createPalletReducer,
+		setLocation: setPalletLocationReducer,
+		selectRack: selectRackReducer
+	});
+	
+	var createPalletReducer = function createPalletReducer(state, action) {
+		switch (action.type) {
+			case 'CREATE_PALLET':
+				return state.concat({
+					// code to change state concerning creating pallets
+				});
+			default:
+				return state;
+		};
+	};
+	
+	var setPalletLocationReducer = function setPalletLocationReducer(state, action) {
+		switch (action.type) {
+			case 'SET_PALLET_LOCATION':
+				return state.concat({
+					// code to change state concerning setting locations
+				});
+			default:
+				return state;
+		};
+	};
+	
+	var selectRackReducer = function selectRackReducer(state, action) {
+		switch (action.type) {
+			case 'SELECT_RACK':
+				return state.concat({
+					// code to change state concerning selecting the rack
+				});
+			default:
+				return state;
+		};
+	};
+	
+	exports.reducers = reducers;
+
+/***/ },
+/* 307 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	// called into reducers.js
+	
+	var CREATE_PALLET = 'CREATE_PALLET';
+	var createPallet = function createPallet() {
+		return {
+			type: CREATE_PALLET
+		};
+	};
+	
+	var SELECT_RACK = 'SELECT_RACK';
+	var selectRack = function selectRack(rackId) {
+		return {
+			type: SELECT_RACK,
+			rackId: rackId
+		};
+	};
+	
+	var SET_PALLET_LOCATION = 'SET_PALLET_LOCATION';
+	var setPalletLocation = function setPalletLocation(palletId, locationId) {
+		return {
+			type: SET_PALLET_LOCATION,
+			pallet: pallet,
+			location: location
+		};
+	};
+	
+	exports.CREATE_PALLET = CREATE_PALLET;
+	exports.createPallet = createPallet;
+	exports.SELECT_RACK = SELECT_RACK;
+	exports.selectRack = selectRack;
+	exports.SET_PALLET_LOCATION = SET_PALLET_LOCATION;
+	exports.setPalletLocation = setPalletLocation;
+
+/***/ },
+/* 308 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _react = __webpack_require__(1);
+	
+	var _reactRedux = __webpack_require__(172);
+	
+	var _reactRouter = __webpack_require__(194);
+	
+	var _reactRouter2 = _interopRequireDefault(_reactRouter);
+	
+	var _location = __webpack_require__(309);
+	
+	var _location2 = _interopRequireDefault(_location);
+	
+	var _rackSelector = __webpack_require__(310);
+	
+	var _rackSelector2 = _interopRequireDefault(_rackSelector);
+	
+	var _locationSetter = __webpack_require__(311);
+	
+	var _locationSetter2 = _interopRequireDefault(_locationSetter);
+	
+	var _palletCreator = __webpack_require__(312);
+	
+	var _palletCreator2 = _interopRequireDefault(_palletCreator);
+	
+	var _actions = __webpack_require__(307);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	// called into index.jsx
+	
+	var Rack = (0, _react.createClass)({
+		componentDidMount: function componentDidMount() {
+			this.props.dispatch((0, _actions.fetchInventory)(this.refs.rackSelector.value));
+		},
+		onRackSelectClick: function onRackSelectClick() {
+			this.props.dispatch(this.refs.rackSelector.value);
+		},
+		onLocationSetClick: function onLocationSetClick() {
+			// add function that removes css hide class from LocationSetter component
+		},
+		onPalletCreateClick: function onPalletCreateClick() {
+			// add function that removes css hide class from PalletCreator component
+		},
+		render: function render() {
+			var locations = [];
+			var number = void 0,
+			    modulo = void 0,
+			    rack = void 0,
+			    location = void 0;
+			// rack1,2,etc. are the rackId's, not the rack variable
+			switch (this.state.rackId) {
+				case 'rack1':
+					number = 54;
+					modulo = 18;
+					rack = 'R1';
+					break;
+				case 'rack2':
+					number = 48;
+					modulo = 16;
+					rack = 'R2';
+					break;
+				case 'rack3':
+					number = 32;
+					modulo = 10;
+					rack = 'R3';
+					break;
+				case 'rack4':
+					number = 36;
+					modulo = 12;
+					rack = 'R4';
+					break;
+				case 'canadaRack':
+					number = 9;
+					modulo = 3;
+					rack = 'Canada';
+					break;
+	
+			}
+	
+			for (i = 0; i < number; i++) {
+				locationSetter(number, modulo);
+				locations.push(React.createElement(_location2.default, {
+					type: this.props.type,
+					lot: this.props.lot,
+					expire: this.props.expire,
+					country: this.props.country,
+					palletId: this.props.palletId,
+					locationId: locationId
+				}));
+			}
+	
+			return React.createElement(
+				'div',
+				{ className: 'rack', key: rackId },
+				React.createElement(_rackSelector2.default, null),
+				locations,
+				React.createElement(_locationSetter2.default, null),
+				React.createElement(_palletCreator2.default, null),
+				React.createElement(
+					'button',
+					{ className: 'locationSetter', onClick: this.onLocationSetClick },
+					'Set Pallet Location'
+				),
+				React.createElement(
+					'button',
+					{ className: 'palletcreator', onClick: this.onPalletCreateClick },
+					'Create New Pallet'
+				)
+			);
+		}
+	});
+	
+	var locationSetter = function locationSetter(number, modulo) {
+		var locations = [];
+		var numRows = number / modulo;
+		var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('').slice(0, numRows);
+	
+		var _loop = function _loop(_i) {
+			alphabet.forEach(function (letter) {
+				locations.push(rack + '-' + letter + _i);
+			});
+		};
+	
+		for (var _i = 1; _i <= modulo; _i++) {
+			_loop(_i);
+		}
+		return locations;
+	};
+	
+	var mapStateToProps = function mapStateToProps(state, props) {
+		return {
+			type: state.type,
+			lot: state.lot,
+			expire: state.expire,
+			country: state.country,
+			palletId: state.palletId,
+			rackId: state.rackId,
+			store: state.store
+		};
+	};
+	
+	var Container = (0, _reactRedux.connect)(mapStateToProps)(Rack);
+	
+	module.exports = Container;
+
+/***/ },
+/* 309 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _react = __webpack_require__(1);
+	
+	var _reactRedux = __webpack_require__(172);
+	
+	// don't forget to set pallets to locations via palletId
+	
+	// locationId will be similar to R1-A1 (Rack1, location A1)
+	
+	// called into rack.jsx
+	
+	var Location = (0, _react.createClass)({
+		render: function render() {
+			return React.createElement(
+				'div',
+				{ className: 'location', key: this.props.locationId + '_' + this.props.palletId },
+				React.createElement(
+					'h3',
+					null,
+					'Type: ',
+					this.props.type
+				),
+				React.createElement(
+					'h5',
+					null,
+					'Lot: ',
+					this.props.lot
+				),
+				React.createElement(
+					'h5',
+					null,
+					'Expiration: ',
+					this.props.expire
+				),
+				React.createElement(
+					'h5',
+					null,
+					'Country: ',
+					this.props.country
+				)
+			);
+		}
+	});
+	
+	var Container = (0, _reactRedux.connect)()(Location);
+	
+	module.exports = Container;
+
+/***/ },
+/* 310 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _react = __webpack_require__(1);
+	
+	var _reactRedux = __webpack_require__(172);
+	
+	var _reactRouter = __webpack_require__(194);
+	
+	var _reactRouter2 = _interopRequireDefault(_reactRouter);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var RackSelector = (0, _react.createClass)({
+		onRackSelectClick: function onRackSelectClick(event) {
+			event.preventDefault();
+			this.props.onRackSelectClick(this.refs.rackSelector.value);
+		},
+		render: function render() {
+			return React.createElement(
+				'div',
+				null,
+				React.createElement(
+					'select',
+					{ ref: 'rackSelector' },
+					React.createElement(
+						'option',
+						{ value: 'rack1' },
+						'Rack 1'
+					),
+					React.createElement(
+						'option',
+						{ value: 'rack2' },
+						'Rack 2'
+					),
+					React.createElement(
+						'option',
+						{ value: 'rack3' },
+						'Rack 3'
+					),
+					React.createElement(
+						'option',
+						{ value: 'rack4' },
+						'Rack 4'
+					),
+					React.createElement(
+						'option',
+						{ value: 'canadaRack' },
+						'Canada'
+					)
+				),
+				React.createElement(
+					'button',
+					{ onClick: this.onRackSelectClick },
+					'Select'
+				)
+			);
+		}
+	}); // called into rack.jsx
+	
+	var Container = (0, _reactRedux.connect)()(RackSelector);
+	
+	module.exports = Container;
+
+/***/ },
+/* 311 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _react = __webpack_require__(1);
+	
+	var _reactRedux = __webpack_require__(172);
+	
+	var _reactRouter = __webpack_require__(194);
+	
+	var _reactRouter2 = _interopRequireDefault(_reactRouter);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var LocatonSetter = (0, _react.createClass)({
+		render: function render() {
+			return React.createElement(
+				'div',
+				null,
+				React.createElement(
+					'button',
+					{ className: 'closeLocationSetter', onClick: this.onCloseClick },
+					'Close'
+				)
+			);
+		}
+	}); // called into rack.jsx
+	
+	var Container = (0, _reactRedux.connect)()(LocatonSetter);
+	
+	module.exports = Container;
+
+/***/ },
+/* 312 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _react = __webpack_require__(1);
+	
+	var _reactRedux = __webpack_require__(172);
+	
+	var _reactRouter = __webpack_require__(194);
+	
+	var _reactRouter2 = _interopRequireDefault(_reactRouter);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var PalletCreator = (0, _react.createClass)({
+		render: function render() {
+			return React.createElement(
+				'div',
+				null,
+				React.createElement(
+					'button',
+					{ className: 'closePalletCreator', onClick: this.onCloseClick },
+					'Close'
+				)
+			);
+		}
+	}); // called into rack.jsx
+	
+	var Container = (0, _reactRedux.connect)()(PalletCreator);
+	
+	module.exports = Container;
+
+/***/ },
+/* 313 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _react = __webpack_require__(1);
+	
+	var _reactRedux = __webpack_require__(172);
+	
+	var _type = __webpack_require__(314);
+	
+	var _type2 = _interopRequireDefault(_type);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Inventory = (0, _react.createClass)({
+		render: function render() {
+			return React.createElement(
+				'div',
+				{ className: 'inventory' },
+				React.createElement(_type2.default, null)
+			);
+		}
+	}); // imported into rack.jsx
+	
+	var Container = (0, _reactRedux.connect)()(Inventory);
+	
+	module.exports = Container;
+
+/***/ },
+/* 314 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _react = __webpack_require__(1);
+	
+	var _reactRedux = __webpack_require__(172);
+	
+	// imported into inventory.jsx
+	
+	var Type = (0, _react.createClass)({
+		render: function render() {
+			return React.createElement(
+				'div',
+				{ className: 'type', key: this.props.type },
+				'display info here for quantities, lots, expirations, and more for each type of product'
+			);
+		}
+	});
+	
+	var Container = (0, _reactRedux.connect)()(Type);
+	
+	module.exports = Container;
+
+/***/ },
+/* 315 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process, global) {'use strict';
+	
+	exports.DATABASE_URL = process.env.DATABASE_URL || global.DATABASE_URL || (process.env.NODE_ENV === 'production' ? 'mongodb://localhost/inventory-management' : 'mongodb://localhost/inventory-management-dev');
+	
+	exports.PORT = process.env.PORT || 8080;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), (function() { return this; }())))
 
 /***/ }
 /******/ ]);

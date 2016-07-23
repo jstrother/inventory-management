@@ -6,7 +6,7 @@
   "devJS": "index.jsx",
   "scripts": {
     "serve": "webpack-dev-server",
-    "start": "nodemon scripts.js",
+    "start": "nodemon --harmony server.js",
     "build": "webpack"
   },
   "repository": {
