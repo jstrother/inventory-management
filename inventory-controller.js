@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const Pallet = require('./models/pallet.js');
 const app = require('./server.js').app;
 
+// set up socket interactions next
+
 const get = app.get('/inventory-management', function(req, res) {
 	Pallet.find(function(err, pallets) {
 		if (err) {
