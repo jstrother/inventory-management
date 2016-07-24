@@ -35,15 +35,28 @@ const post = app.post('/inventory-management', function(req, res) {
 	});
 });
 
-const put = app.put('/inventory-management', function(req, res) {
-	Pallet.update({
-
+const put = app.put('/inventory-management/:palletId', function(req, res) {
+	Pallet.findByIdAndUpdate(palletId, {
+		// the only thing that will ever be updated is the quantity
+		quantity: req.body.quantity
+	}, function(err, pallet) {
+		if (err) {
+			return res.status(500).json({
+				message: "Internal Server Error"
+			});
+		}
+		res.status(201).json(pallet);
 	});
 });
 
-const del = app.delete('/inventory-management', function(req, res) {
-	Pallet.delete({
-
+const del = app.delete('/inventory-management/:palletId', function(req, res) {
+	Pallet.findByIdAndRemove(palletId, function(err, pallet) {
+		if (err) {
+			return res.status(500).json({
+				message: "Internal Server Error"
+			});
+		}
+		res.status(201).json(pallet);
 	});
 });
 

@@ -5,7 +5,8 @@ Inventory.prototype.createPallet = (type, expire, lot, numCases, numPops, numBar
 	this.type = type;
 	this.expire = expire;
 	this.lot = lot;
-	this.quantity = numCases + numPops + numBars;
+	// don't forget to make sure that each of the num variables has appropriate ending (12 case, 1 pop, 5 bar)
+	this.quantity = `${numCases}, ${numPops}, ${numBars}`;
 	this.country = country;
 
 	return `PLT-${Date}`;
@@ -47,35 +48,34 @@ Inventory.prototype.setLocation = (palletId) => {
 Inventory.prototype.selectRack = (rackId) => {
 	// this method selects individual racks by ID
 
-let number, modulo, rack, location;
-switch (rackId) {
-	case 'rack1':
-		number = 54;
-		modulo = 18;
-		rack = 'R1';
-		break;
-	case 'rack2':
-		number = 48;
-		modulo = 16;
-		rack = 'R2';
-		break;
-	case 'rack3':
-		number = 32;
-		modulo = 10;
-		rack = 'R3';
-		break;
-	case 'rack4':
-		number = 36;
-		modulo = 12;
-		rack = 'R4';
-		break;
-	case 'canadaRack':
-		number = 9;
-		modulo = 3;
-		rack = 'Canada';
-		break;
-
-}
+	let number, modulo, rack, location;
+	switch (rackId) {
+		case 'rack1':
+			number = 54;
+			modulo = 18;
+			rack = 'R1';
+			break;
+		case 'rack2':
+			number = 48;
+			modulo = 16;
+			rack = 'R2';
+			break;
+		case 'rack3':
+			number = 32;
+			modulo = 10;
+			rack = 'R3';
+			break;
+		case 'rack4':
+			number = 36;
+			modulo = 12;
+			rack = 'R4';
+			break;
+		case 'canadaRack':
+			number = 9;
+			modulo = 3;
+			rack = 'Canada';
+			break;
+	}
 	this.rackId = rackId;
 };
 
