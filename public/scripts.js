@@ -36055,10 +36055,10 @@
 			this.props.dispatch(this.refs.rackSelector.value);
 		},
 		onLocationSetClick: function onLocationSetClick() {
-			// add function that removes css hide class from LocationSetter component
+			this.refs.locationSetter.classList.remove('hidden');
 		},
 		onPalletCreateClick: function onPalletCreateClick() {
-			// add function that removes css hide class from PalletCreator component
+			this.refs.palletCreator.classList.remove('hidden');
 		},
 		render: function render() {
 			var locations = [];
@@ -36299,10 +36299,13 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var LocatonSetter = (0, _react.createClass)({
+		onCloseClick: function onCloseClick() {
+			this.refs.locationSetter.classList.add('hidden');
+		},
 		render: function render() {
 			return React.createElement(
 				'div',
-				null,
+				{ className: 'locationSetter', ref: 'locationSetter' },
 				React.createElement(
 					'button',
 					{ className: 'closeLocationSetter', onClick: this.onCloseClick },
@@ -36333,10 +36336,13 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var PalletCreator = (0, _react.createClass)({
+		onCloseClick: function onCloseClick() {
+			this.refs.palletCreator.classList.add('hidden');
+		},
 		render: function render() {
 			return React.createElement(
 				'div',
-				null,
+				{ className: 'palletCreator', ref: 'palletCreator' },
 				React.createElement(
 					'button',
 					{ className: 'closePalletCreator', onClick: this.onCloseClick },
