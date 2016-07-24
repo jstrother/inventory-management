@@ -79,4 +79,10 @@ Inventory.prototype.selectRack = (rackId) => {
 	this.rackId = rackId;
 };
 
+Inventory.prototype.updatePallet = (palletId, quantity) => {
+	if (this.palletId === palletId) {
+		this.quantity = quantity;
+	}
+};
+
 module.exports = Inventory;

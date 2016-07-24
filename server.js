@@ -15,12 +15,54 @@ const Inventory = require('./inventory-constructor.js');
 const inventory = new Inventory();
 
 const app = express();
-app.use('/inventory', static('public'));
+app.use('/inventory-management', static('public'));
 
 app.use(bodyParser.json());
 
 const server = http.Server(app);
 const io = socket_io(server);
+
+// where do my broadcast.emits go in the following?
+io.on('connection', function(socket) {
+	console.log('client connected');
+	// the following is the socket interaction with the react front end
+	socket.on('action', (action) => {
+		switch (action.type) {
+			case 'SELECT_RACK':
+				socket.broadcast.emit('rackSelected', function(rackId) {
+					inventory.selectRack(rackId);
+				});
+				break;
+			case 'SET_PALLET_LOCATION':
+				socket.broadcast.emit('locationSet', function(palletId) {
+					inventory.setLocation(palletId);
+				});
+				break;
+			case 'CREATE_PALLET':
+				socket.broadcast.emit('palletCreated', function(type, expire, lot, numCases, numPops, numBars, country) {
+					inventory.createPallet(type, expire, lot, numCases, numPops, numBars, country);
+				});
+				break;
+			case 'UPDATE_PALLET':
+				socket.broadcast.emit('palletUpdated', function(palletId, quantity) {
+					inventory.updatePallet(palletId, quantity);
+				});
+				break;
+		};
+	});
+	socket.on('get', (crud) => {
+		socket.emit('get', controller.get())
+	});
+	socket.on('post', (crud) => {
+		socket.emit('post', controller.post())
+	});
+	socket.on('put', (crud) => {
+		socket.emit('put', controller.put())
+	});
+	socket.on('del', (crud) => {
+		socket.emit('del', controller.del())
+	});	
+});
 
 const runServer = function(callback) {
 	mongoose.connect(DATABASE_URL, function(err) {
@@ -43,35 +85,6 @@ if (require.main === module) {
 		}
 	});
 };
-
-io.on('connection', function(socket) {
-	console.log('client connected');
-	socket.on('action', (action) => {
-		switch (action.type) {
-			case 'SELECT_RACK':
-				socket.emit('rackSelected', function() {
-					inventory.selectRack({
-
-					});
-				});
-				break;
-			case 'SET_PALLET_LOCATION':
-				socket.emit('locationSet', function() {
-					inventory.setLocation({
-
-					});
-				});
-				break;
-			case 'CREATE_PALLET':
-				socket.emit('palletCreated', function() {
-					inventory.createPallet({
-
-					});
-				});
-				break;
-		};
-	});
-});
 
 exports.app = app;
 exports.runServer = runServer;

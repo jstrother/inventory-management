@@ -1,11 +1,30 @@
 const socket_io = require('socket.io');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const http = require('http');
 
 const Pallet = require('./models/pallet.js');
 const app = require('./server.js').app;
 
-// set up socket interactions next
+app.use(bodyParser.json());
+
+const server = http.Server(app);
+const io = socket_io(server);
+
+io.on('connection', function(socket) {
+	socket.on('get', (crud) => {
+		socket.emit('get', get())
+	});
+	socket.on('post', (crud) => {
+		socket.emit('post', post())
+	});
+	socket.on('put', (crud) => {
+		socket.emit('put', put())
+	});
+	socket.on('del', (crud) => {
+		socket.emit('del', del())
+	});
+});
 
 const get = app.get('/inventory-management', function(req, res) {
 	Pallet.find(function(err, pallets) {

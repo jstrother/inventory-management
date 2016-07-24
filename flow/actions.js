@@ -7,6 +7,14 @@ const createPallet = () => {
 	};
 };
 
+const UPDATE_PALLET = 'UPDATE_PALLET';
+const updatePallet = (quantity) => {
+	return {
+		type: UPDATE_PALLET,
+		quantity
+	};
+};
+
 const SELECT_RACK = 'SELECT_RACK';
 const selectRack = (rackId) => {
 	return {
