@@ -8,6 +8,8 @@ const mongoose = require('mongoose');
 const PORT = require('./config.js').PORT;
 const DATABASE_URL = require('./config.js').DATABASE_URL;
 const Pallet = require('./models/pallet.js');
+const controller = require('./inventory-controller.js');
+// use the exports from above to help with sockets sending info back and forth
 
 // creates a single instance of Inventory
 const Inventory = function() {};
@@ -122,48 +124,6 @@ if (require.main === module) {
 		}
 	});
 };
-
-app.get('/inventory-management', function(req, res) {
-	Pallet.find(function(err, pallets) {
-		if (err) {
-			return res.status(500).json({
-				message: 'Internal Server Error'
-			});
-		}
-		res.json(pallets);
-	});
-});
-
-app.post('/inventory-management', function(req, res) {
-	Pallet.create({
-		type: req.body.type,
-		lot: req.body.lot,
-		expire: req.body.expire,
-		country: req.body.country,
-		quantity: req.body.quantity
-	}, function(err, pallet) {
-		if (err) {
-			return res.status(500).json({
-				message: 'Internal Server Error'
-			});
-		}
-		res.status(201).json(pallet);
-	});
-});
-
-app.put('/inventory-management', function(req, res) {
-
-});
-
-app.delete('/inventory-management', function(req, res) {
-
-});
-
-app.use('*', function(req, res) {
-	res.status(404).json({
-		message: 'Not Found'
-	});
-});
 
 io.on('connection', function(socket) {
 	console.log('client connected');
