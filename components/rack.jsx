@@ -20,10 +20,10 @@ const Rack = createClass({
 		this.props.dispatch(this.refs.rackSelector.value);
 	},
 	onLocationSetClick: function() {
-		// add function that removes css hide class from LocationSetter component
+		this.refs.locationSetter.classList.remove('hidden');
 	},
 	onPalletCreateClick: function() {
-		// add function that removes css hide class from PalletCreator component
+		this.refs.palletCreator.classList.remove('hidden');
 	},
 	render: function() {
 		let locations = [];

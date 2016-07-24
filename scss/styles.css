@@ -548,4 +548,7 @@ body {
 .secondColor {
   background-color: pink; }
 
+.hidden {
+  display: none; }
+
 /*# sourceMappingURL=styles.css.map */

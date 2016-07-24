@@ -5,9 +5,12 @@ import {connect} from 'react-redux';
 import Link from 'react-router';
 
 const LocatonSetter = createClass({
+	onCloseClick: function() {
+		this.refs.locationSetter.classList.add('hidden');
+	},
 	render: function() {
 		return (
-			<div>
+			<div className='locationSetter' ref='locationSetter'>
 				
 				<button className="closeLocationSetter" onClick={this.onCloseClick} >Close</button>
 			</div>)	

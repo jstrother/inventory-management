@@ -16,12 +16,10 @@ Inventory.prototype.createPallet = (type, expire, lot, numCases, numPops, numBar
 	this.type = type;
 	this.expire = expire;
 	this.lot = lot;
-	this.numCases = numCases;
-	this.numPops = numPops;
-	this.numBars = numBars;
+	this.quantity = numCases + numPops + numBars;
 	this.country = country;
 
-	return `${this}-${Date}`;
+	return `PLT-${Date}`;
 	// creates a pallet with unique ID
 };
 
@@ -108,7 +106,7 @@ const runServer = function(callback) {
 		if (err && callback) {
 			return callback(err);
 		}
-		app.listen(PORT, function() {
+		server.listen(PORT, function() {
 			console.log(`Listening on localhost: ${PORT}`);
 			if (callback) {
 				callback();
@@ -124,6 +122,48 @@ if (require.main === module) {
 		}
 	});
 };
+
+app.get('/inventory-management', function(req, res) {
+	Pallet.find(function(err, pallets) {
+		if (err) {
+			return res.status(500).json({
+				message: 'Internal Server Error'
+			});
+		}
+		res.json(pallets);
+	});
+});
+
+app.post('/inventory-management', function(req, res) {
+	Pallet.create({
+		type: req.body.type,
+		lot: req.body.lot,
+		expire: req.body.expire,
+		country: req.body.country,
+		quantity: req.body.quantity
+	}, function(err, pallet) {
+		if (err) {
+			return res.status(500).json({
+				message: 'Internal Server Error'
+			});
+		}
+		res.status(201).json(pallet);
+	});
+});
+
+app.put('/inventory-management', function(req, res) {
+
+});
+
+app.delete('/inventory-management', function(req, res) {
+
+});
+
+app.use('*', function(req, res) {
+	res.status(404).json({
+		message: 'Not Found'
+	});
+});
 
 io.on('connection', function(socket) {
 	console.log('client connected');
@@ -153,8 +193,6 @@ io.on('connection', function(socket) {
 		};
 	});
 });
-
-server.listen(PORT);
 
 exports.app = app;
 exports.runServer = runServer;

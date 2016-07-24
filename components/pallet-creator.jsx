@@ -5,10 +5,12 @@ import {connect} from 'react-redux';
 import Link from 'react-router';
 
 const PalletCreator = createClass({
+	onCloseClick: function() {
+		this.refs.palletCreator.classList.add('hidden');
+	},
 	render: function() {
 		return (
-			<div>
-
+			<div className='palletCreator' ref='palletCreator'>
 				<button className="closePalletCreator" onClick={this.onCloseClick} >Close</button>
 			</div>
 		)
