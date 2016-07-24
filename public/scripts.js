@@ -35987,6 +35987,14 @@
 		};
 	};
 	
+	var UPDATE_PALLET = 'UPDATE_PALLET';
+	var updatePallet = function updatePallet(quantity) {
+		return {
+			type: UPDATE_PALLET,
+			quantity: quantity
+		};
+	};
+	
 	var SELECT_RACK = 'SELECT_RACK';
 	var selectRack = function selectRack(rackId) {
 		return {
