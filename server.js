@@ -15,7 +15,7 @@ const inventory = new Inventory();
 
 const app = express();
 app.use('/inventory-management', static('public'));
-
+exports.app = app; //sloppy fix
 const controller = require('./inventory-controller.js');
 
 app.use(bodyParser.json());
@@ -87,5 +87,4 @@ if (require.main === module) {
 	});
 };
 
-exports.app = app;
 exports.runServer = runServer;

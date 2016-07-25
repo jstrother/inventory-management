@@ -1,47 +1,35 @@
 // called into store.js
 
-import {combineReducers} from 'redux';
 import actions from './actions.js';
 
 const initialState = {};
 let state = state || initialState;
 
-const reducers = combineReducers({
-	newPallet: createPalletReducer,
-	setLocation: setPalletLocationReducer,
-	selectRack: selectRackReducer
-});
-
-const createPalletReducer = (state, action) => {
+const reducers = (state, action) => {
 	switch (action.type) {
 		case 'CREATE_PALLET':
-			return state.concat({
+			return {
 				// code to change state concerning creating pallets
-			});
-		default:
-			return state
-	};
-};
+			};
+			break;
 
-const setPalletLocationReducer = (state, action) => {
-	switch (action.type) {
 		case 'SET_PALLET_LOCATION':
-			return state.concat({
+			return {
 				// code to change state concerning setting locations
-			})
-		default:
-			return state
-	}; 
-};
+			};
+			break;
 
-const selectRackReducer = (state, action) => {
-	switch (action.type) {
 		case 'SELECT_RACK':
-			return state.concat({
+			return {
 				// code to change state concerning selecting the rack
-			})
-		default:
-			return state
+			};
+			break;
+
+		case 'UPDATE_PALLET':
+			return {
+				// code to update pallet's quantity
+			};
+			break;
 	};
 };
 

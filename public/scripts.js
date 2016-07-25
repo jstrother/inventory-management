@@ -56,6 +56,8 @@
 	
 	var _reactRedux = __webpack_require__(172);
 	
+	var _reactRedux2 = _interopRequireDefault(_reactRedux);
+	
 	var _reactRouter = __webpack_require__(194);
 	
 	var _store = __webpack_require__(254);
@@ -93,7 +95,7 @@
 	
 	document.addEventListener('DOMContentLoaded', function () {
 		_reactDom2.default.render(_react2.default.createElement(
-			_reactRedux.Provider,
+			_reactRedux2.default,
 			{ store: _store2.default },
 			routes
 		), document.getElementById('app'));
@@ -28133,11 +28135,19 @@
 	
 	var _reduxSocket = __webpack_require__(255);
 	
+	var _reduxSocket2 = _interopRequireDefault(_reduxSocket);
+	
 	var _socket = __webpack_require__(256);
+	
+	var _socket2 = _interopRequireDefault(_socket);
 	
 	var _reduxLogger = __webpack_require__(305);
 	
+	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
+	
 	var _config = __webpack_require__(306);
+	
+	var _config2 = _interopRequireDefault(_config);
 	
 	var _reducers = __webpack_require__(307);
 	
@@ -28147,11 +28157,11 @@
 		return obj && obj.__esModule ? obj : { default: obj };
 	}
 	
-	var logger = (0, _reduxLogger.createLogger)();
+	var logger = (0, _reduxLogger2.default)();
 	
-	var socket = (0, _socket.io)(port);
+	var socket = (0, _socket2.default)(_config2.default);
 	
-	var socketIoMiddleware = (0, _reduxSocket.createSocketIoMiddleware)(socket, "server/");
+	var socketIoMiddleware = (0, _reduxSocket2.default)(socket, "server/");
 	
 	var store = (0, _redux.applyMiddleware)(socketIoMiddleware, logger)(_redux.createStore)(_reducers2.default);
 	
@@ -35916,8 +35926,6 @@
 
 	'use strict';
 	
-	var _redux = __webpack_require__(179);
-	
 	var _actions = __webpack_require__(308);
 	
 	var _actions2 = _interopRequireDefault(_actions);
@@ -35926,47 +35934,35 @@
 		return obj && obj.__esModule ? obj : { default: obj };
 	}
 	
-	// called into store.js
+	var initialState = {}; // called into store.js
 	
-	var initialState = {};
 	var state = state || initialState;
 	
-	var reducers = (0, _redux.combineReducers)({
-		newPallet: createPalletReducer,
-		setLocation: setPalletLocationReducer,
-		selectRack: selectRackReducer
-	});
-	
-	var createPalletReducer = function createPalletReducer(state, action) {
+	var reducers = function reducers(state, action) {
 		switch (action.type) {
 			case 'CREATE_PALLET':
-				return state.concat({
+				return {
 					// code to change state concerning creating pallets
-				});
-			default:
-				return state;
-		};
-	};
+				};
+				break;
 	
-	var setPalletLocationReducer = function setPalletLocationReducer(state, action) {
-		switch (action.type) {
 			case 'SET_PALLET_LOCATION':
-				return state.concat({
+				return {
 					// code to change state concerning setting locations
-				});
-			default:
-				return state;
-		};
-	};
+				};
+				break;
 	
-	var selectRackReducer = function selectRackReducer(state, action) {
-		switch (action.type) {
 			case 'SELECT_RACK':
-				return state.concat({
+				return {
 					// code to change state concerning selecting the rack
-				});
-			default:
-				return state;
+				};
+				break;
+	
+			case 'UPDATE_PALLET':
+				return {
+					// code to update pallet's quantity
+				};
+				break;
 		};
 	};
 	
