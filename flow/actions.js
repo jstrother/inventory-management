@@ -38,3 +38,5 @@ exports.SELECT_RACK = SELECT_RACK;
 exports.selectRack = selectRack;
 exports.SET_PALLET_LOCATION = SET_PALLET_LOCATION;
 exports.setPalletLocation = setPalletLocation;
+exports.UPDATE_PALLET = UPDATE_PALLET;
+exports.updatePallet = updatePallet;

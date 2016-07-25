@@ -13,7 +13,18 @@ const io = socket_io(server);
 
 io.on('connection', function(socket) {
 	socket.on('get', (crud) => {
-		socket.emit('get', get())
+		socket.emit('get', get()
+			// wrap in anon function, use this as pattern for others
+			// look for socket status method
+		// 	Pallet.find(function(err, pallets) {
+		// 	if (err) {
+		// 		return res.status(500).json({
+		// 			message: 'Internal Server Error'
+		// 		});
+		// 	}
+		// 	res.json(pallets);
+		// });
+		)
 	});
 	socket.on('post', (crud) => {
 		socket.emit('post', post())

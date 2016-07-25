@@ -1,22 +1,22 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import store from './flow/store.js';
 import Provider from 'react-redux';
 import {Router, Route, hashHistory, IndexRoute} from 'react-router';
 
-import store from './flow/store.js';
 import Rack from './components/rack.jsx';
 import Inventory from './components/inventory.jsx';
  
-const Container = (
+const Container = (props) => (
 	<div>
 		<h1>Inventory</h1>
 		{props.children}
 	</div>
 );
 
-const routes = (
+const MyRouter = () => (
 	<Router history={hashHistory}>
-		<Route path='/inventory/' component={Container} />
+		<Route path='/inventory-management/' component={Container} />
 			<IndexRoute component={Inventory} />
 			<Route path=":rackId" component={Rack} />
 	</Router>
@@ -25,7 +25,7 @@ const routes = (
 document.addEventListener('DOMContentLoaded', function() {
 	ReactDom.render(
 		<Provider store={store}>
-			{routes}
+			<MyRouter />
 		</Provider>,
 		document.getElementById('app')
 	);
