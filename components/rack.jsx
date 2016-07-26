@@ -8,7 +8,7 @@ import Location from './location.jsx';
 import RackSelector from './rack-selector.jsx';
 import LocationSetter from './location-setter.jsx';
 import PalletCreator from './pallet-creator.jsx';
-import {fetchInventory} from '../flow/actions.js';
+import fetchInventory from '../flow/actions.js';
 
 const Rack = createClass({
 	componentDidMount: function() {
@@ -67,6 +67,7 @@ const Rack = createClass({
 					expire={this.props.expire}
 					country={this.props.country}
 					palletId={this.props.palletId}
+					quantity={this.props.quantity}
 					locationId={locationId}
 				/>
 			);
@@ -105,6 +106,7 @@ const mapStateToProps = (state, props) => {
 		country: state.country,
 		palletId: state.palletId,
 		rackId: state.rackId,
+		quantity: state.quantity,
 		store: state.store
 	};
 };

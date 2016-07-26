@@ -13,7 +13,7 @@ const io = socket_io(server);
 
 io.on('connection', function(socket) {
 	socket.on('get', (crud) => {
-		socket.emit('get', get()
+		socket.broadcast.emit('get', get()
 			// wrap in anon function, use this as pattern for others
 			// look for socket status method
 		// 	Pallet.find(function(err, pallets) {
@@ -27,72 +27,56 @@ io.on('connection', function(socket) {
 		)
 	});
 	socket.on('post', (crud) => {
-		socket.emit('post', post())
+		socket.broadcast.emit('post', post()
+			// Pallet.create({
+			// 	type: req.body.type,
+			// 	lot: req.body.lot,
+			// 	expire: req.body.expire,
+			// 	country: req.body.country,
+			// 	quantity: req.body.quantity
+			// }, function(err, pallet) {
+			// 	if (err) {
+			// 		return res.status(500).json({
+			// 			message: 'Internal Server Error'
+			// 		});
+			// 	}
+			// 	res.status(201).json(pallet);
+			// });
+		)
 	});
 	socket.on('put', (crud) => {
-		socket.emit('put', put())
+		socket.broadcast.emit('put', put()
+			// Pallet.findByIdAndUpdate(palletId, {
+			// 	// the only thing that will ever be updated is the quantity
+			// 	quantity: req.body.quantity
+			// }, function(err, pallet) {
+			// 	if (err) {
+			// 		return res.status(500).json({
+			// 			message: "Internal Server Error"
+			// 		});
+			// 	}
+			// 	res.status(201).json(pallet);
+			// });
+		)
 	});
 	socket.on('del', (crud) => {
-		socket.emit('del', del())
+		socket.broadcast.emit('del', del()
+			// Pallet.findByIdAndRemove(palletId, function(err, pallet) {
+			// 	if (err) {
+			// 		return res.status(500).json({
+			// 			message: "Internal Server Error"
+			// 		});
+			// 	}
+			// 	res.status(201).json(pallet);
+			// });
+		)
 	});
-});
-
-const get = app.get('/inventory-management', function(req, res) {
-	Pallet.find(function(err, pallets) {
-		if (err) {
-			return res.status(500).json({
-				message: 'Internal Server Error'
-			});
-		}
-		res.json(pallets);
-	});
-});
-
-const post = app.post('/inventory-management', function(req, res) {
-	Pallet.create({
-		type: req.body.type,
-		lot: req.body.lot,
-		expire: req.body.expire,
-		country: req.body.country,
-		quantity: req.body.quantity
-	}, function(err, pallet) {
-		if (err) {
-			return res.status(500).json({
-				message: 'Internal Server Error'
-			});
-		}
-		res.status(201).json(pallet);
-	});
-});
-
-const put = app.put('/inventory-management/:palletId', function(req, res) {
-	Pallet.findByIdAndUpdate(palletId, {
-		// the only thing that will ever be updated is the quantity
-		quantity: req.body.quantity
-	}, function(err, pallet) {
-		if (err) {
-			return res.status(500).json({
-				message: "Internal Server Error"
-			});
-		}
-		res.status(201).json(pallet);
-	});
-});
-
-const del = app.delete('/inventory-management/:palletId', function(req, res) {
-	Pallet.findByIdAndRemove(palletId, function(err, pallet) {
-		if (err) {
-			return res.status(500).json({
-				message: "Internal Server Error"
-			});
-		}
-		res.status(201).json(pallet);
-	});
-});
-
-const use = app.use('*', function(req, res) {
-	res.status(404).json({
-		message: 'Not Found'
+	socket.on('use', (crud) => {
+		socket.broadcast.emit('use', use()
+			// res.status(404).json({
+			// 	message: 'Not Found'
+			// });
+		)
 	});
 });
 

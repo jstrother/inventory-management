@@ -80,8 +80,22 @@ Inventory.prototype.selectRack = (rackId) => {
 };
 
 Inventory.prototype.updatePallet = (palletId, quantity) => {
-	if (this.palletId === palletId) {
+	if (this.palletId === palletId && quantity != '0 cases, 0 pops, 0 bars') {
 		this.quantity = quantity;
+	}
+	else if (this.palletId === palletId && quantity === '0 cases, 0 pops, 0 bars') {
+		this.deletePallet;
+	}
+};
+
+Inventory.prototype.deletePallet = (palletId) => {
+	if (this.palletId === palletId) {
+		delete this.type;
+		delete this.lot;
+		delete this.expire;
+		delete this.quantity;
+		delete this.country;
+		delete this.palletId;
 	}
 };
 
