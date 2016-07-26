@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDom from 'react-dom';
+import render from 'react-dom';
 import store from './flow/store.js';
 import Provider from 'react-redux';
 import {Router, Route, hashHistory, IndexRoute} from 'react-router';
@@ -23,7 +23,7 @@ const MyRouter = () => (
 );
 
 document.addEventListener('DOMContentLoaded', function() {
-	ReactDom.render(
+	render(
 		<Provider store={store}>
 			<MyRouter />
 		</Provider>,

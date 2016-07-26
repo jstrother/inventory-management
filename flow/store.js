@@ -3,15 +3,14 @@ import createSocketIoMiddleware from 'redux-socket.io';
 import io from 'socket.io-client';
 import createLogger from 'redux-logger';
 import PORT from '../config.js';
-import reducers from './reducers.js';
-console.log(reducers);
+import reducers from './reducers.js'.reducers;
 const logger = createLogger();
 
 const socket = io(PORT);
 
 const socketIoMiddleware = createSocketIoMiddleware(socket, "inventory-management/");
 
-const store = applyMiddleware(socketIoMiddleware, logger)(createStore)(reducers.reducers);
+const store = applyMiddleware(socketIoMiddleware, logger)(createStore)(reducers);
 
 store.subscribe(() => {
 	store.getState();
