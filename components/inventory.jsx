@@ -1,7 +1,20 @@
 // imported into index.jsx
   
-  import {createClass} from 'react';
-  import {connect} from 'react-redux';
+  import createClass from 'react';
+  import connect from 'react-redux';
+
+ const Inventory = createClass({
+  	render: function() {
+ 		return (
+ 			<div className='inventory'>
+ 				
+ 			</div>
+ 		);
+ 	}
+ });
+
+ function grandTotal () {
+
   let chAlmTotal = [], seaSaltTotal = [], dsaTotal = [], msaTotal = [], chiliTotal = [], tcTotal = [], eightyFiveTotal = [], seventyTotal = [], fortyFiveTotal = [], orangeTotal = [], mintTotal = [], raspTotal = [], gingerTotal = [], brqcTotal = [], toffeeTotal = [], kcBananaTotal = [], kcRaspTotal = [], kcAlmTotal = [], breadTotal = [], cocCurryTotal = [], coffeeTotal = [], figTotal = [], chaiTotal = [], hazelnutTotal = [], abcTotal = [], dpbcTotal = [], mpbcTotal = [], cbClassicTotal = [], cbAlmTotal = [], cbMintTotal = [], bake85Total = [], bake70Total = [], quinCocTotal = [];
  
  switch (this.props.type) {
@@ -107,16 +120,8 @@
  }
  // take above totals and display them in Inventory table below using the following headers:
  // Type, Quantity, Locations
- 
- const Inventory = createClass({
-  	render: function() {
- 		return (
- 			<div className='inventory'>
- 				
- 			</div>
- 		);
- 	}
- });
+
+ }
  
  const Container = connect()(Inventory);
  
