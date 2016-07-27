@@ -1,7 +1,7 @@
 // called into rack.jsx
 
-import {createClass} from 'react';
-import {connect} from 'react-redux';
+import createClass from 'react';
+import connect from 'react-redux';
 
 
 // don't forget to set pallets to locations via palletId

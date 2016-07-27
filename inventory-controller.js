@@ -80,8 +80,8 @@ io.on('connection', function(socket) {
 	});
 });
 
-exports.get = get;
-exports.post = post;
-exports.put = put;
-exports.del = del;
-exports.use = use;
+// exports.get = get;
+// exports.post = post;
+// exports.put = put;
+// exports.del = del;
+// exports.use = use;

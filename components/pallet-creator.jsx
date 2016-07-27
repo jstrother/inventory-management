@@ -1,7 +1,7 @@
 // called into rack.jsx
 
-import {createClass} from 'react';
-import {connect} from 'react-redux';
+import createClass from 'react';
+import connect from 'react-redux';
 import Link from 'react-router';
 
 const PalletCreator = createClass({
