@@ -64,6 +64,10 @@
 	
 	var _reactRouter = __webpack_require__(249);
 	
+	var _rack = __webpack_require__(309);
+	
+	var _rack2 = _interopRequireDefault(_rack);
+	
 	var _inventory = __webpack_require__(315);
 	
 	var _inventory2 = _interopRequireDefault(_inventory);
@@ -88,7 +92,8 @@
 			_reactRouter.Router,
 			{ history: _reactRouter.hashHistory },
 			_react2.default.createElement(_reactRouter.Route, { path: '/inventory-management/', component: Container }),
-			_react2.default.createElement(_reactRouter.Route, { path: ':rackId', component: _inventory2.default })
+			_react2.default.createElement(_reactRouter.IndexRoute, { component: _inventory2.default }),
+			_react2.default.createElement(_reactRouter.Route, { path: ':rackId', component: _rack2.default })
 		);
 	};
 	
@@ -36021,7 +36026,102 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 309 */,
+/* 309 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(240);
+	
+	var _reactRedux2 = _interopRequireDefault(_reactRedux);
+	
+	var _reactRouter = __webpack_require__(249);
+	
+	var _reactRouter2 = _interopRequireDefault(_reactRouter);
+	
+	var _location = __webpack_require__(310);
+	
+	var _location2 = _interopRequireDefault(_location);
+	
+	var _rackSelector = __webpack_require__(311);
+	
+	var _rackSelector2 = _interopRequireDefault(_rackSelector);
+	
+	var _rackDisplay = __webpack_require__(312);
+	
+	var _rackDisplay2 = _interopRequireDefault(_rackDisplay);
+	
+	var _locationSetter = __webpack_require__(313);
+	
+	var _locationSetter2 = _interopRequireDefault(_locationSetter);
+	
+	var _palletCreator = __webpack_require__(314);
+	
+	var _palletCreator2 = _interopRequireDefault(_palletCreator);
+	
+	var _actions = __webpack_require__(239);
+	
+	var _actions2 = _interopRequireDefault(_actions);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Rack = (0, _react2.default)({
+		componentDidMount: function componentDidMount() {
+			this.props.dispatch((0, _actions2.default)(this.refs.rackSelector.value));
+		},
+		onRackSelectClick: function onRackSelectClick() {
+			this.props.dispatch(this.refs.rackSelector.value);
+		},
+		onLocationSetClick: function onLocationSetClick() {
+			this.refs.locationSetter.classList.remove('hidden');
+		},
+		onPalletCreateClick: function onPalletCreateClick() {
+			this.refs.palletCreator.classList.remove('hidden');
+		},
+		render: function render() {
+			return React.createElement(
+				'div',
+				{ className: 'rack', key: rackId },
+				React.createElement(_rackSelector2.default, null),
+				React.createElement(_rackDisplay2.default, null),
+				React.createElement(_locationSetter2.default, null),
+				React.createElement(_palletCreator2.default, null),
+				React.createElement(
+					'button',
+					{ className: 'locationSetter', onClick: this.onLocationSetClick },
+					'Set Pallet Location'
+				),
+				React.createElement(
+					'button',
+					{ className: 'palletcreator', onClick: this.onPalletCreateClick },
+					'Create New Pallet'
+				)
+			);
+		}
+	}); // called into index.jsx
+	
+	var mapStateToProps = function mapStateToProps(state, props) {
+		return {
+			type: state.type,
+			lot: state.lot,
+			expire: state.expire,
+			country: state.country,
+			palletId: state.palletId,
+			rackId: state.rackId,
+			quantity: state.quantity,
+			store: state.store
+		};
+	};
+	
+	var Container = (0, _reactRedux2.default)(mapStateToProps)(Rack);
+	
+	module.exports = Container;
+
+/***/ },
 /* 310 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -36177,6 +36277,35 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	var RackDisplay = (0, _react2.default)({
+		render: function render() {
+			return React.createElement('div', { className: this.state.rackId });
+		}
+	}); // called into rack.jsx
+	
+	var Container = (0, _reactRedux2.default)()(RackDisplay);
+	module.exports = Container;
+
+/***/ },
+/* 313 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(240);
+	
+	var _reactRedux2 = _interopRequireDefault(_reactRedux);
+	
+	var _reactRouter = __webpack_require__(249);
+	
+	var _reactRouter2 = _interopRequireDefault(_reactRouter);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
 	var LocatonSetter = (0, _react2.default)({
 		onCloseClick: function onCloseClick() {
 			this.refs.locationSetter.classList.add('hidden');
@@ -36264,7 +36393,7 @@
 	module.exports = Container;
 
 /***/ },
-/* 313 */
+/* 314 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36305,35 +36434,6 @@
 	module.exports = Container;
 
 /***/ },
-/* 314 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(240);
-	
-	var _reactRedux2 = _interopRequireDefault(_reactRedux);
-	
-	var _reactRouter = __webpack_require__(249);
-	
-	var _reactRouter2 = _interopRequireDefault(_reactRouter);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var RackDisplay = (0, _react2.default)({
-		render: function render() {
-			return React.createElement('div', { className: this.state.rackId });
-		}
-	}); // called into rack.jsx
-	
-	var Container = (0, _reactRedux2.default)()(RackDisplay);
-	module.exports = Container;
-
-/***/ },
 /* 315 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -36347,85 +36447,158 @@
 	
 	var _reactRedux2 = _interopRequireDefault(_reactRedux);
 	
-	var _reactRouter = __webpack_require__(249);
-	
-	var _reactRouter2 = _interopRequireDefault(_reactRouter);
-	
-	var _location = __webpack_require__(310);
-	
-	var _location2 = _interopRequireDefault(_location);
-	
-	var _rackSelector = __webpack_require__(311);
-	
-	var _rackSelector2 = _interopRequireDefault(_rackSelector);
-	
-	var _rackDisplay = __webpack_require__(314);
-	
-	var _rackDisplay2 = _interopRequireDefault(_rackDisplay);
-	
-	var _locationSetter = __webpack_require__(312);
-	
-	var _locationSetter2 = _interopRequireDefault(_locationSetter);
-	
-	var _palletCreator = __webpack_require__(313);
-	
-	var _palletCreator2 = _interopRequireDefault(_palletCreator);
-	
-	var _actions = __webpack_require__(239);
-	
-	var _actions2 = _interopRequireDefault(_actions);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var Rack = (0, _react2.default)({
-		componentDidMount: function componentDidMount() {
-			this.props.dispatch((0, _actions2.default)(this.refs.rackSelector.value));
-		},
-		onRackSelectClick: function onRackSelectClick() {
-			this.props.dispatch(this.refs.rackSelector.value);
-		},
-		onLocationSetClick: function onLocationSetClick() {
-			this.refs.locationSetter.classList.remove('hidden');
-		},
-		onPalletCreateClick: function onPalletCreateClick() {
-			this.refs.palletCreator.classList.remove('hidden');
-		},
-		render: function render() {
-			return React.createElement(
-				'div',
-				{ className: 'rack', key: rackId },
-				React.createElement(_rackSelector2.default, null),
-				React.createElement(_rackDisplay2.default, null),
-				React.createElement(_locationSetter2.default, null),
-				React.createElement(_palletCreator2.default, null),
-				React.createElement(
-					'button',
-					{ className: 'locationSetter', onClick: this.onLocationSetClick },
-					'Set Pallet Location'
-				),
-				React.createElement(
-					'button',
-					{ className: 'palletcreator', onClick: this.onPalletCreateClick },
-					'Create New Pallet'
-				)
-			);
-		}
-	}); // called into index.jsx
+	// imported into index.jsx
 	
-	var mapStateToProps = function mapStateToProps(state, props) {
-		return {
-			type: state.type,
-			lot: state.lot,
-			expire: state.expire,
-			country: state.country,
-			palletId: state.palletId,
-			rackId: state.rackId,
-			quantity: state.quantity,
-			store: state.store
-		};
-	};
+	var Inventory = (0, _react2.default)({
+	  render: function render() {
+	    return React.createElement('div', { className: 'inventory' });
+	  }
+	});
 	
-	var Container = (0, _reactRedux2.default)(mapStateToProps)(Rack);
+	function grandTotal() {
+	
+	  var chAlmTotal = [],
+	      seaSaltTotal = [],
+	      dsaTotal = [],
+	      msaTotal = [],
+	      chiliTotal = [],
+	      tcTotal = [],
+	      eightyFiveTotal = [],
+	      seventyTotal = [],
+	      fortyFiveTotal = [],
+	      orangeTotal = [],
+	      mintTotal = [],
+	      raspTotal = [],
+	      gingerTotal = [],
+	      brqcTotal = [],
+	      toffeeTotal = [],
+	      kcBananaTotal = [],
+	      kcRaspTotal = [],
+	      kcAlmTotal = [],
+	      breadTotal = [],
+	      cocCurryTotal = [],
+	      coffeeTotal = [],
+	      figTotal = [],
+	      chaiTotal = [],
+	      hazelnutTotal = [],
+	      abcTotal = [],
+	      dpbcTotal = [],
+	      mpbcTotal = [],
+	      cbClassicTotal = [],
+	      cbAlmTotal = [],
+	      cbMintTotal = [],
+	      bake85Total = [],
+	      bake70Total = [],
+	      quinCocTotal = [];
+	
+	  switch (this.props.type) {
+	    case 'Cherry Almond':
+	      // add code that takes totals up all of this type and pushes to chAlmTotal
+	      break;
+	    case 'Sea Salt':
+	      // add code that takes totals up all of this type and pushes to seaSaltTotal
+	      break;
+	    case 'DSA':
+	      // add code that takes totals up all of this type and pushes to dsaTotal
+	      break;
+	    case 'MSA':
+	      // add code that takes totals up all of this type and pushes to msaTotal
+	      break;
+	    case 'Chili':
+	      // add code that takes totals up all of this type and pushes to chiliTotal
+	      break;
+	    case 'Toasted Coconut':
+	      // add code that takes totals up all of this type and pushes to tcTotal
+	      break;
+	    case '85%':
+	      // add code that takes totals up all of this type and pushes to eightyFiveTotal
+	      break;
+	    case '70%':
+	      // add code that takes totals up all of this type and pushes to seventyTotal
+	      break;
+	    case '45%':
+	      // add code that takes totals up all of this type and pushes to fortyFiveTotal
+	      break;
+	    case 'Orange':
+	      // add code that takes totals up all of this type and pushes to orangeTotal
+	      break;
+	    case 'Mint':
+	      // add code that takes totals up all of this type and pushes to mintTotal
+	      break;
+	    case 'Raspberry':
+	      // add code that takes totals up all of this type and pushes to raspTotal
+	      break;
+	    case 'Ginger':
+	      // add code that takes totals up all of this type and pushes to gingerTotal
+	      break;
+	    case 'BRQC':
+	      // add code that takes totals up all of this type and pushes to brqcTotal
+	      break;
+	    case 'Salted Toffee':
+	      // add code that takes totals up all of this type and pushes to toffeeTotal
+	      break;
+	    case 'KC Banana':
+	      // add code that takes totals up all of this type and pushes to kcBananaTotal
+	      break;
+	    case 'KC Almond':
+	      // add code that takes totals up all of this type and pushes to kcAlmTotal
+	      break;
+	    case 'KC Raspberry':
+	      // add code that takes totals up all of this type and pushes to kcRaspTotal
+	      break;
+	    case 'Bread':
+	      // add code that takes totals up all of this type and pushes to breadTotal
+	      break;
+	    case 'Coconut Curry':
+	      // add code that takes totals up all of this type and pushes to cocCurryTotal
+	      break;
+	    case 'Fig Fennel':
+	      // add code that takes totals up all of this type and pushes to figTotal
+	      break;
+	    case 'Coffee':
+	      // add code that takes totals up all of this type and pushes to coffeeTotal
+	      break;
+	    case 'Hazelnut Crunch':
+	      // add code that takes totals up all of this type and pushes to hazelnutTotal
+	      break;
+	    case 'Chai':
+	      // add code that takes totals up all of this type and pushes to chaiTotal
+	      break;
+	    case 'Almond Butter Cups':
+	      // add code that takes totals up all of this type and pushes to abcTotal
+	      break;
+	    case 'DPBC':
+	      // add code that takes totals up all of this type and pushes to dpbcTotal
+	      break;
+	    case 'MPBC':
+	      // add code that takes totals up all of this type and pushes to mpbcTotal
+	      break;
+	    case 'CB - Classic':
+	      // add code that takes totals up all of this type and pushes to cbClassicTotal
+	      break;
+	    case 'CB - Salted Almond':
+	      // add code that takes totals up all of this type and pushes to cbAlmTotal
+	      break;
+	    case 'CB - Mint Milk':
+	      // add code that takes totals up all of this type and pushes to cbMintTotal
+	      break;
+	    case '85% Baking':
+	      // add code that takes totals up all of this type and pushes to bake85Total
+	      break;
+	    case '70% Baking':
+	      // add code that takes totals up all of this type and pushes to bake70Total
+	      break;
+	    case 'Quinoa Coconut':
+	      // add code that takes totals up all of this type and pushes to quinCocTotal
+	      break;
+	  }
+	  // take above totals and display them in Inventory table below using the following headers:
+	  // Type, Quantity, Locations
+	}
+	
+	var Container = (0, _reactRedux2.default)()(Inventory);
 	
 	module.exports = Container;
 
