@@ -6,8 +6,6 @@ const http = require('http');
 const Pallet = require('./models/pallet.js');
 const app = require('./server.js').app;
 
-// app.use(bodyParser.json());
-
 const server = http.Server(app);
 const io = socket_io(server);
 
