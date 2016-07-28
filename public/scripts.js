@@ -29815,10 +29815,6 @@
 					// code to update pallet's quantity
 				};
 				break;
-	
-			case 'GRAND_TOTALS':
-				// code to gather the totals of all products
-				break;
 		};
 	};
 	
