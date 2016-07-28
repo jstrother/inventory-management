@@ -91,6 +91,7 @@ Inventory.prototype.deletePallet = (palletId) => {
 		delete this.numPops;
 		delete this.numBars;
 		delete this.country;
+		delete this.locationId;
 		delete this.palletId;
 	}
 };
@@ -99,6 +100,7 @@ const inventory = new Inventory();
 
 const app = express();
 app.use('/inventory-management', static('public'));
+
 exports.app = app; //sloppy fix
 const controller = require('./inventory-controller.js');
 
@@ -114,22 +116,22 @@ io.on('connection', function(socket) {
 	socket.on('action', (action) => {
 		switch (action.type) {
 			case 'SELECT_RACK':
-				socket.emit('rackSelected', function(rackId) {
+				socket.emit('SELECT_RACK', function(rackId) {
 					inventory.selectRack(rackId);
 				});
 				break;
 			case 'SET_PALLET_LOCATION':
-				socket.emit('locationSet', function(palletId) {
-					inventory.setLocation(palletId);
+				socket.emit('SET_PALLET_LOCATION', function(palletId, locationId) {
+					inventory.setLocation(palletId, locationId);
 				});
 				break;
 			case 'CREATE_PALLET':
-				socket.emit('palletCreated', function(type, expire, lot, numCases, numPops, numBars, country) {
+				socket.emit('CREATE_PALLET', function(type, expire, lot, numCases, numPops, numBars, country) {
 					inventory.createPallet(type, expire, lot, numCases, numPops, numBars, country);
 				});
 				break;
 			case 'UPDATE_PALLET':
-				socket.emit('palletUpdated', function(palletId, quantity) {
+				socket.emit('UPDATE_PALLET', function(palletId, quantity) {
 					inventory.updatePallet(palletId, quantity);
 				});
 				break;

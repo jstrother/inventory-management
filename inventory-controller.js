@@ -11,6 +11,7 @@ const io = socket_io(server);
 
 io.on('connection', function(socket) {
 	socket.on('get', (crud) => {
+		// do something then emit it below
 		socket.broadcast.emit('get', get()
 			// wrap in anon function, use this as pattern for others
 			// look for socket status method
@@ -25,6 +26,7 @@ io.on('connection', function(socket) {
 		)
 	});
 	socket.on('post', (crud) => {
+		// do something then emit it below
 		socket.broadcast.emit('post', post()
 			// Pallet.create({
 			// 	type: req.body.type,
@@ -43,6 +45,7 @@ io.on('connection', function(socket) {
 		)
 	});
 	socket.on('put', (crud) => {
+		// do something then emit it below
 		socket.broadcast.emit('put', put()
 			// Pallet.findByIdAndUpdate(palletId, {
 			// 	// the only thing that will ever be updated is the quantity
@@ -58,6 +61,7 @@ io.on('connection', function(socket) {
 		)
 	});
 	socket.on('del', (crud) => {
+		// do something then emit it below
 		socket.broadcast.emit('del', del()
 			// Pallet.findByIdAndRemove(palletId, function(err, pallet) {
 			// 	if (err) {
@@ -69,17 +73,4 @@ io.on('connection', function(socket) {
 			// });
 		)
 	});
-	socket.on('use', (crud) => {
-		socket.broadcast.emit('use', use()
-			// res.status(404).json({
-			// 	message: 'Not Found'
-			// });
-		)
-	});
 });
-
-// exports.get = get;
-// exports.post = post;
-// exports.put = put;
-// exports.del = del;
-// exports.use = use;
