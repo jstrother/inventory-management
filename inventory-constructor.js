@@ -19,34 +19,10 @@ Inventory.prototype.createPallet = (type, expire, lot, numCases, numPops, numBar
 	// creates a pallet with unique ID
 };
 
-Inventory.prototype.setLocation = (palletId) => {
-	// this method will add a pallet to a location, and remove it from a previous one if needed
-	let locations = [];
-	let locationId;
-
-	const locationSetter = (number, modulo) => {
-  	let rows = [];
-  	let numRows = (number / modulo);  //should be 3 for our example
-	 	let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('').slice(0, numRows);
-	 
-	 	for (let i = 1; i <= modulo; i++) {
-	 		alphabet.forEach((letter) => {
-	 			rows.push(letter + i);
-	 		});
-	 	}
-	 	return rows;
-	 };
-	 
-	 const locationCreator = (number, modulo) => {
-	 	for (i = 0; i < number; i++) {
-	 		let location = locationSetter(number, modulo);
-	 		locationId = (`${rack}-${location}`);
-	 		locations.push(locationId);
-	 	}
-	 	return locations;
-	 }
-
-	this.locationId = locationId;
+Inventory.prototype.setLocation = (palletId, locationId) => {
+	if (this.palletId === palletId) {
+		this.locationId = locationId;
+	}
 };
 
 Inventory.prototype.selectRack = (rackId) => {
@@ -109,4 +85,4 @@ Inventory.prototype.deletePallet = (palletId) => {
 	}
 };
 
-module.exports = Inventory;
+exports.Inventory = Inventory;

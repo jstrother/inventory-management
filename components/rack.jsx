@@ -4,7 +4,6 @@ import createClass from 'react';
 import connect from 'react-redux';
 import Link from 'react-router';
 
-import Location from './location.jsx';
 import RackSelector from './rack-selector.jsx';
 import RackDisplay from './rack-display.jsx';
 import LocationSetter from './location-setter.jsx';

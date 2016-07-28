@@ -18,7 +18,7 @@ let locationSetter = (number, modulo) => {
 	let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('').slice(0, numRows);
 	for (let i = 1; i <= modulo; i++) {
 		alphabet.forEach((letter) => {
-			locations.push(`${rack}-${letter}${i}`);
+			locations.push(`R1-${letter}${i}`);
 		});
 	}
 	return locations;

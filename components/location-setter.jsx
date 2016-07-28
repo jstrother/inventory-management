@@ -56,7 +56,7 @@ const LocatonSetter = createClass({
 			);
 		}
 		
-		let locationSetter = (number, modulo) => {
+		const locationSetter = (number, modulo) => {
 			let locations = [];
 			let numRows = (number / modulo);
 			let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('').slice(0, numRows);
