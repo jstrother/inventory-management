@@ -8,8 +8,11 @@ const LocatonSetter = createClass({
 	onCloseClick: function() {
 		this.refs.locationSetter.classList.add('hidden');
 	},
+	onSetLocationClick: function() {
+		// add code here to deal with setting/changing locations
+	},
 	render: function() {
-		let locations = [];
+		let locationsRW = [];
 		let number, modulo, rack, locationId;
 		// rack1,2,etc. are the rackId's, not the rack variable
 		switch (this.state.rackId) {
@@ -43,7 +46,7 @@ const LocatonSetter = createClass({
 
 		for (i = 0; i < number; i++) {
 			locationSetter(number, modulo);
-			locations.push(
+			locationsRW.push(
 				<Location
 					type={this.props.type}
 					lot={this.props.lot}
@@ -67,10 +70,11 @@ const LocatonSetter = createClass({
 			}
 			return locations;
 		};
-
+		// need to add labeled inputs to select a pallet by a location, then change that location
 		return (
 			<div className='locationSetter' ref='locationSetter'>
 
+				<button className="setLocation" onClick={this.onSetLocationClick}>Set Location</button>
 				<button className="closeLocationSetter" onClick={this.onCloseClick} >Close</button>
 			</div>)	
 	}

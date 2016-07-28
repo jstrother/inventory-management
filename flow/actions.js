@@ -1,17 +1,26 @@
 // called into reducers.js
 
 const CREATE_PALLET = 'CREATE_PALLET';
-const createPallet = () => {
+const createPallet = (type, expire, lot, numCases, numPops, numBars, country) => {
 	return {
-		type: CREATE_PALLET
+		type: CREATE_PALLET,
+		type,
+		expire,
+		lot,
+		numCases,
+		numPops,
+		numBars,
+		country
 	};
 };
 
 const UPDATE_PALLET = 'UPDATE_PALLET';
-const updatePallet = (quantity) => {
+const updatePallet = (numCases, numPops, numBars) => {
 	return {
 		type: UPDATE_PALLET,
-		quantity
+		numCases,
+		numPops,
+		numBars
 	};
 };
 
@@ -19,7 +28,7 @@ const SELECT_RACK = 'SELECT_RACK';
 const selectRack = (rackId) => {
 	return {
 		type: SELECT_RACK,
-		rackId
+		rack: rackId
 	};
 };
 
@@ -27,8 +36,8 @@ const SET_PALLET_LOCATION = 'SET_PALLET_LOCATION';
 const setPalletLocation = (palletId, locationId) => {
 	return {
 		type: SET_PALLET_LOCATION,
-		pallet,
-		location
+		pallet: palletId,
+		location: locationId
 	};
 };
 

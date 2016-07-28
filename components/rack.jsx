@@ -8,16 +8,10 @@ import RackSelector from './rack-selector.jsx';
 import RackDisplay from './rack-display.jsx';
 import LocationSetter from './location-setter.jsx';
 import PalletCreator from './pallet-creator.jsx';
-import fetchInventory from '../flow/actions.js';
 
 const Rack = createClass({
-	componentDidMount: function() {
-		this.props.dispatch(
-			fetchInventory(this.refs.rackSelector.value)
-		);
-	},
 	onRackSelectClick: function() {
-		this.props.dispatch(this.refs.rackSelector.value);
+		this.props.dispatch('SELECT_RACK', this.refs.rackSelector.value);
 	},
 	onLocationSetClick: function() {
 		this.refs.locationSetter.classList.remove('hidden');

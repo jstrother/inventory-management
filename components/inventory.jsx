@@ -4,6 +4,7 @@
   import connect from 'react-redux';
 
  const Inventory = createClass({
+ 		// don't forget to create table to display totals
   	render: function() {
  		return (
  			<div className='inventory'>

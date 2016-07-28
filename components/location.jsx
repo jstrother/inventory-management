@@ -3,11 +3,6 @@
 import createClass from 'react';
 import connect from 'react-redux';
 
-
-// don't forget to set pallets to locations via palletId
-
-// locationId will be similar to R1-A1 (Rack1, location A1)
-
 const Location = createClass({
 	render: function() {
 		return (

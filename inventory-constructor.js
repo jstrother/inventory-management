@@ -25,6 +25,7 @@ Inventory.prototype.setLocation = (palletId, locationId) => {
 	}
 };
 
+// do I even need this method if rack-selector.jsx has the same function?
 Inventory.prototype.selectRack = (rackId) => {
 	// this method selects individual racks by ID
 
