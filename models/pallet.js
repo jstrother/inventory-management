@@ -7,6 +7,7 @@ let palletSchema = mongoose.Schema({
 	country: {type: String, required: true},
 	quantity: {type: String, required: true}
 });
+
 let Pallet = mongoose.model('Pallet', palletSchema);
 
 module.exports = Pallet;

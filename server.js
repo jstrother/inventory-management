@@ -13,6 +13,13 @@ const grandTotal = require('./grand-total-function.js');
 
 const Inventory = function() {};
 
+// start getting something from front end such as simple pallet list first
+// focus on pallets, don't sweat the rest yet
+// make pallet a class; check mongoose models
+// api for pallets (includes all info about pallet and returns grand total), endpoints: /pallets(display list), /pallets/:palletId(showing single, use for updating and deleting also), /pallets/:palletId/edit (self-explanatory)
+// look for redux tutorials w/either sockets, crud, or etc.
+// superagent (possibility)
+
 Inventory.prototype.createPallet = (type, expire, lot, numCases, numPops, numBars, country) => {
 	this.type = type;
 	this.expire = expire;
@@ -24,8 +31,7 @@ Inventory.prototype.createPallet = (type, expire, lot, numCases, numPops, numBar
 
 	grandTotal(type, numCases, numPops, numBars);
 
-	return `PLT-${Date}`;
-	// creates a pallet with unique ID
+	this.palletId = `PLT-${Date}`;
 };
 
 Inventory.prototype.setLocation = (palletId, locationId) => {

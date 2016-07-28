@@ -9,6 +9,8 @@ const app = require('./server.js').app;
 const server = http.Server(app);
 const io = socket_io(server);
 
+// rewrite into crud functions
+
 io.on('connection', function(socket) {
 	socket.on('get', (crud) => {
 		// do something then emit it below

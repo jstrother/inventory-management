@@ -29812,7 +29812,7 @@
 	
 			case 'UPDATE_PALLET':
 				return {
-					// code to update pallet's quantity
+					// code to change state concerning updating the pallet's quantity
 				};
 				break;
 		};
