@@ -79,5 +79,5 @@ export default class UpdateProducts extends React.Components {
 				</Popover>
 			</div>
 		);
-	}
+	};
 }

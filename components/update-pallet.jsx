@@ -79,5 +79,5 @@ export default class UpdatePallet extends React.Components {
 				</Popover>
 			</div>
 		);
-	}
+	};
 }

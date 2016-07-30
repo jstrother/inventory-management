@@ -15,5 +15,5 @@ export default class Pallet extends React.Component {
 				
 			</div>
 		);	
-	}
+	};
 }

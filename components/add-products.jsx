@@ -12,11 +12,6 @@ export default class AddProducts extends React.Component {
 		super(props);
 		this.state = {open: false};
 	};
-	handleInsert(products) {
-		socket.emit('products:insert', products => {
-			// info for creating new pallet
-		})
-	};
 	handlePopoverTap = event => {
 		this.setState({
 			open: true,
@@ -70,5 +65,5 @@ export default class AddProducts extends React.Component {
 				</Popover>
 			</div>
 		);
-	}
+	};
 }

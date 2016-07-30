@@ -103,5 +103,5 @@ export default class AddPallet extends React.Component {
 				</Popover>
 			</div>
 		);
-	}
+	};
 }

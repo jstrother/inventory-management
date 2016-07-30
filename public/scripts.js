@@ -47412,13 +47412,6 @@
 		_createClass(AddProducts, [{
 			key: 'handleInsert',
 			value: function handleInsert(products) {
-				socket.emit('products:insert', function (products) {
-					// info for creating new pallet
-				});
-			}
-		}, {
-			key: 'handleInsert',
-			value: function handleInsert(products) {
 				if (event.keyCode === 13) {
 					if (event.target.value && event.target.value.length > 0) {
 						socket.emit('products:insert', {

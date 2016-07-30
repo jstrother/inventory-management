@@ -21,7 +21,7 @@ class Inventory extends React.Component {
 					productsList={this.props.productsList} />
 			</div>
 		);
-	}
+	};
 }
 
 const mapStateToProps = (state, props) => {

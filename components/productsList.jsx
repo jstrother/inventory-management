@@ -20,5 +20,5 @@ export default class ProductsList extends React.Component {
 				<UpdateProducts />
 			</div>
 		);
-	}
+	};
 }
