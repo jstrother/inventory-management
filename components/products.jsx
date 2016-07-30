@@ -3,15 +3,10 @@ import {TableRow, TableRowColumn} from 'material-ui/Table';
 import io from 'socket.io-client';
 const socket = io.connect('/inventory');
 
-export default class product extends React.Component {
-	handleUpdate(product) {
-		socket.emit('products:update', {
-			// info for updating product and/or locations of product
-		});
-	};
-	handleDelete(product) {
+export default class Products extends React.Component {
+	handleDelete(products) {
 		socket.emit('products:delete', {
-			// info for deleting a product upon discontinuation
+			// info for deleting products upon discontinuation
 		});
 	};
 	// need buttons for each of the above

@@ -7,10 +7,15 @@ import TextField from 'material-ui/TextField';
 import io from 'socket.io-client';
 const socket = io.connect('/');
 
-export default class AddProduct extends React.Component {
+export default class AddProducts extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {open: false};
+	};
+	handleInsert(products) {
+		socket.emit('products:insert', products => {
+			// info for creating new pallet
+		})
 	};
 	handlePopoverTap = event => {
 		this.setState({
@@ -23,17 +28,17 @@ export default class AddProduct extends React.Component {
 			open: false
 		});
 	};
-	handleInsert(product) {
+	handleInsert(products) {
 		if (event.keyCode === 13) {
 			if (event.target.value && event.target.value.length > 0) {
 				socket.emit('products:insert', {
-					// info for adding a new product (not pallet)
+					// info for adding new products (not pallet)
 				});
 				this.handlePopoverClose();
 			}
 			else {
 				this.setState({
-					error: 'Please Enter Product Name'
+					error: 'Please Enter Products Name'
 				});
 			}
 		}
@@ -42,7 +47,7 @@ export default class AddProduct extends React.Component {
 		return (
 			<div>
 				<Popover
-					ref={product}
+					ref={products}
 					open={this.state.open}
 					anchorEl={this.state.anchor}
 					anchorOrigin={{
@@ -55,11 +60,11 @@ export default class AddProduct extends React.Component {
 					}}
 					onRequestClose={this.handlePopoverClose} >
 					<TextField
-						ref={productName}
+						ref={productsName}
 						style={{
 							margin: 20
 						}}
-						hintText='Enter New Product Name'
+						hintText='Enter New Products Name'
 						errorText={this.state.error}
 						onKeyDown={this.handleInsert} />
 				</Popover>

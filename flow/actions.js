@@ -19,23 +19,23 @@ export const deletePallet = pallet => {
 	}
 }
 
-export const newProduct = product => {
+export const newproducts = products => {
 	return {
 		type: 'products:insert',
-		product
+		products
 	}
 }
 
-export const updateProduct = product => {
+export const updateproducts = products => {
 	return {
 		type: 'products:update',
-		product
+		products
 	}
 }
 
-export const deleteProduct = product => {
+export const deleteproducts = products => {
 	return {
 		type: 'products:delete',
-		product
+		products
 	}
 }

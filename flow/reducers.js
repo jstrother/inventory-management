@@ -1,10 +1,10 @@
 import {combineReducers} from 'redux';
 import palletReducer from './palletReducer.js';
-import productReducer from './productReducer.js';
+import productsReducer from './productsReducer.js';
 
 const inventoryReducer = combineReducers({
 	palletReducer,
-	productReducer
+	productsReducer
 });
 
 export default inventoryReducer;

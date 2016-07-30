@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Pallet from './pallet.jsx';
-import ProductList from './productList.jsx';
+import ProductsList from './productsList.jsx';
 
 class Inventory extends React.Component {
 	render() {
@@ -17,8 +17,8 @@ class Inventory extends React.Component {
 					numBars={this.props.numBars}
 					country={this.props.country}
 					locationId={this.props.locationId} />
-				<ProductList
-					productList={this.props.productList} />
+				<ProductsList
+					productsList={this.props.productsList} />
 			</div>
 		);
 	}
@@ -34,7 +34,7 @@ const mapStateToProps = (state, props) => {
 		numBars: state.numBars,
 		country: state.country,
 		locationId: state.locationId,
-		productList: state.productList
+		productsList: state.productsList
 	};
 };
 

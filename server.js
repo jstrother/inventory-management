@@ -31,17 +31,17 @@ r.connect({db: 'inventory'})
 				delete pallet.id;
 				r.table('pallet').get(id).delete().run(connection);
 			});
-			socket.on('products:client:insert', product => {
-				r.table('products').insert(product).run(connection);
+			socket.on('products:client:insert', products => {
+				r.table('products').insert(products).run(connection);
 			});
-			socket.on('products:client:update', product => {
-				let id = product.id;
-				delete product.id;
+			socket.on('products:client:update', products => {
+				let id = products.id;
+				delete products.id;
 				r.table('products').get(id).update().run(connection);
 			});
-			socket.on('products:client:delete', product => {
-				let id = product.id;
-				delete product.id;
+			socket.on('products:client:delete', products => {
+				let id = products.id;
+				delete products.id;
 				r.table('products').get(id).delete().run(connection);
 			});
 			r.table('pallet').changes({

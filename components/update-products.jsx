@@ -7,15 +7,15 @@ import TextField from 'material-ui/TextField';
 import io from 'socket.io-client';
 const socket = io.connect('/');
 
-export default class UpdatePallet extends React.Components {
+export default class UpdateProducts extends React.Components {
 	constructor(props) {
 		super(props);
 		this.state = {open: false};
 	};
-	handleUpdate(pallet) {
-		socket.emit('pallet:update', pallet => {
-			// info for updating pallet
-		})
+	handleUpdate(products) {
+		socket.emit('products:update', {
+			// info for updating products and/or locations of products
+		});
 	};
 	handlePopoverTap = event => {
 		this.setState({
@@ -32,7 +32,7 @@ export default class UpdatePallet extends React.Components {
 		return (
 			<div>
 				<Popover
-					ref={updatePallet}
+					ref={updateProducts}
 					open={this.state.open}
 					anchorEl={this.state.anchor}
 					anchorOrigin={{

@@ -12,6 +12,11 @@ export default class AddPallet extends React.Component {
 		super(props);
 		this.state = {open: false};
 	};
+	handleInsert(pallet) {
+		socket.emit('pallet:insert', pallet => {
+			// info for creating new pallet
+		})
+	};
 	handlePopoverTap = event => {
 		this.setState({
 			open: true,

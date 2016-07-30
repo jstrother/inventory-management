@@ -1,16 +1,8 @@
 import React from 'react';
+import io from 'socket.io-client';
+const socket = io.connect('/');
 
 export default class Pallet extends React.Component {
-	handleInsert(pallet) {
-		socket.emit('pallet:insert', pallet => {
-			// info for creating new pallet
-		})
-	};
-	handleUpdate(pallet) {
-		socket.emit('pallet:update', pallet => {
-			// info for updating pallet
-		})
-	};
 	handleDelete(pallet) {
 		socket.emit('pallet:delete', pallet => {
 			// info for deleting pallet

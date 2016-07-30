@@ -29972,9 +29972,9 @@
 	
 	var _pallet2 = _interopRequireDefault(_pallet);
 	
-	var _productList = __webpack_require__(357);
+	var _productsList = __webpack_require__(486);
 	
-	var _productList2 = _interopRequireDefault(_productList);
+	var _productsList2 = _interopRequireDefault(_productsList);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -30013,8 +30013,8 @@
 						numBars: this.props.numBars,
 						country: this.props.country,
 						locationId: this.props.locationId }),
-					_react2.default.createElement(_productList2.default, {
-						productList: this.props.productList })
+					_react2.default.createElement(_productsList2.default, {
+						productsList: this.props.productsList })
 				);
 			}
 		}]);
@@ -30032,7 +30032,7 @@
 			numBars: state.numBars,
 			country: state.country,
 			locationId: state.locationId,
-			productList: state.productList
+			productsList: state.productsList
 		};
 	};
 	
@@ -30054,6 +30054,10 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _socket = __webpack_require__(405);
+	
+	var _socket2 = _interopRequireDefault(_socket);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -30061,6 +30065,8 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var socket = _socket2.default.connect('/');
 	
 	var Pallet = function (_React$Component) {
 		_inherits(Pallet, _React$Component);
@@ -30072,20 +30078,6 @@
 		}
 	
 		_createClass(Pallet, [{
-			key: 'handleInsert',
-			value: function handleInsert(pallet) {
-				socket.emit('pallet:insert', function (pallet) {
-					// info for creating new pallet
-				});
-			}
-		}, {
-			key: 'handleUpdate',
-			value: function handleUpdate(pallet) {
-				socket.emit('pallet:update', function (pallet) {
-					// info for updating pallet
-				});
-			}
-		}, {
 			key: 'handleDelete',
 			value: function handleDelete(pallet) {
 				socket.emit('pallet:delete', function (pallet) {
@@ -30107,76 +30099,7 @@
 	exports.default = Pallet;
 
 /***/ },
-/* 357 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _Table = __webpack_require__(358);
-	
-	var _product = __webpack_require__(404);
-	
-	var _product2 = _interopRequireDefault(_product);
-	
-	var _addProduct = __webpack_require__(453);
-	
-	var _addProduct2 = _interopRequireDefault(_addProduct);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var ProductList = function (_React$Component) {
-		_inherits(ProductList, _React$Component);
-	
-		function ProductList() {
-			_classCallCheck(this, ProductList);
-	
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(ProductList).apply(this, arguments));
-		}
-	
-		_createClass(ProductList, [{
-			key: 'render',
-			value: function render() {
-				return _react2.default.createElement(
-					'div',
-					null,
-					_react2.default.createElement(
-						_Table.Table,
-						null,
-						_react2.default.createElement(
-							_Table.TableBody,
-							null,
-							this.props.productList.map(function (product) {
-								return _react2.default.createElement(_product2.default, { key: product.id, product: product });
-							})
-						)
-					),
-					_react2.default.createElement(_addProduct2.default, null)
-				);
-			}
-		}]);
-	
-		return ProductList;
-	}(_react2.default.Component);
-	
-	exports.default = ProductList;
-
-/***/ },
+/* 357 */,
 /* 358 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -35686,79 +35609,7 @@
 	exports.default = TableRow;
 
 /***/ },
-/* 404 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _Table = __webpack_require__(358);
-	
-	var _socket = __webpack_require__(405);
-	
-	var _socket2 = _interopRequireDefault(_socket);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var socket = _socket2.default.connect('/inventory');
-	
-	var product = function (_React$Component) {
-		_inherits(product, _React$Component);
-	
-		function product() {
-			_classCallCheck(this, product);
-	
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(product).apply(this, arguments));
-		}
-	
-		_createClass(product, [{
-			key: 'handleUpdate',
-			value: function handleUpdate(product) {
-				socket.emit('products:update', {
-					// info for updating product and/or locations of product
-				});
-			}
-		}, {
-			key: 'handleDelete',
-			value: function handleDelete(product) {
-				socket.emit('products:delete', {
-					// info for deleting a product upon discontinuation
-				});
-			}
-		}, {
-			key: 'render',
-	
-			// need buttons for each of the above
-			value: function render() {
-				return _react2.default.createElement(
-					_Table.TableRow,
-					null,
-					_react2.default.createElement(_Table.TableRowColumn, null)
-				);
-			}
-		}]);
-	
-		return product;
-	}(_react2.default.Component);
-	
-	exports.default = product;
-
-/***/ },
+/* 404 */,
 /* 405 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -43186,136 +43037,7 @@
 
 
 /***/ },
-/* 453 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _Popover = __webpack_require__(454);
-	
-	var _Popover2 = _interopRequireDefault(_Popover);
-	
-	var _FloatingActionButton = __webpack_require__(462);
-	
-	var _FloatingActionButton2 = _interopRequireDefault(_FloatingActionButton);
-	
-	var _add = __webpack_require__(470);
-	
-	var _add2 = _interopRequireDefault(_add);
-	
-	var _RaisedButton = __webpack_require__(471);
-	
-	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
-	
-	var _TextField = __webpack_require__(473);
-	
-	var _TextField2 = _interopRequireDefault(_TextField);
-	
-	var _socket = __webpack_require__(405);
-	
-	var _socket2 = _interopRequireDefault(_socket);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var socket = _socket2.default.connect('/');
-	
-	var AddProduct = function (_React$Component) {
-		_inherits(AddProduct, _React$Component);
-	
-		function AddProduct(props) {
-			_classCallCheck(this, AddProduct);
-	
-			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AddProduct).call(this, props));
-	
-			_this.handlePopoverTap = function (event) {
-				_this.setState({
-					open: true,
-					anchor: event.currentTarget
-				});
-			};
-	
-			_this.handlePopoverClose = function () {
-				_this.setState({
-					open: false
-				});
-			};
-	
-			_this.state = { open: false };
-			return _this;
-		}
-	
-		_createClass(AddProduct, [{
-			key: 'handleInsert',
-			value: function handleInsert(product) {
-				if (event.keyCode === 13) {
-					if (event.target.value && event.target.value.length > 0) {
-						socket.emit('products:insert', {
-							// info for adding a new product (not pallet)
-						});
-						this.handlePopoverClose();
-					} else {
-						this.setState({
-							error: 'Please Enter Product Name'
-						});
-					}
-				}
-			}
-		}, {
-			key: 'render',
-			value: function render() {
-				return _react2.default.createElement(
-					'div',
-					null,
-					_react2.default.createElement(
-						_Popover2.default,
-						{
-							ref: product,
-							open: this.state.open,
-							anchorEl: this.state.anchor,
-							anchorOrigin: {
-								horizontal: 'right',
-								vertical: 'top'
-							},
-							targetOrigin: {
-								horizontal: 'left',
-								vertical: 'bottom'
-							},
-							onRequestClose: this.handlePopoverClose },
-						_react2.default.createElement(_TextField2.default, {
-							ref: productName,
-							style: {
-								margin: 20
-							},
-							hintText: 'Enter New Product Name',
-							errorText: this.state.error,
-							onKeyDown: this.handleInsert })
-					)
-				);
-			}
-		}]);
-	
-		return AddProduct;
-	}(_react2.default.Component);
-	
-	exports.default = AddProduct;
-
-/***/ },
+/* 453 */,
 /* 454 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -47419,9 +47141,9 @@
 	
 	var _palletReducer2 = _interopRequireDefault(_palletReducer);
 	
-	var _productReducer = __webpack_require__(484);
+	var _productsReducer = __webpack_require__(490);
 	
-	var _productReducer2 = _interopRequireDefault(_productReducer);
+	var _productsReducer2 = _interopRequireDefault(_productsReducer);
 	
 	function _interopRequireDefault(obj) {
 		return obj && obj.__esModule ? obj : { default: obj };
@@ -47429,7 +47151,7 @@
 	
 	var inventoryReducer = (0, _redux.combineReducers)({
 		palletReducer: _palletReducer2.default,
-		productReducer: _productReducer2.default
+		productsReducer: _productsReducer2.default
 	});
 	
 	exports.default = inventoryReducer;
@@ -47464,7 +47186,438 @@
 	exports.default = palletReducer;
 
 /***/ },
-/* 484 */
+/* 484 */,
+/* 485 */,
+/* 486 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _Table = __webpack_require__(358);
+	
+	var _products = __webpack_require__(487);
+	
+	var _products2 = _interopRequireDefault(_products);
+	
+	var _addProducts = __webpack_require__(488);
+	
+	var _addProducts2 = _interopRequireDefault(_addProducts);
+	
+	var _updateProducts = __webpack_require__(489);
+	
+	var _updateProducts2 = _interopRequireDefault(_updateProducts);
+	
+	var _socket = __webpack_require__(405);
+	
+	var _socket2 = _interopRequireDefault(_socket);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var socket = _socket2.default.connect('/');
+	
+	var ProductsList = function (_React$Component) {
+		_inherits(ProductsList, _React$Component);
+	
+		function ProductsList() {
+			_classCallCheck(this, ProductsList);
+	
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(ProductsList).apply(this, arguments));
+		}
+	
+		_createClass(ProductsList, [{
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(
+						_Table.Table,
+						null,
+						_react2.default.createElement(
+							_Table.TableBody,
+							null,
+							this.props.productsList.map(function (products) {
+								return _react2.default.createElement(_products2.default, { key: products.id, products: products });
+							})
+						)
+					),
+					_react2.default.createElement(_addProducts2.default, null),
+					_react2.default.createElement(_updateProducts2.default, null)
+				);
+			}
+		}]);
+	
+		return ProductsList;
+	}(_react2.default.Component);
+	
+	exports.default = ProductsList;
+
+/***/ },
+/* 487 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _Table = __webpack_require__(358);
+	
+	var _socket = __webpack_require__(405);
+	
+	var _socket2 = _interopRequireDefault(_socket);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var socket = _socket2.default.connect('/inventory');
+	
+	var Products = function (_React$Component) {
+		_inherits(Products, _React$Component);
+	
+		function Products() {
+			_classCallCheck(this, Products);
+	
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(Products).apply(this, arguments));
+		}
+	
+		_createClass(Products, [{
+			key: 'handleDelete',
+			value: function handleDelete(products) {
+				socket.emit('products:delete', {
+					// info for deleting products upon discontinuation
+				});
+			}
+		}, {
+			key: 'render',
+	
+			// need buttons for each of the above
+			value: function render() {
+				return _react2.default.createElement(
+					_Table.TableRow,
+					null,
+					_react2.default.createElement(_Table.TableRowColumn, null)
+				);
+			}
+		}]);
+	
+		return Products;
+	}(_react2.default.Component);
+	
+	exports.default = Products;
+
+/***/ },
+/* 488 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _Popover = __webpack_require__(454);
+	
+	var _Popover2 = _interopRequireDefault(_Popover);
+	
+	var _FloatingActionButton = __webpack_require__(462);
+	
+	var _FloatingActionButton2 = _interopRequireDefault(_FloatingActionButton);
+	
+	var _add = __webpack_require__(470);
+	
+	var _add2 = _interopRequireDefault(_add);
+	
+	var _RaisedButton = __webpack_require__(471);
+	
+	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
+	
+	var _TextField = __webpack_require__(473);
+	
+	var _TextField2 = _interopRequireDefault(_TextField);
+	
+	var _socket = __webpack_require__(405);
+	
+	var _socket2 = _interopRequireDefault(_socket);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var socket = _socket2.default.connect('/');
+	
+	var AddProducts = function (_React$Component) {
+		_inherits(AddProducts, _React$Component);
+	
+		function AddProducts(props) {
+			_classCallCheck(this, AddProducts);
+	
+			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AddProducts).call(this, props));
+	
+			_this.handlePopoverTap = function (event) {
+				_this.setState({
+					open: true,
+					anchor: event.currentTarget
+				});
+			};
+	
+			_this.handlePopoverClose = function () {
+				_this.setState({
+					open: false
+				});
+			};
+	
+			_this.state = { open: false };
+			return _this;
+		}
+	
+		_createClass(AddProducts, [{
+			key: 'handleInsert',
+			value: function handleInsert(products) {
+				socket.emit('products:insert', function (products) {
+					// info for creating new pallet
+				});
+			}
+		}, {
+			key: 'handleInsert',
+			value: function handleInsert(products) {
+				if (event.keyCode === 13) {
+					if (event.target.value && event.target.value.length > 0) {
+						socket.emit('products:insert', {
+							// info for adding new products (not pallet)
+						});
+						this.handlePopoverClose();
+					} else {
+						this.setState({
+							error: 'Please Enter Products Name'
+						});
+					}
+				}
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(
+						_Popover2.default,
+						{
+							ref: products,
+							open: this.state.open,
+							anchorEl: this.state.anchor,
+							anchorOrigin: {
+								horizontal: 'right',
+								vertical: 'top'
+							},
+							targetOrigin: {
+								horizontal: 'left',
+								vertical: 'bottom'
+							},
+							onRequestClose: this.handlePopoverClose },
+						_react2.default.createElement(_TextField2.default, {
+							ref: productsName,
+							style: {
+								margin: 20
+							},
+							hintText: 'Enter New Products Name',
+							errorText: this.state.error,
+							onKeyDown: this.handleInsert })
+					)
+				);
+			}
+		}]);
+	
+		return AddProducts;
+	}(_react2.default.Component);
+	
+	exports.default = AddProducts;
+
+/***/ },
+/* 489 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _Popover = __webpack_require__(454);
+	
+	var _Popover2 = _interopRequireDefault(_Popover);
+	
+	var _FloatingActionButton = __webpack_require__(462);
+	
+	var _FloatingActionButton2 = _interopRequireDefault(_FloatingActionButton);
+	
+	var _add = __webpack_require__(470);
+	
+	var _add2 = _interopRequireDefault(_add);
+	
+	var _RaisedButton = __webpack_require__(471);
+	
+	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
+	
+	var _TextField = __webpack_require__(473);
+	
+	var _TextField2 = _interopRequireDefault(_TextField);
+	
+	var _socket = __webpack_require__(405);
+	
+	var _socket2 = _interopRequireDefault(_socket);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var socket = _socket2.default.connect('/');
+	
+	var UpdateProducts = function (_React$Components) {
+		_inherits(UpdateProducts, _React$Components);
+	
+		function UpdateProducts(props) {
+			_classCallCheck(this, UpdateProducts);
+	
+			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(UpdateProducts).call(this, props));
+	
+			_this.handlePopoverTap = function (event) {
+				_this.setState({
+					open: true,
+					anchor: event.currentTarget
+				});
+			};
+	
+			_this.handlePopoverClose = function () {
+				_this.setState({
+					open: false
+				});
+			};
+	
+			_this.state = { open: false };
+			return _this;
+		}
+	
+		_createClass(UpdateProducts, [{
+			key: 'handleUpdate',
+			value: function handleUpdate(products) {
+				socket.emit('products:update', {
+					// info for updating products and/or locations of products
+				});
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(
+						_Popover2.default,
+						{
+							ref: updateProducts,
+							open: this.state.open,
+							anchorEl: this.state.anchor,
+							anchorOrigin: {
+								horizontal: 'right',
+								vertical: 'top'
+							},
+							targetOrigin: {
+								horizontal: 'left',
+								vertical: 'bottom'
+							},
+							onRequestClose: this.handlePopoverClose },
+						_react2.default.createElement(_TextField2.default, {
+							ref: numCasesUpdate,
+							style: {
+								margin: 20
+							},
+							hintText: 'Enter New Number of Cases',
+							errorText: this.state.error,
+							onKeyDown: this.handleInsert }),
+						_react2.default.createElement(_TextField2.default, {
+							ref: numPopsUpdate,
+							style: {
+								margin: 20
+							},
+							hintText: 'Enter New Number of Loose Pops',
+							errorText: this.state.error,
+							onKeyDown: this.handleInsert }),
+						_react2.default.createElement(_TextField2.default, {
+							ref: numBarsUpdate,
+							style: {
+								margin: 20
+							},
+							hintText: 'Enter New Number of Loose Bars',
+							errorText: this.state.error,
+							onKeyDown: this.handleInsert }),
+						_react2.default.createElement(_TextField2.default, {
+							ref: locationIdUpdate,
+							style: {
+								margin: 20
+							},
+							hintText: 'Enter New Location',
+							errorText: this.state.error,
+							onKeyDown: this.handleInsert })
+					)
+				);
+			}
+		}]);
+	
+		return UpdateProducts;
+	}(_react2.default.Components);
+	
+	exports.default = UpdateProducts;
+
+/***/ },
+/* 490 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -47474,13 +47627,13 @@
 	});
 	var initialState = {};
 	
-	var productReducer = function productReducer() {
+	var productsReducer = function productsReducer() {
 		var state = arguments.length <= 0 || arguments[0] === undefined ? state || initialState : arguments[0];
 		var action = arguments[1];
 	
-		var productIndex = function productIndex() {
-			return state.findIndex(function (thisProduct) {
-				return thisProduct && thisProduct.id === action.product.id;
+		var productsIndex = function productsIndex() {
+			return state.findIndex(function (thisProducts) {
+				return thisProducts && thisProducts.id === action.products.id;
 			});
 		};
 		switch (action.type) {
@@ -47490,7 +47643,7 @@
 		}
 	};
 	
-	exports.default = productReducer;
+	exports.default = productsReducer;
 
 /***/ }
 /******/ ]);
