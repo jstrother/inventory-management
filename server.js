@@ -31,12 +31,30 @@ r.connect({db: 'inventory'})
 				delete pallet.id;
 				r.table('pallet').get(id).delete().run(connection);
 			});
+			socket.on('products:client:insert', product => {
+				r.table('products').insert(product).run(connection);
+			});
+			socket.on('products:client:update', product => {
+				let id = product.id;
+				delete product.id;
+				r.table('products').get(id).update().run(connection);
+			});
+			socket.on('products:client:delete', product => {
+				let id = product.id;
+				delete product.id;
+				r.table('products').get(id).delete().run(connection);
+			});
 			r.table('pallet').changes({
 				includeInitial: true,
 				squash: true
 			})
 			.run(connection)
 			.then(changefeedSocketEvents(socket, 'pallet'));
+			r.table('products').changes({
+				includeInitial: true,
+				squash: true
+			})
+			.run
 		});
 		server.listen(SERVER_PORT);
 	})
