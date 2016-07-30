@@ -3,11 +3,13 @@
 @import 'neat/neat';
 @import 'base/base';
 @import 'myVariables';
+@import 'myFonts';
 
 
 body {
 	// background: url('../img/background1.JPG');
 	background-size: cover;
+	font-family: Roboto;
 }
 
 #rack1, #rack2, #rack3 {
