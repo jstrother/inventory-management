@@ -1,19 +1,23 @@
-// imported into index.jsx
-  
-  import createClass from 'react';
-  import connect from 'react-redux';
+import React from 'react';
+import connect from 'react-redux';
+import Pallet from './pallet.jsx';
+import Totals from './totals.jsx';
 
- const Inventory = createClass({
- 		// don't forget to create table to display totals
-  	render: function() {
- 		return (
- 			<div className='inventory'>
- 				
- 			</div>
- 		);
- 	}
- });
- 
- const Container = connect()(Inventory);
- 
- module.exports = Container;
+class Pallet extends React.Component {
+	render() {
+		return (
+			<div>
+				<Pallet
+					type
+					lot
+					expiration
+					numCases
+					numPops
+					numBars
+					country
+					locationId />
+				<Totals />
+			</div>
+		);
+	}
+}

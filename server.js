@@ -1,182 +1,41 @@
 const express = require('express');
 const static = express.static;
-const http = require('http');
-const socket_io = require('socket.io');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-
-const PORT = require('./config.js').PORT;
-const DATABASE_URL = require('./config.js').DATABASE_URL;
-const Pallet = require('./models/pallet.js');
-// use the exports from above to help with sockets sending info back and forth
-const grandTotal = require('./grand-total-function.js');
-
-const Inventory = function() {};
-
-// start getting something from front end such as simple pallet list first
-// focus on pallets, don't sweat the rest yet
-// make pallet a class; check mongoose models
-// api for pallets (includes all info about pallet and returns grand total), endpoints: /pallets(display list), /pallets/:palletId(showing single, use for updating and deleting also), /pallets/:palletId/edit (self-explanatory)
-// look for redux tutorials w/either sockets, crud, or etc.
-// superagent (possibility)
-
-Inventory.prototype.createPallet = (type, expire, lot, numCases, numPops, numBars, country) => {
-	this.type = type;
-	this.expire = expire;
-	this.lot = lot;
-	this.numCases = numCases;
-	this.numPops = numPops;
-	this.numBars = numBars;
-	this.country = country;
-
-	grandTotal(type, numCases, numPops, numBars);
-
-	this.palletId = `PLT-${Date}`;
-};
-
-Inventory.prototype.setLocation = (palletId, locationId) => {
-	if (this.palletId === palletId) {
-		this.locationId = locationId;
-	}
-};
-
-// do I even need this method if rack-selector.jsx has the same function?
-Inventory.prototype.selectRack = (rackId) => {
-	// this method selects individual racks by ID
-
-	let number, modulo, rack, location;
-	switch (rackId) {
-		case 'rack1':
-			number = 54;
-			modulo = 18;
-			rack = 'R1';
-			break;
-		case 'rack2':
-			number = 48;
-			modulo = 16;
-			rack = 'R2';
-			break;
-		case 'rack3':
-			number = 32;
-			modulo = 10;
-			rack = 'R3';
-			break;
-		case 'rack4':
-			number = 36;
-			modulo = 12;
-			rack = 'R4';
-			break;
-		case 'canadaRack':
-			number = 9;
-			modulo = 3;
-			rack = 'Canada';
-			break;
-	}
-	this.rackId = rackId;
-};
-
-Inventory.prototype.updatePallet = (palletId, numCases, numPops, numBars) => {
-	if (this.palletId === palletId) {
-		if (this.numCases != 0 || this.numPops != 0 || this.numBars != 0) {
-			this.numCases = numCases;
-			this.numPops = numPops;
-			this.numBars = numBars;
-		}
-		else if (this.numCases === 0 && this.numPops === 0 && this.numBars === 0) {
-			this.deletePallet;
-		}
-	}
-};
-
-Inventory.prototype.deletePallet = (palletId) => {
-	if (this.palletId === palletId) {
-		delete this.type;
-		delete this.lot;
-		delete this.expire;
-		delete this.numCases;
-		delete this.numPops;
-		delete this.numBars;
-		delete this.country;
-		delete this.locationId;
-		delete this.palletId;
-	}
-};
-
-const inventory = new Inventory();
-
 const app = express();
-app.use('/inventory-management', static('public'));
+const server = require('http').Server(app);
+const path = require('path');
+const io = require('socket.io')(server);
+const r = require('rethinkdb');
+const changefeedSocketEvents = require('./socket-events.js');
 
-exports.app = app; //sloppy fix
-const controller = require('./inventory-controller.js');
-
-app.use(bodyParser.json());
-
-const server = http.Server(app);
-const io = socket_io(server);
-
-// where do my broadcast.emits go in the following?
-io.on('connection', function(socket) {
-	console.log('client connected');
-	// the following is the socket interaction with the react front end
-	socket.on('action', (action) => {
-		switch (action.type) {
-			case 'SELECT_RACK':
-				socket.emit('SELECT_RACK', function(rackId) {
-					inventory.selectRack(rackId);
-				});
-				break;
-			case 'SET_PALLET_LOCATION':
-				socket.emit('SET_PALLET_LOCATION', function(palletId, locationId) {
-					inventory.setLocation(palletId, locationId);
-				});
-				break;
-			case 'CREATE_PALLET':
-				socket.emit('CREATE_PALLET', function(type, expire, lot, numCases, numPops, numBars, country) {
-					inventory.createPallet(type, expire, lot, numCases, numPops, numBars, country);
-				});
-				break;
-			case 'UPDATE_PALLET':
-				socket.emit('UPDATE_PALLET', function(palletId, quantity) {
-					inventory.updatePallet(palletId, quantity);
-				});
-				break;
-		};
-	});
-	socket.on('get', (crud) => {
-		socket.broadcast.emit('get', controller.get())
-	});
-	socket.on('post', (crud) => {
-		socket.broadcast.emit('post', controller.post())
-	});
-	socket.on('put', (crud) => {
-		socket.broadcast.emit('put', controller.put())
-	});
-	socket.on('del', (crud) => {
-		socket.broadcast.emit('del', controller.del())
-	});	
+app.get('*', (req, res) => {
+	res.sendFile(path.join(`${__dirname}/index.html`));
 });
 
-const runServer = function(callback) {
-	mongoose.connect(DATABASE_URL, function(err) {
-		if (err && callback) {
-			return callback(err);
-		}
-		server.listen(PORT, function() {
-			console.log(`Listening on localhost: ${PORT}`);
-			if (callback) {
-				callback();
-			}
+r.connect({db: 'inventory'})
+	.then(connection => {
+		io.on('connection', socket => {
+			socket.on('inventory:client:insert', pallet => {
+				r.table('pallet').insert(pallet).run(connection);
+			});
+			socket.on('inventory:client:update', pallet => {
+				let id = pallet.id;
+				delete pallet.id;
+				r.table('pallet').get(id).update().run(connection);
+			});
+			socket.on('inventory:client:delete', pallet => {
+				let id = pallet.id;
+				delete pallet.id;
+				r.table('pallet').get(id).delete().run(connection);
+			});
+			r.table('pallet').changes({
+				includeInitial: true,
+				squash: true
+			})
+			.run(connection)
+			.then(changefeedSocketEvents(socket, 'pallet'));
 		});
+		server.listen(9000);
+	})
+	.error(error => {
+		console.log('Error connecting to database', error);
 	});
-};
-
-if (require.main === module) {
-	runServer(function(err) {
-		if (err) {
-			console.error(err);
-		}
-	});
-};
-
-exports.runServer = runServer;

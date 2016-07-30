@@ -30,6 +30,7 @@
     "node-sass": "^3.8.0",
     "nodemon": "^1.9.2",
     "react-addons-test-utils": "^15.2.1",
+    "react-tap-event-plugin": "^1.0.0",
     "redux-logger": "^2.6.1",
     "sass-loader": "^3.2.3",
     "style-loader": "^0.13.1",
@@ -38,13 +39,11 @@
   },
   "homepage": "https://github.com/jstrother/inventory-management#readme",
   "dependencies": {
+    "babel-plugin-transform-class-properties": "^6.11.5",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
-    "jQuery": "^1.7.4",
     "jquery": "^3.0.0",
     "jsdom": "^9.4.1",
-    "mongodb": "^2.2.1",
-    "mongoose": "^4.5.4",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
     "react-redux": "^4.4.5",
@@ -53,8 +52,8 @@
     "redux-logger": "^2.6.1",
     "redux-socket.io": "^1.2.0",
     "redux-thunk": "^2.1.0",
-    "socket.io": "^1.4.8",
-    "unirest": "^0.5.0"
+    "rethinkdb": "^2.3.2",
+    "socket.io": "^1.4.8"
   },
   "bugs": {
     "url": "https://github.com/jstrother/inventory-management/issues"
