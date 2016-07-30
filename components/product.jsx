@@ -3,14 +3,14 @@ import {TableRow, TableRowColumn} from 'material-ui/Table';
 import io from 'socket.io-client';
 const socket = io.connect('/inventory');
 
-export default class Total extends React.Component {
-	handleUpdate(total) {
-		socket.emit('totals:update', {
-			// info for updating total and/or locations of product
+export default class product extends React.Component {
+	handleUpdate(product) {
+		socket.emit('products:update', {
+			// info for updating product and/or locations of product
 		});
 	};
-	handleDelete(total) {
-		socket.emit('totals:delete', {
+	handleDelete(product) {
+		socket.emit('products:delete', {
 			// info for deleting a product upon discontinuation
 		});
 	};

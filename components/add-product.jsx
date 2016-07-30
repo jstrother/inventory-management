@@ -23,10 +23,10 @@ export default class AddProduct extends React.Component {
 			open: false
 		});
 	};
-	handleInsert(total) {
+	handleInsert(product) {
 		if (event.keyCode === 13) {
 			if (event.target.value && event.target.value.length > 0) {
-				socket.emit('totals:insert', {
+				socket.emit('products:insert', {
 					// info for adding a new product (not pallet)
 				});
 				this.handlePopoverClose();

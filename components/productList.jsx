@@ -1,15 +1,15 @@
 import React from 'react';
 import {Table, TableBody} from 'material-ui/Table';
-import Total from './total.jsx';
+import Product from './product.jsx';
 import AddProduct from './add-product.jsx';
 
-export default class TotalList extends React.Component {
+export default class ProductList extends React.Component {
 	render() {
 		return (
 			<div>
 				<Table>
 					<TableBody>
-						{this.props.totals.map(total => <Total key={total.id} total={total} /> )}
+						{this.props.products.map(product => <Product key={product.id} product={product} /> )}
 					</TableBody>
 				</Table>
 				<AddProduct />
