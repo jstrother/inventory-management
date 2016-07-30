@@ -16,7 +16,7 @@ export default class Pallet extends React.Component {
 			// info for deleting pallet
 		})
 	};
-	// need a button for each of the above
+	// need a button for each of the above with input fields as needed
 	render() {
 		return (
 			<div>
