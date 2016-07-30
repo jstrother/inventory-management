@@ -5,4 +5,5 @@ This is a simple program to keep track of pallets of product and product totals.
 ## To Do List:
 1. add in user sign-in and authentication with Passport
 2. set up a way to customize pallet props in the react component (currently modelled on how Theo Chocolate keeps track of theirs) - I would like this to be useful to other organiztions/companies as well
-3. other things as they come to mind
+3. add timestamp and created_by: user, updated_by: user
+4. other things as they come to mind
