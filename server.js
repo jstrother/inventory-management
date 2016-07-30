@@ -8,7 +8,7 @@ const r = require('rethinkdb');
 const changefeedSocketEvents = require('./socket-events.js');
 
 app.get('*', (req, res) => {
-	res.sendFile(path.join(`${__dirname}/index.html`));
+	res.sendFile(path.join(`${__dirname}/public/index.html`));
 });
 
 r.connect({db: 'inventory'})

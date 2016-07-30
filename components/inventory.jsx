@@ -3,7 +3,7 @@ import connect from 'react-redux';
 import Pallet from './pallet.jsx';
 import Totals from './totals.jsx';
 
-class Pallet extends React.Component {
+class Inventory extends React.Component {
 	render() {
 		return (
 			<div>
@@ -21,3 +21,9 @@ class Pallet extends React.Component {
 		);
 	}
 }
+
+function mapStateToProps(Pallet) {
+	return {Pallet};
+}
+
+export default connect(mapStateToProps)(Inventory);
