@@ -16,7 +16,7 @@ export default class Pallet extends React.Component {
 			// info for deleting pallet
 		})
 	};
-	// need a button for each of the above with input fields as needed
+	// break the above into popover components
 	render() {
 		return (
 			<div>

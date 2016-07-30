@@ -1,5 +1,5 @@
 import io from 'socket.io-client';
-const socket = io.connect('/public');
+const socket = io.connect('/');
 
 
 export default store => {

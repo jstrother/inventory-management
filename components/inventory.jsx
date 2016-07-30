@@ -34,7 +34,7 @@ const mapStateToProps = (state, props) => {
 		country: state.country,
 		locationId: state.locationId,
 		totalList: state.totalList
-	}
+	};
 };
 
 export default connect(mapStateToProps)(Inventory);

@@ -7,7 +7,7 @@ import TextField from 'material-ui/TextField';
 import io from 'socket.io-client';
 const socket = io.connect('/');
 
-export default class AddProduct extends React.Component {
+export default class UpdatePallet extends React.Components {
 	constructor(props) {
 		super(props);
 		this.state = {open: false};
@@ -23,26 +23,11 @@ export default class AddProduct extends React.Component {
 			open: false
 		});
 	};
-	handleInsert(total) {
-		if (event.keyCode === 13) {
-			if (event.target.value && event.target.value.length > 0) {
-				socket.emit('totals:insert', {
-					// info for adding a new product (not pallet)
-				});
-				this.handlePopoverClose();
-			}
-			else {
-				this.setState({
-					error: 'Please Enter Product Name'
-				});
-			}
-		}
-	};
 	render() {
 		return (
 			<div>
 				<Popover
-					ref={product}
+					ref={updatePallet}
 					open={this.state.open}
 					anchorEl={this.state.anchor}
 					anchorOrigin={{
@@ -55,11 +40,35 @@ export default class AddProduct extends React.Component {
 					}}
 					onRequestClose={this.handlePopoverClose} >
 					<TextField
-						ref={productName}
+						ref={numCasesUpdate}
 						style={{
 							margin: 20
 						}}
-						hintText='Enter New Product Name'
+						hintText='Enter New Number of Cases'
+						errorText={this.state.error}
+						onKeyDown={this.handleInsert} />
+					<TextField
+						ref={numPopsUpdate}
+						style={{
+							margin: 20
+						}}
+						hintText='Enter New Number of Loose Pops'
+						errorText={this.state.error}
+						onKeyDown={this.handleInsert} />
+					<TextField
+						ref={numBarsUpdate}
+						style={{
+							margin: 20
+						}}
+						hintText='Enter New Number of Loose Bars'
+						errorText={this.state.error}
+						onKeyDown={this.handleInsert} />
+					<TextField
+						ref={locationIdUpdate}
+						style={{
+							margin: 20
+						}}
+						hintText='Enter New Location'
 						errorText={this.state.error}
 						onKeyDown={this.handleInsert} />
 				</Popover>
