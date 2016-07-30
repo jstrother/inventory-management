@@ -7,7 +7,7 @@ import TextField from 'material-ui/TextField';
 import io from 'socket.io-client';
 const socket = io.connect('/');
 
-export default class UpdatePallet extends React.Components {
+export default class UpdatePallet extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {open: false};
