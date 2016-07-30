@@ -6,6 +6,8 @@ const path = require('path');
 const io = require('socket.io')(server);
 const r = require('rethinkdb');
 const changefeedSocketEvents = require('./socket-events.js');
+const SERVER_PORT = require('./config.js').SERVER_PORT;
+const DATABASE_URL = require('./config.js').DATABASE_URL;
 
 app.get('*', (req, res) => {
 	res.sendFile(path.join(`${__dirname}/public/index.html`));
@@ -14,15 +16,15 @@ app.get('*', (req, res) => {
 r.connect({db: 'inventory'})
 	.then(connection => {
 		io.on('connection', socket => {
-			socket.on('inventory:client:insert', pallet => {
+			socket.on('pallet:client:insert', pallet => {
 				r.table('pallet').insert(pallet).run(connection);
 			});
-			socket.on('inventory:client:update', pallet => {
+			socket.on('pallet:client:update', pallet => {
 				let id = pallet.id;
 				delete pallet.id;
 				r.table('pallet').get(id).update().run(connection);
 			});
-			socket.on('inventory:client:delete', pallet => {
+			socket.on('pallet:client:delete', pallet => {
 				let id = pallet.id;
 				delete pallet.id;
 				r.table('pallet').get(id).delete().run(connection);
@@ -34,8 +36,24 @@ r.connect({db: 'inventory'})
 			.run(connection)
 			.then(changefeedSocketEvents(socket, 'pallet'));
 		});
-		server.listen(9000);
+		server.listen(SERVER_PORT);
 	})
 	.error(error => {
 		console.log('Error connecting to database', error);
 	});
+
+// the following function is being saved to eventually be used in helping determine location names without having to hard-code them in. it allows for growth of the warehouse over time. i saved it from my earlier version of this project because it's elegant and it works.
+// const locationSetter = (number, modulo) => {
+// 	let locations = [];
+// 	let numRows = (number / modulo);
+// 	let alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').splice(0, numRows);
+// 	for (let i = 1; i <= modulo; i++) {
+// 		alphabet.forEach(letter => {
+// 			rows.push(letter + i);
+// 			locations.push(`${rack}-${letter}${i}`);
+// 		});
+// 	}
+// 	return locations;
+// }
+
+// Many thanks to Scott Hasbrouck for his walk-through that inspired how this project was built- and loaned some of the code and structure. Visit him here: www.scotthasbrouck.com. Or see the original walk-through that gave the inspiration: webapplog.com/reactive-web-stack/ or the github repo for it: https://github.com/scotthasbrouck/3RES-Stack-Sample-App

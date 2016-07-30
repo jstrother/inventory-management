@@ -1,23 +1,23 @@
 import io from 'socket.io-client';
-const socket = io.connect('/');
+const socket = io.connect('/inventory');
 
-export default function(store) {
+export default store => {
 	socket.on('pallet:insert', pallet => {
 		store.dispatch({
 			type: 'pallet:insert',
-			pallet: pallet
+			pallet
 		});
 	});
 	socket.on('pallet:update', pallet => {
 		store.dispatch({
 			type: 'pallet:update',
-			pallet: pallet
+			pallet
 		});
 	});
-	socket.on('pallet.delete', pallet => {
+	socket.on('pallet:delete', pallet => {
 		store.dispatch({
 			type: 'pallet:delete',
-			pallet: pallet
+			pallet
 		});
 	});
 }
