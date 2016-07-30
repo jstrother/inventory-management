@@ -16,7 +16,6 @@ injectTapEventPlugin();
 
 render(
 	<Provider store={store} >
-		<h1>Theo Inventory Management</h1>
 		<Inventory />
 	</Provider>,
 	document.getElementById('app')

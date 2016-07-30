@@ -9,7 +9,7 @@ export default class ProductList extends React.Component {
 			<div>
 				<Table>
 					<TableBody>
-						{this.props.products.map(product => <Product key={product.id} product={product} /> )}
+						{this.props.productList.map(product => <Product key={product.id} product={product} /> )}
 					</TableBody>
 				</Table>
 				<AddProduct />

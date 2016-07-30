@@ -7,6 +7,7 @@ class Inventory extends React.Component {
 	render() {
 		return (
 			<div>
+				<h1>Theo Inventory Management</h1>
 				<Pallet
 					type={this.props.type}
 					lot={this.props.lot}

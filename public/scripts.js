@@ -93,11 +93,6 @@
 	(0, _reactDom.render)(_react2.default.createElement(
 		_reactRedux.Provider,
 		{ store: _store2.default },
-		_react2.default.createElement(
-			'h1',
-			null,
-			'Theo Inventory Management'
-		),
 		_react2.default.createElement(_inventory2.default, null)
 	), document.getElementById('app'));
 
@@ -30004,6 +29999,11 @@
 				return _react2.default.createElement(
 					'div',
 					null,
+					_react2.default.createElement(
+						'h1',
+						null,
+						'Theo Inventory Management'
+					),
 					_react2.default.createElement(_pallet2.default, {
 						type: this.props.type,
 						lot: this.props.lot,
@@ -47480,7 +47480,7 @@
 						_react2.default.createElement(
 							_Table.TableBody,
 							null,
-							this.props.products.map(function (product) {
+							this.props.productList.map(function (product) {
 								return _react2.default.createElement(_product2.default, { key: product.id, product: product });
 							})
 						)
