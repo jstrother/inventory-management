@@ -1,5 +1,6 @@
 import io from 'socket.io-client';
-const socket = io.connect('/inventory');
+const socket = io.connect('/public');
+
 
 export default store => {
 	socket.on('pallet:insert', pallet => {

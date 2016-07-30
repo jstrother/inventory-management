@@ -9,6 +9,8 @@ const changefeedSocketEvents = require('./socket-events.js');
 const SERVER_PORT = require('./config.js').SERVER_PORT;
 const DATABASE_URL = require('./config.js').DATABASE_URL;
 
+app.use(static('public'));
+
 app.get('*', (req, res) => {
 	res.sendFile(path.join(`${__dirname}/public/index.html`));
 });
