@@ -1,0 +1,46 @@
+2016-07-29T19:30:29.075585100 0.048944s notice: In recursion: removing file 'C:\\Users\\Jim\\RethinkDB\\rethinkdb_data\\tmp'
+2016-07-29T19:30:29.077085600 0.050289s warn: Trying to delete non-existent file 'C:\\Users\\Jim\\RethinkDB\\rethinkdb_data\\tmp'
+2016-07-29T19:30:29.078586100 0.051925s notice: Initializing directory C:\\Users\\Jim\\RethinkDB\\rethinkdb_data
+2016-07-29T19:30:29.080088600 0.053396s info: Creating a default database for your convenience. (This is because you ran 'rethinkdb' without 'create', 'serve', or '--join', and the directory 'C:\\Users\\Jim\\RethinkDB\\rethinkdb_data' did not already exist or is empty.)
+2016-07-29T19:30:29.080088601 0.053526s notice: Running rethinkdb 2.3.3-windows (MSC 190023506)...
+2016-07-29T19:30:29.080588100 0.054027s notice: Running on 6.2.9200 (Windows 8, Server 2012)
+2016-07-29T19:30:29.081088300 0.054204s notice: Loading data from directory C:\\Users\\Jim\\RethinkDB\\rethinkdb_data
+2016-07-29T19:30:29.910747700 0.883761s info: Automatically using cache size of 274 MB
+2016-07-29T19:30:29.935601200 0.908685s notice: Listening for intracluster connections on port 29015
+2016-07-29T19:30:29.951518100 0.924740s notice: Listening for client driver connections on port 28015
+2016-07-29T19:30:29.952018300 0.925119s notice: Listening for administrative HTTP connections on port 8080
+2016-07-29T19:30:29.952018301 0.925124s notice: Listening on cluster address: 127.0.0.1
+2016-07-29T19:30:29.952018302 0.925128s notice: Listening on driver address: 127.0.0.1
+2016-07-29T19:30:29.952018303 0.925130s notice: Listening on http address: 127.0.0.1
+2016-07-29T19:30:29.952018304 0.925133s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2016-07-29T19:30:29.952018305 0.925137s notice: Server ready, "Jimputer_776" 97cae275-4dbf-4731-8738-e05ae004af90
+2016-07-29T19:30:30.873440100 1.846905s notice: A newer version of the RethinkDB server is available: 2.3.4. You can read the changelog at <https://github.com/rethinkdb/rethinkdb/releases>.
+2016-07-29T19:35:11.893321400 0.024035s notice: Running rethinkdb 2.3.3-windows (MSC 190023506)...
+2016-07-29T19:35:11.896323000 0.026790s notice: Running on 6.2.9200 (Windows 8, Server 2012)
+2016-07-29T19:35:11.897827600 0.028400s notice: Loading data from directory C:\\Users\\Jim\\RethinkDB\\rethinkdb_data
+2016-07-29T19:35:12.021107100 0.151547s info: Automatically using cache size of 257 MB
+2016-07-29T19:35:12.024822400 0.155205s notice: Listening for intracluster connections on port 29015
+2016-07-29T19:35:12.028326300 0.158831s notice: Listening for client driver connections on port 28015
+2016-07-29T19:35:12.028825700 0.159335s notice: Listening for administrative HTTP connections on port 8080
+2016-07-29T19:35:12.028825701 0.159341s notice: Listening on cluster address: 127.0.0.1
+2016-07-29T19:35:12.028825702 0.159345s notice: Listening on driver address: 127.0.0.1
+2016-07-29T19:35:12.028825703 0.159347s notice: Listening on http address: 127.0.0.1
+2016-07-29T19:35:12.028825704 0.159349s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2016-07-29T19:35:12.028825705 0.159353s notice: Server ready, "Jimputer_776" 97cae275-4dbf-4731-8738-e05ae004af90
+2016-07-29T19:35:12.515236800 0.645840s notice: A newer version of the RethinkDB server is available: 2.3.4. You can read the changelog at <https://github.com/rethinkdb/rethinkdb/releases>.
+2016-07-29T19:38:14.630947500 182.761292s info: Table 2bb28453-9c32-4f92-a235-d3ceb89675af: Starting a new Raft election for term 1.
+2016-07-29T19:38:14.631447600 182.762083s info: Table 2bb28453-9c32-4f92-a235-d3ceb89675af: Added replica on this server.
+2016-07-29T19:38:14.707901400 182.838587s info: Table 2bb28453-9c32-4f92-a235-d3ceb89675af: This server is Raft leader for term 1. Latest log index is 0.
+2016-07-29T23:09:23.499627800 12851.637035s info: Table fb8ba6a1-f284-41e4-9ce2-8f39a48af0b3: Starting a new Raft election for term 1.
+2016-07-29T23:09:23.504129900 12851.641630s info: Table fb8ba6a1-f284-41e4-9ce2-8f39a48af0b3: Added replica on this server.
+2016-07-29T23:09:23.576396900 12851.713999s info: Table fb8ba6a1-f284-41e4-9ce2-8f39a48af0b3: This server is Raft leader for term 1. Latest log index is 0.
+2016-07-29T23:09:31.233281300 12859.370981s info: Table c2516b1e-1ea5-4f19-8a3f-82967fcbf77f: Starting a new Raft election for term 1.
+2016-07-29T23:09:31.234284400 12859.371725s info: Table c2516b1e-1ea5-4f19-8a3f-82967fcbf77f: Added replica on this server.
+2016-07-29T23:09:31.311119200 12859.448466s info: Table c2516b1e-1ea5-4f19-8a3f-82967fcbf77f: This server is Raft leader for term 1. Latest log index is 0.
+2016-07-29T23:09:55.814166400 12883.951866s notice: Removing file C:\\Users\\Jim\\RethinkDB\\rethinkdb_data\\2bb28453-9c32-4f92-a235-d3ceb89675af
+2016-07-29T23:09:55.814166401 12883.951881s info: Table 2bb28453-9c32-4f92-a235-d3ceb89675af: Deleted the table.
+2016-07-30T12:16:27.807813400 60094.010222s notice: Removing file C:\\Users\\Jim\\RethinkDB\\rethinkdb_data\\c2516b1e-1ea5-4f19-8a3f-82967fcbf77f
+2016-07-30T12:16:27.807813401 60094.010321s info: Table c2516b1e-1ea5-4f19-8a3f-82967fcbf77f: Deleted the table.
+2016-07-30T12:16:35.564020800 60101.766771s info: Table a6bfa83b-b014-4dbf-89be-f70506c9b596: Starting a new Raft election for term 1.
+2016-07-30T12:16:35.574234800 60101.776597s info: Table a6bfa83b-b014-4dbf-89be-f70506c9b596: Added replica on this server.
+2016-07-30T12:16:35.674395200 60101.877040s info: Table a6bfa83b-b014-4dbf-89be-f70506c9b596: This server is Raft leader for term 1. Latest log index is 0.

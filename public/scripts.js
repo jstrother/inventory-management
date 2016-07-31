@@ -37634,6 +37634,15 @@
 	
 	var socket = _socket2.default.connect('/');
 	
+	var type = void 0,
+	    lot = void 0,
+	    expiration = void 0,
+	    country = void 0,
+	    numCases = void 0,
+	    numPops = void 0,
+	    numBars = void 0,
+	    locationId = void 0;
+	
 	var AddPallet = function (_React$Component) {
 		_inherits(AddPallet, _React$Component);
 	
@@ -37660,9 +37669,6 @@
 		}
 	
 		_createClass(AddPallet, [{
-			key: 'palletCreator',
-			value: function palletCreator() {}
-		}, {
 			key: 'handleInsert',
 			value: function handleInsert(pallet) {
 				if (event.keyCode === 13) {
@@ -37702,8 +37708,7 @@
 							targetOrigin: {
 								horizontal: 'left',
 								vertical: 'bottom'
-							},
-							onRequestClose: this.handlePopoverClose },
+							} },
 						_react2.default.createElement(_TextField2.default, {
 							ref: 'type',
 							style: {
@@ -37762,7 +37767,7 @@
 							onKeyDown: this.handleInsert }),
 						_react2.default.createElement(
 							_RaisedButton2.default,
-							{ onTouchTap: this.handlePopoverClose, style: { position: 'absolute', bottom: 5, right: 5 }, label: 'Close' },
+							{ onTouchTap: this.handleInsert, style: { position: 'absolute', bottom: 5, right: 5 }, label: 'Close' },
 							_react2.default.createElement(_add2.default, null)
 						)
 					)

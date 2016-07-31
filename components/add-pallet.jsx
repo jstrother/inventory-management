@@ -8,13 +8,12 @@ import TextField from 'material-ui/TextField';
 import io from 'socket.io-client';
 const socket = io.connect('/');
 
+let type, lot, expiration, country, numCases, numPops, numBars, locationId;
+
 export default class AddPallet extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {open: false};
-	};
-	palletCreator() {
-		
 	};
 	handleInsert(pallet) {
 		if (event.keyCode === 13) {
@@ -59,8 +58,7 @@ export default class AddPallet extends React.Component {
 					targetOrigin={{
 						horizontal: 'left',
 						vertical: 'bottom'
-					}}
-					onRequestClose={this.handlePopoverClose} >
+					}} >
 					<TextField
 						ref='type'
 						style={{
@@ -117,7 +115,7 @@ export default class AddPallet extends React.Component {
 						hintText='Enter Location (ie- R1-A1)'
 						errorText='Required Field'
 						onKeyDown={this.handleInsert} />
-						<RaisedButton onTouchTap={this.handlePopoverClose} style={{position: 'absolute', bottom: 5, right: 5}} label='Close'>
+						<RaisedButton onTouchTap={this.handleInsert} style={{position: 'absolute', bottom: 5, right: 5}} label='Close'>
 							<ContentAdd />
 						</RaisedButton>
 				</Popover>
