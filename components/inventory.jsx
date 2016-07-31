@@ -18,7 +18,11 @@ export default class Inventory extends React.Component {
 					country={this.props.country}
 					locationId={this.props.locationId} />
 				<ProductsList
-					productsList={this.props.productsList} />
+					allTypes={this.props.allTypes}
+					allNumCases={this.props.allNumCases}
+					allNumPops={this.props.allNumPops}
+					allNumBars={this.props.allNumBars}
+					allLocations={this.props.allLocations} />
 			</div>
 		);
 	};
@@ -34,7 +38,11 @@ const mapStateToProps = (state, props) => {
 		numBars: state.numBars,
 		country: state.country,
 		locationId: state.locationId,
-		productsList: state.productsList
+		allTypes: state.allTypes,
+		allNumCases: state.allNumCases,
+		allNumPops: state.allNumPops,
+		allNumBars: state.allNumBars,
+		allLocations: state.allLocations
 	};
 };
 

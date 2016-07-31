@@ -13,9 +13,11 @@ export default class Products extends React.Component {
 	render() {
 		return (
 			<TableRow>
-				<TableRowColumn>
-
-				</TableRowColumn>
+				<TableRowColumn>{this.props.allTypes}</TableRowColumn>
+				<TableRowColumn>{this.props.allNumCases}</TableRowColumn>
+				<TableRowColumn>{this.props.allNumPops}</TableRowColumn>
+				<TableRowColumn>{this.props.allNumBars}</TableRowColumn>
+				<TableRowColumn>{this.props.allLocations}</TableRowColumn>
 			</TableRow>
 		);
 	};

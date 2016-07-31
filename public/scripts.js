@@ -30014,7 +30014,11 @@
 						country: this.props.country,
 						locationId: this.props.locationId }),
 					_react2.default.createElement(_productsList2.default, {
-						productsList: this.props.productsList })
+						allTypes: this.props.allTypes,
+						allNumCases: this.props.allNumCases,
+						allNumPops: this.props.allNumPops,
+						allNumBars: this.props.allNumBars,
+						allLocations: this.props.allLocations })
 				);
 			}
 		}]);
@@ -30035,7 +30039,11 @@
 			numBars: state.numBars,
 			country: state.country,
 			locationId: state.locationId,
-			productsList: state.productsList
+			allTypes: state.allTypes,
+			allNumCases: state.allNumCases,
+			allNumPops: state.allNumPops,
+			allNumBars: state.allNumBars,
+			allLocations: state.allLocations
 		};
 	};
 	
@@ -37844,11 +37852,38 @@
 						_Table.Table,
 						null,
 						_react2.default.createElement(
+							_Table.TableHeader,
+							null,
+							_react2.default.createElement(
+								_Table.TableHeaderColumn,
+								null,
+								'Types'
+							),
+							_react2.default.createElement(
+								_Table.TableHeaderColumn,
+								null,
+								'Number of Cases'
+							),
+							_react2.default.createElement(
+								_Table.TableHeaderColumn,
+								null,
+								'Number of Loose Pops'
+							),
+							_react2.default.createElement(
+								_Table.TableHeaderColumn,
+								null,
+								'Number of Loose Bars'
+							),
+							_react2.default.createElement(
+								_Table.TableHeaderColumn,
+								null,
+								'Locations'
+							)
+						),
+						_react2.default.createElement(
 							_Table.TableBody,
 							null,
-							this.props.productsList.map(function (products) {
-								return _react2.default.createElement(_products2.default, { key: products.id, products: products });
-							})
+							_react2.default.createElement(_products2.default, null)
 						)
 					),
 					_react2.default.createElement(_addProducts2.default, null),
@@ -43427,7 +43462,31 @@
 				return _react2.default.createElement(
 					_Table.TableRow,
 					null,
-					_react2.default.createElement(_Table.TableRowColumn, null)
+					_react2.default.createElement(
+						_Table.TableRowColumn,
+						null,
+						this.props.allTypes
+					),
+					_react2.default.createElement(
+						_Table.TableRowColumn,
+						null,
+						this.props.allNumCases
+					),
+					_react2.default.createElement(
+						_Table.TableRowColumn,
+						null,
+						this.props.allNumPops
+					),
+					_react2.default.createElement(
+						_Table.TableRowColumn,
+						null,
+						this.props.allNumBars
+					),
+					_react2.default.createElement(
+						_Table.TableRowColumn,
+						null,
+						this.props.allLocations
+					)
 				);
 			}
 		}]);
