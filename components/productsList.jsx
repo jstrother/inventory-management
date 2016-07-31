@@ -1,3 +1,5 @@
+// imported into inventory.jsx
+
 import React from 'react';
 import {connect} from 'react-redux';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow} from 'material-ui/Table';

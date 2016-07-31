@@ -1,3 +1,5 @@
+// top-level of back-end
+
 const express = require('express');
 const static = express.static;
 const app = express();
@@ -18,6 +20,7 @@ app.get('*', (req, res) => {
 r.connect({db: 'inventory'})
 	.then(connection => {
 		io.on('connection', socket => {
+			// sockets listening for all changes from the front-end
 			socket.on('pallet:client:insert', pallet => {
 				r.table('pallet').insert(pallet).run(connection);
 			});
@@ -44,6 +47,7 @@ r.connect({db: 'inventory'})
 				delete products.id;
 				r.table('products').get(id).delete().run(connection);
 			});
+			// 2 functions to listen for changes, then uses changefeedSocketEvents to push changes thru to front-end
 			r.table('pallet').changes({
 				includeInitial: true,
 				squash: true

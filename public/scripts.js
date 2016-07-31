@@ -70,13 +70,13 @@
 	
 	var _inventory2 = _interopRequireDefault(_inventory);
 	
-	var _pallet = __webpack_require__(479);
+	var _palletListener = __webpack_require__(487);
 	
-	var _pallet2 = _interopRequireDefault(_pallet);
+	var _palletListener2 = _interopRequireDefault(_palletListener);
 	
-	var _products = __webpack_require__(480);
+	var _productsListener = __webpack_require__(488);
 	
-	var _products2 = _interopRequireDefault(_products);
+	var _productsListener2 = _interopRequireDefault(_productsListener);
 	
 	var _store = __webpack_require__(481);
 	
@@ -84,10 +84,12 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	(0, _pallet2.default)(_store2.default);
+	// top-level of front-end
+	
+	(0, _palletListener2.default)(_store2.default);
 	// these next two allow for use of material-ui components thru the project
 	
-	(0, _products2.default)(_store2.default);
+	(0, _productsListener2.default)(_store2.default);
 	(0, _reactTapEventPlugin2.default)();
 	
 	(0, _reactDom.render)(_react2.default.createElement(
@@ -29986,7 +29988,7 @@
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // imported into index.jsx
 	
 	var Inventory = function (_React$Component) {
 		_inherits(Inventory, _React$Component);
@@ -30086,7 +30088,7 @@
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // imported into inventory.jsx
 	
 	var socket = _socket2.default.connect('/');
 	
@@ -37624,7 +37626,7 @@
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // imported into inventory.jsx
 	
 	var socket = _socket2.default.connect('/');
 	
@@ -43260,7 +43262,7 @@
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // imported into productsList.jsx
 	
 	var socket = _socket2.default.connect('/inventory');
 	
@@ -47428,88 +47430,8 @@
 	exports.default = TextFieldUnderline;
 
 /***/ },
-/* 479 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _socket = __webpack_require__(357);
-	
-	var _socket2 = _interopRequireDefault(_socket);
-	
-	function _interopRequireDefault(obj) {
-		return obj && obj.__esModule ? obj : { default: obj };
-	}
-	
-	var socket = _socket2.default.connect('/');
-	
-	exports.default = function (store) {
-		socket.on('pallet:insert', function (pallet) {
-			store.dispatch({
-				type: 'pallet:insert',
-				pallet: pallet
-			});
-		});
-		socket.on('pallet:update', function (pallet) {
-			store.dispatch({
-				type: 'pallet:update',
-				pallet: pallet
-			});
-		});
-		socket.on('pallet:delete', function (pallet) {
-			store.dispatch({
-				type: 'pallet:delete',
-				pallet: pallet
-			});
-		});
-	};
-
-/***/ },
-/* 480 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _socket = __webpack_require__(357);
-	
-	var _socket2 = _interopRequireDefault(_socket);
-	
-	function _interopRequireDefault(obj) {
-		return obj && obj.__esModule ? obj : { default: obj };
-	}
-	
-	var socket = _socket2.default.connect('/');
-	
-	exports.default = function (store) {
-		socket.on('products:insert', function (products) {
-			store.dispatch({
-				type: 'products:insert',
-				products: products
-			});
-		});
-		socket.on('products:update', function (products) {
-			store.dispatch({
-				type: 'products:update',
-				products: products
-			});
-		});
-		socket.on('products:delete', function (products) {
-			store.dispatch({
-				type: 'products:delete',
-				products: products
-			});
-		});
-	};
-
-/***/ },
+/* 479 */,
+/* 480 */,
 /* 481 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -47528,6 +47450,8 @@
 	function _interopRequireDefault(obj) {
 	  return obj && obj.__esModule ? obj : { default: obj };
 	}
+	
+	// imported into index.jsx
 	
 	exports.default = (0, _redux.createStore)(_reducers2.default);
 
@@ -47558,7 +47482,7 @@
 	var inventoryReducer = (0, _redux.combineReducers)({
 		palletReducer: _palletReducer2.default,
 		productsReducer: _productsReducer2.default
-	});
+	}); // imported into store.js
 	
 	exports.default = inventoryReducer;
 
@@ -47581,6 +47505,8 @@
 			return Array.from(arr);
 		}
 	}
+	
+	// imported into reducers.js
 	
 	var initialState = [];
 	
@@ -47640,6 +47566,8 @@
 			return Array.from(arr);
 		}
 	}
+	
+	// imported into reducers.js
 	
 	var initialState = [];
 	
@@ -47726,7 +47654,7 @@
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // imported into pallet.jsx
 	
 	var socket = _socket2.default.connect('/');
 	
@@ -47895,7 +47823,7 @@
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // imported into pallet.jsx
 	
 	var socket = _socket2.default.connect('/');
 	
@@ -47993,6 +47921,88 @@
 	}(_react2.default.Component);
 	
 	exports.default = UpdatePallet;
+
+/***/ },
+/* 487 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _socket = __webpack_require__(357);
+	
+	var _socket2 = _interopRequireDefault(_socket);
+	
+	function _interopRequireDefault(obj) {
+		return obj && obj.__esModule ? obj : { default: obj };
+	}
+	
+	var socket = _socket2.default.connect('/'); // imported into index.jsx
+	
+	exports.default = function (store) {
+		socket.on('pallet:insert', function (pallet) {
+			store.dispatch({
+				type: 'pallet:insert',
+				pallet: pallet
+			});
+		});
+		socket.on('pallet:update', function (pallet) {
+			store.dispatch({
+				type: 'pallet:update',
+				pallet: pallet
+			});
+		});
+		socket.on('pallet:delete', function (pallet) {
+			store.dispatch({
+				type: 'pallet:delete',
+				pallet: pallet
+			});
+		});
+	};
+
+/***/ },
+/* 488 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _socket = __webpack_require__(357);
+	
+	var _socket2 = _interopRequireDefault(_socket);
+	
+	function _interopRequireDefault(obj) {
+		return obj && obj.__esModule ? obj : { default: obj };
+	}
+	
+	var socket = _socket2.default.connect('/'); // imported into index.jsx
+	
+	exports.default = function (store) {
+		socket.on('products:insert', function (products) {
+			store.dispatch({
+				type: 'products:insert',
+				products: products
+			});
+		});
+		socket.on('products:update', function (products) {
+			store.dispatch({
+				type: 'products:update',
+				products: products
+			});
+		});
+		socket.on('products:delete', function (products) {
+			store.dispatch({
+				type: 'products:delete',
+				products: products
+			});
+		});
+	};
 
 /***/ }
 /******/ ]);

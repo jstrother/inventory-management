@@ -1,3 +1,5 @@
+// imported into inventory.jsx
+
 import React from 'react';
 import {connect} from 'react-redux';
 import io from 'socket.io-client';

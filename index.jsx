@@ -1,3 +1,5 @@
+// top-level of front-end
+
 import React from 'react';
 import {render} from 'react-dom';
 import {Provider} from 'react-redux';
@@ -6,8 +8,8 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import Inventory from './components/inventory.jsx';
-import PalletSocketListener from './socket-listeners/pallet.js';
-import ProductsSocketListener from './socket-listeners/products.js';
+import PalletSocketListener from './socket-listeners/palletListener.js';
+import ProductsSocketListener from './socket-listeners/productsListener.js';
 import store from './flow/store.js';
 
 PalletSocketListener(store);

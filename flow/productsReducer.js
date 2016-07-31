@@ -1,3 +1,5 @@
+// imported into reducers.js
+
 const initialState = [];
 
 const productsReducer = (state = state || initialState, action) => {

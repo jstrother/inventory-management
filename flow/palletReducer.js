@@ -1,3 +1,5 @@
+// imported into reducers.js
+
 const initialState = [];
 
 const palletReducer = (state = state || initialState, action) => {
@@ -8,7 +10,7 @@ const palletReducer = (state = state || initialState, action) => {
 	};
 	switch (action.type) {
 		case 'pallet:insert':
-			return palletIndex() < 0 ?[...state, action.pallet] : state;
+			return palletIndex() < 0 ? [...state, action.pallet] : state;
 
 		case 'pallet:update':
 			let palletUpdate = palletIndex();

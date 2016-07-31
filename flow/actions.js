@@ -1,3 +1,5 @@
+// imported into reducers.js
+
 export const newPallet = pallet => {
 	return {
 		type: 'pallet:insert',

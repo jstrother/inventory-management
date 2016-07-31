@@ -1,3 +1,5 @@
+// imported into productsList.jsx
+
 import React from 'react';
 import {connect} from 'react-redux';
 import {TableRow, TableRowColumn} from 'material-ui/Table';

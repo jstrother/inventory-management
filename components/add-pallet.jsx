@@ -1,3 +1,5 @@
+// imported into pallet.jsx
+
 import React from 'react';
 import Popover from 'material-ui/Popover';
 import FloatingActionButton from 'material-ui/FloatingActionButton';

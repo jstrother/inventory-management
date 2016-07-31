@@ -1,3 +1,5 @@
+// imported into index.jsx
+
 import React from 'react';
 import {connect} from 'react-redux';
 import Pallet from './pallet.jsx';

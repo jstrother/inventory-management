@@ -1,3 +1,5 @@
+// imported into index.jsx
+
 import io from 'socket.io-client';
 const socket = io.connect('/');
 
