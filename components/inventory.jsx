@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import Pallet from './pallet.jsx';
 import ProductsList from './productsList.jsx';
 
-class Inventory extends React.Component {
+export default class Inventory extends React.Component {
 	render() {
 		return (
 			<div>

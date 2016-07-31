@@ -30022,6 +30022,9 @@
 		return Inventory;
 	}(_react2.default.Component);
 	
+	exports.default = Inventory;
+	
+	
 	var mapStateToProps = function mapStateToProps(state, props) {
 		return {
 			type: state.type,
@@ -37822,8 +37825,6 @@
 	
 	var socket = _socket2.default.connect('/');
 	
-	var that = undefined;
-	
 	var ProductsList = function (_React$Component) {
 		_inherits(ProductsList, _React$Component);
 	
@@ -37845,7 +37846,7 @@
 						_react2.default.createElement(
 							_Table.TableBody,
 							null,
-							that.props.productsList.map(function (products) {
+							this.props.productsList.map(function (products) {
 								return _react2.default.createElement(_products2.default, { key: products.id, products: products });
 							})
 						)
