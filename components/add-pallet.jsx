@@ -13,9 +13,9 @@ export default class AddPallet extends React.Component {
 		this.state = {open: false};
 	};
 	handleInsert(pallet) {
-		socket.emit('pallet:insert', pallet => {
-			// info for creating new pallet
-		})
+		socket.emit('pallet:client:insert', pallet => {
+			pallet: pallet
+		});
 	};
 	handlePopoverTap = event => {
 		this.setState({
@@ -32,7 +32,7 @@ export default class AddPallet extends React.Component {
 		return (
 			<div>
 				<Popover
-					ref={addPallet}
+					ref='addPallet'
 					open={this.state.open}
 					anchorEl={this.state.anchor}
 					anchorOrigin={{
@@ -45,7 +45,7 @@ export default class AddPallet extends React.Component {
 					}}
 					onRequestClose={this.handlePopoverClose} >
 					<TextField
-						ref={type}
+						ref='type'
 						style={{
 							margin: 20
 						}}
@@ -53,7 +53,7 @@ export default class AddPallet extends React.Component {
 						errorText={this.state.error}
 						onKeyDown={this.handleInsert} />
 					<TextField
-						ref={lot}
+						ref='lot'
 						style={{
 							margin: 20
 						}}
@@ -61,7 +61,7 @@ export default class AddPallet extends React.Component {
 						errorText={this.state.error}
 						onKeyDown={this.handleInsert} />
 					<TextField
-						ref={expiration}
+						ref='expiration'
 						style={{
 							margin: 20
 						}}
@@ -69,7 +69,7 @@ export default class AddPallet extends React.Component {
 						errorText={this.state.error}
 						onKeyDown={this.handleInsert} />
 					<TextField
-						ref={numCases}
+						ref='numCases'
 						style={{
 							margin: 20
 						}}
@@ -77,7 +77,7 @@ export default class AddPallet extends React.Component {
 						errorText={this.state.error}
 						onKeyDown={this.handleInsert} />
 					<TextField
-						ref={numPops}
+						ref='numPops'
 						style={{
 							margin: 20
 						}}
@@ -85,7 +85,7 @@ export default class AddPallet extends React.Component {
 						errorText={this.state.error}
 						onKeyDown={this.handleInsert} />
 					<TextField
-						ref={numBars}
+						ref='numBars'
 						style={{
 							margin: 20
 						}}
@@ -93,7 +93,7 @@ export default class AddPallet extends React.Component {
 						errorText={this.state.error}
 						onKeyDown={this.handleInsert} />
 					<TextField
-						ref={locationId}
+						ref='locationId'
 						style={{
 							margin: 20
 						}}

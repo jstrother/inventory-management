@@ -26,14 +26,14 @@ export default class AddProducts extends React.Component {
 	handleInsert(products) {
 		if (event.keyCode === 13) {
 			if (event.target.value && event.target.value.length > 0) {
-				socket.emit('products:insert', {
-					// info for adding new products (not pallet)
+				socket.emit('products:client:insert',  products => {
+					products: products
 				});
 				this.handlePopoverClose();
 			}
 			else {
 				this.setState({
-					error: 'Please Enter Products Name'
+					error: "Please Enter Product's Name"
 				});
 			}
 		}
@@ -42,7 +42,7 @@ export default class AddProducts extends React.Component {
 		return (
 			<div>
 				<Popover
-					ref={products}
+					ref='products'
 					open={this.state.open}
 					anchorEl={this.state.anchor}
 					anchorOrigin={{
@@ -55,11 +55,11 @@ export default class AddProducts extends React.Component {
 					}}
 					onRequestClose={this.handlePopoverClose} >
 					<TextField
-						ref={productsName}
+						ref='productsName'
 						style={{
 							margin: 20
 						}}
-						hintText='Enter New Products Name'
+						hintText="Enter New Product's Name"
 						errorText={this.state.error}
 						onKeyDown={this.handleInsert} />
 				</Popover>

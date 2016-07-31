@@ -1,4 +1,4 @@
-const initialState = {};
+const initialState = [];
 
 const productsReducer = (state = state || initialState, action) => {
 	const productsIndex = () => {

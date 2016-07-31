@@ -16,7 +16,9 @@ injectTapEventPlugin();
 
 render(
 	<Provider store={store} >
-		<Inventory />
+		<MuiThemeProvider muiTheme={getMuiTheme()} >
+			<Inventory />
+		</MuiThemeProvider>
 	</Provider>,
 	document.getElementById('app')
 );

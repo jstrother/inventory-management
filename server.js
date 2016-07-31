@@ -54,7 +54,8 @@ r.connect({db: 'inventory'})
 				includeInitial: true,
 				squash: true
 			})
-			.run
+			.run(connection)
+			.then(changefeedSocketEvents(socket, 'products'));
 		});
 		server.listen(SERVER_PORT);
 	})

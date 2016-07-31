@@ -13,9 +13,9 @@ export default class UpdatePallet extends React.Component {
 		this.state = {open: false};
 	};
 	handleUpdate(pallet) {
-		socket.emit('pallet:update', pallet => {
-			// info for updating pallet
-		})
+		socket.emit('pallet:client:update', pallet => {
+			pallet: pallet
+		});
 	};
 	handlePopoverTap = event => {
 		this.setState({
@@ -32,7 +32,7 @@ export default class UpdatePallet extends React.Component {
 		return (
 			<div>
 				<Popover
-					ref={updatePallet}
+					ref='updatePallet'
 					open={this.state.open}
 					anchorEl={this.state.anchor}
 					anchorOrigin={{
@@ -45,7 +45,7 @@ export default class UpdatePallet extends React.Component {
 					}}
 					onRequestClose={this.handlePopoverClose} >
 					<TextField
-						ref={numCasesUpdate}
+						ref='numCasesUpdate'
 						style={{
 							margin: 20
 						}}
@@ -53,7 +53,7 @@ export default class UpdatePallet extends React.Component {
 						errorText={this.state.error}
 						onKeyDown={this.handleInsert} />
 					<TextField
-						ref={numPopsUpdate}
+						ref='numPopsUpdate'
 						style={{
 							margin: 20
 						}}
@@ -61,7 +61,7 @@ export default class UpdatePallet extends React.Component {
 						errorText={this.state.error}
 						onKeyDown={this.handleInsert} />
 					<TextField
-						ref={numBarsUpdate}
+						ref='numBarsUpdate'
 						style={{
 							margin: 20
 						}}
@@ -69,7 +69,7 @@ export default class UpdatePallet extends React.Component {
 						errorText={this.state.error}
 						onKeyDown={this.handleInsert} />
 					<TextField
-						ref={locationIdUpdate}
+						ref='locationIdUpdate'
 						style={{
 							margin: 20
 						}}

@@ -1,15 +1,10 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import {TableRow, TableRowColumn} from 'material-ui/Table';
 import io from 'socket.io-client';
 const socket = io.connect('/inventory');
 
-export default class Products extends React.Component {
-	handleDelete(products) {
-		socket.emit('products:delete', {
-			// info for deleting products upon discontinuation
-		});
-	};
-	// need buttons for each of the above
+class Products extends React.Component {
 	render() {
 		return (
 			<TableRow>
@@ -22,3 +17,5 @@ export default class Products extends React.Component {
 		);
 	};
 }
+
+export default connect()(Products);

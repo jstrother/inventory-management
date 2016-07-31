@@ -1,4 +1,4 @@
-const initialState = {};
+const initialState = [];
 
 const palletReducer = (state = state || initialState, action) => {
 	const palletIndex = () => {
