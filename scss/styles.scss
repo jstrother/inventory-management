@@ -11,27 +11,3 @@ body {
 	background-size: cover;
 	font-family: Roboto;
 }
-
-#rack1, #rack2, #rack3 {
-	@include outer-container;
-	@include shift(1);
-	display: inline-block;
-	.rowC, .rowB, .rowA {
-		@include span-columns(12);
-		.place {
-			display: inline;
-		}
-	}
-}
-
-.firstColor {
-	background-color: yellow;
-}
-
-.secondColor {
-	background-color: pink;
-}
-
-.hidden {
-	display: none;
-}
