@@ -13,10 +13,23 @@ export default class AddPallet extends React.Component {
 		super(props);
 		this.state = {open: false};
 	};
+	palletCreator() {
+		
+	};
 	handleInsert(pallet) {
-		socket.emit('pallet:client:insert', pallet => {
-			pallet: pallet
-		});
+		if (event.keyCode === 13) {
+			if (event.target.value && event.target.value.length > 0) {
+				socket.emit('pallet:client:insert', pallet => {
+					pallet: pallet
+				});
+				this.handlePopoverClose();
+			}
+			else {
+				this.setState({
+					error: "Please Enter Product's Name"
+				});
+			}
+		}
 	};
 	handlePopoverTap = event => {
 		this.setState({
@@ -53,24 +66,24 @@ export default class AddPallet extends React.Component {
 						style={{
 							margin: 20
 						}}
-						hintText='Enter New Pallet Type'
-						errorText={this.state.error}
+						hintText='Enter Type (ie- DSA)'
+						errorText='Required Field'
 						onKeyDown={this.handleInsert} />
 					<TextField
 						ref='lot'
 						style={{
 							margin: 20
 						}}
-						hintText='Enter New Pallet Lot'
-						errorText={this.state.error}
+						hintText='Enter Lot'
+						errorText='Required Field'
 						onKeyDown={this.handleInsert} />
 					<TextField
 						ref='expiration'
 						style={{
 							margin: 20
 						}}
-						hintText='Enter New Pallet Expiration'
-						errorText={this.state.error}
+						hintText='Enter Expiration (ie- 07/2017)'
+						errorText='Required Field'
 						onKeyDown={this.handleInsert} />
 					<TextField
 						ref='numCases'
@@ -78,7 +91,7 @@ export default class AddPallet extends React.Component {
 							margin: 20
 						}}
 						hintText='Enter Number of Cases'
-						errorText={this.state.error}
+						errorText='Required Field'
 						onKeyDown={this.handleInsert} />
 					<TextField
 						ref='numPops'
@@ -86,7 +99,7 @@ export default class AddPallet extends React.Component {
 							margin: 20
 						}}
 						hintText='Enter Number of Loose Pops'
-						errorText={this.state.error}
+						errorText='Required Field'
 						onKeyDown={this.handleInsert} />
 					<TextField
 						ref='numBars'
@@ -94,16 +107,19 @@ export default class AddPallet extends React.Component {
 							margin: 20
 						}}
 						hintText='Enter Number of Loose Bars'
-						errorText={this.state.error}
+						errorText='Required Field'
 						onKeyDown={this.handleInsert} />
 					<TextField
 						ref='locationId'
 						style={{
 							margin: 20
 						}}
-						hintText='Enter New Pallet Location'
-						errorText={this.state.error}
+						hintText='Enter Location (ie- R1-A1)'
+						errorText='Required Field'
 						onKeyDown={this.handleInsert} />
+						<RaisedButton onTouchTap={this.handlePopoverClose} style={{position: 'absolute', bottom: 5, right: 5}} label='Close'>
+							<ContentAdd />
+						</RaisedButton>
 				</Popover>
 			</div>
 		);

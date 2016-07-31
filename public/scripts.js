@@ -37660,11 +37660,23 @@
 		}
 	
 		_createClass(AddPallet, [{
+			key: 'palletCreator',
+			value: function palletCreator() {}
+		}, {
 			key: 'handleInsert',
 			value: function handleInsert(pallet) {
-				socket.emit('pallet:client:insert', function (pallet) {
-					pallet: pallet;
-				});
+				if (event.keyCode === 13) {
+					if (event.target.value && event.target.value.length > 0) {
+						socket.emit('pallet:client:insert', function (pallet) {
+							pallet: pallet;
+						});
+						this.handlePopoverClose();
+					} else {
+						this.setState({
+							error: "Please Enter Product's Name"
+						});
+					}
+				}
 			}
 		}, {
 			key: 'render',
@@ -37697,24 +37709,24 @@
 							style: {
 								margin: 20
 							},
-							hintText: 'Enter New Pallet Type',
-							errorText: this.state.error,
+							hintText: 'Enter Type (ie- DSA)',
+							errorText: 'Required Field',
 							onKeyDown: this.handleInsert }),
 						_react2.default.createElement(_TextField2.default, {
 							ref: 'lot',
 							style: {
 								margin: 20
 							},
-							hintText: 'Enter New Pallet Lot',
-							errorText: this.state.error,
+							hintText: 'Enter Lot',
+							errorText: 'Required Field',
 							onKeyDown: this.handleInsert }),
 						_react2.default.createElement(_TextField2.default, {
 							ref: 'expiration',
 							style: {
 								margin: 20
 							},
-							hintText: 'Enter New Pallet Expiration',
-							errorText: this.state.error,
+							hintText: 'Enter Expiration (ie- 07/2017)',
+							errorText: 'Required Field',
 							onKeyDown: this.handleInsert }),
 						_react2.default.createElement(_TextField2.default, {
 							ref: 'numCases',
@@ -37722,7 +37734,7 @@
 								margin: 20
 							},
 							hintText: 'Enter Number of Cases',
-							errorText: this.state.error,
+							errorText: 'Required Field',
 							onKeyDown: this.handleInsert }),
 						_react2.default.createElement(_TextField2.default, {
 							ref: 'numPops',
@@ -37730,7 +37742,7 @@
 								margin: 20
 							},
 							hintText: 'Enter Number of Loose Pops',
-							errorText: this.state.error,
+							errorText: 'Required Field',
 							onKeyDown: this.handleInsert }),
 						_react2.default.createElement(_TextField2.default, {
 							ref: 'numBars',
@@ -37738,16 +37750,21 @@
 								margin: 20
 							},
 							hintText: 'Enter Number of Loose Bars',
-							errorText: this.state.error,
+							errorText: 'Required Field',
 							onKeyDown: this.handleInsert }),
 						_react2.default.createElement(_TextField2.default, {
 							ref: 'locationId',
 							style: {
 								margin: 20
 							},
-							hintText: 'Enter New Pallet Location',
-							errorText: this.state.error,
-							onKeyDown: this.handleInsert })
+							hintText: 'Enter Location (ie- R1-A1)',
+							errorText: 'Required Field',
+							onKeyDown: this.handleInsert }),
+						_react2.default.createElement(
+							_RaisedButton2.default,
+							{ onTouchTap: this.handlePopoverClose, style: { position: 'absolute', bottom: 5, right: 5 }, label: 'Close' },
+							_react2.default.createElement(_add2.default, null)
+						)
 					)
 				);
 			}
@@ -44274,6 +44291,11 @@
 					'div',
 					null,
 					_react2.default.createElement(
+						_RaisedButton2.default,
+						{ onTouchTap: this.handlePopoverTap, style: { position: 'absolute', right: 10 }, label: 'Update Pallet' },
+						_react2.default.createElement(_add2.default, null)
+					),
+					_react2.default.createElement(
 						_Popover2.default,
 						{
 							ref: 'updatePallet',
@@ -47732,7 +47754,7 @@
 								margin: 20
 							},
 							hintText: 'Enter New Product\'s Name',
-							errorText: this.state.error,
+							errorText: 'Required Field',
 							onKeyDown: this.handleInsert })
 					)
 				);

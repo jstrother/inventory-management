@@ -60,7 +60,7 @@ export default class AddProducts extends React.Component {
 							margin: 20
 						}}
 						hintText="Enter New Product's Name"
-						errorText={this.state.error}
+						errorText='Required Field'
 						onKeyDown={this.handleInsert} />
 				</Popover>
 			</div>

@@ -33,6 +33,9 @@ export default class UpdatePallet extends React.Component {
 	render() {
 		return (
 			<div>
+				<RaisedButton onTouchTap={this.handlePopoverTap} style={{position: 'absolute', right: 10}} label='Update Pallet'>
+					<ContentAdd />
+				</RaisedButton>
 				<Popover
 					ref='updatePallet'
 					open={this.state.open}
