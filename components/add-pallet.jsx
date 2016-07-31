@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Popover from 'material-ui/Popover';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
@@ -33,6 +32,9 @@ export default class AddPallet extends React.Component {
 	render() {
 		return (
 			<div>
+				<RaisedButton onTouchTap={this.handlePopoverTap} style={{position: 'absolute'}} label='Add New Pallet'>
+					<ContentAdd />
+				</RaisedButton>
 				<Popover
 					ref='addPallet'
 					open={this.state.open}
