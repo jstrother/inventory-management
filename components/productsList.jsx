@@ -48,5 +48,5 @@ class ProductsList extends React.Component {
 		);
 	};
 }
-
+// need to figure out how to breakdown Products component so it displays correctly on table
 export default connect()(ProductsList);

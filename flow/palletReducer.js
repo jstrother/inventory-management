@@ -1,5 +1,7 @@
 // imported into reducers.js
 
+import {PALLET_INSERT, PALLET_UPDATE, PALLET_DELETE, newPallet, updatePallet, deletePallet} from './palletActions.js';
+
 const initialState = [];
 
 const palletReducer = (state = state || initialState, action) => {
@@ -10,10 +12,10 @@ const palletReducer = (state = state || initialState, action) => {
 		});
 	};
 	switch (action.type) {
-		case 'pallet:insert':
+		case PALLET_INSERT:
 			return palletIndex() < 0 ? [...state, action.pallet] : state;
 
-		case 'pallet:update':
+		case PALLET_UPDATE:
 			let palletUpdate = palletIndex();
 			if (palletUpdate > -1) {
 				let updatedPallet = Object.assign({}, state[palletUpdate], action.pallet);
@@ -23,7 +25,7 @@ const palletReducer = (state = state || initialState, action) => {
 				return state;
 			}
 
-		case 'pallet:delete':
+		case PALLET_DELETE:
 			let palletDelete = palletIndex();
 			if (palletDelete > -1) {
 				return [...state.slice(0, palletDelete), ...state.slice(palletDelete + 1)];
@@ -31,9 +33,6 @@ const palletReducer = (state = state || initialState, action) => {
 			else {
 				return state;
 			}
-
-		case 'pallet:data':
-			console.log(action.pallet);
 
 		default:
 			return state;

@@ -17,12 +17,16 @@ app.get('*', (req, res) => {
 	res.sendFile(path.join(`${__dirname}/public/index.html`));
 });
 
-r.connect({db: 'inventory'})
+r.connect({
+	host: 'localhost',
+	port: 28015,
+	db: 'inventory'})
 	.then(connection => {
+		console.log('connected to rethinkDB');
 		io.on('connection', socket => {
-			r.table('pallet').indexList().run(connection).then(data => {
-					socket.emit('pallet:data', data);
-				});
+			// r.table('pallet').indexList().run(connection).then(data => {
+			// 		socket.emit('pallet:data', data);
+			// 	});
 			// sockets listening for all changes from the front-end
 			socket.on('pallet:client:insert', pallet => {
 				console.log(pallet);
