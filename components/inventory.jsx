@@ -2,8 +2,11 @@
 
 import React from 'react';
 import {connect} from 'react-redux';
+import io from 'socket.io-client';
 import Pallet from './pallet.jsx';
 import ProductsList from './productsList.jsx';
+const socket = io.connect('/');
+window.socket = socket;
 
 class Inventory extends React.Component {
 	render() {

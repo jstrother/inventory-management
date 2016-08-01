@@ -17,8 +17,17 @@ app.get('*', (req, res) => {
 	res.sendFile(path.join(`${__dirname}/public/index.html`));
 });
 
-r.connect({db: 'inventory'})
-	.then(connection => {
+let connection = null;
+
+r.connect({host: 'localhost', port: 28015}, (err, conn) => {
+	if (err) {
+		throw err;
+	}
+	connection = conn;
+});
+
+r.db('inventory')
+	.then(
 		io.on('connection', socket => {
 			// sockets listening for all changes from the front-end
 			socket.on('pallet:client:insert', pallet => {
@@ -50,19 +59,21 @@ r.connect({db: 'inventory'})
 			// 2 functions to listen for changes, then uses changefeedSocketEvents to push changes thru to front-end
 			r.table('pallet').changes({
 				includeInitial: true,
+				includeStates: true,
 				squash: true
 			})
 			.run(connection)
 			.then(changefeedSocketEvents(socket, 'pallet'));
 			r.table('products').changes({
 				includeInitial: true,
+				includeStates: true,
 				squash: true
 			})
 			.run(connection)
 			.then(changefeedSocketEvents(socket, 'products'));
 		});
 		server.listen(SERVER_PORT);
-	})
+	)
 	.error(error => {
 		console.log('Error connecting to database', error);
 	});

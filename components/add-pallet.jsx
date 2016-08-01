@@ -8,27 +8,32 @@ import TextField from 'material-ui/TextField';
 import io from 'socket.io-client';
 const socket = io.connect('/');
 
-let type, lot, expiration, country, numCases, numPops, numBars, locationId;
-
 export default class AddPallet extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {open: false};
 	};
+	pallet() {
+		return ({
+			pallet: {
+				type: this.refs.type.value,
+				lot: this.refs.lot.value,
+				expiration: this.refs.expiration.value,
+				numCases: this.refs.numCases.value,
+				numPops: this.refs.numPops.value,
+				numBars: this.refs.numBars.value,
+				country: this.refs.country.value,
+				locationId: this.refs.locationId.value
+			}
+		});
+	};
+	// handleKeyDown(input) {
+
+	// };
 	handleInsert(pallet) {
-		if (event.keyCode === 13) {
-			if (event.target.value && event.target.value.length > 0) {
-				socket.emit('pallet:client:insert', pallet => {
-					pallet: pallet
-				});
-				this.handlePopoverClose();
-			}
-			else {
-				this.setState({
-					error: "Please Enter Product's Name"
-				});
-			}
-		}
+		socket.emit('pallet:client:insert', pallet => {
+			pallet: pallet
+		});
 	};
 	handlePopoverTap = event => {
 		this.setState({
@@ -65,57 +70,57 @@ export default class AddPallet extends React.Component {
 							margin: 20
 						}}
 						hintText='Enter Type (ie- DSA)'
-						errorText='Required Field'
-						onKeyDown={this.handleInsert} />
+						errorText='Required Field' />
 					<TextField
 						ref='lot'
 						style={{
 							margin: 20
 						}}
 						hintText='Enter Lot'
-						errorText='Required Field'
-						onKeyDown={this.handleInsert} />
+						errorText='Required Field' />
 					<TextField
 						ref='expiration'
 						style={{
 							margin: 20
 						}}
 						hintText='Enter Expiration (ie- 07/2017)'
-						errorText='Required Field'
-						onKeyDown={this.handleInsert} />
+						errorText='Required Field' />
 					<TextField
 						ref='numCases'
 						style={{
 							margin: 20
 						}}
 						hintText='Enter Number of Cases'
-						errorText='Required Field'
-						onKeyDown={this.handleInsert} />
+						errorText='Required Field' />
 					<TextField
 						ref='numPops'
 						style={{
 							margin: 20
 						}}
 						hintText='Enter Number of Loose Pops'
-						errorText='Required Field'
-						onKeyDown={this.handleInsert} />
+						errorText='Required Field' />
 					<TextField
 						ref='numBars'
 						style={{
 							margin: 20
 						}}
 						hintText='Enter Number of Loose Bars'
-						errorText='Required Field'
-						onKeyDown={this.handleInsert} />
+						errorText='Required Field' />
+					<TextField
+						ref='country'
+						style={{
+							margin: 20
+						}}
+						hintText='Enter Country of Desination'
+						errorText='Required Field' />
 					<TextField
 						ref='locationId'
 						style={{
 							margin: 20
 						}}
 						hintText='Enter Location (ie- R1-A1)'
-						errorText='Required Field'
-						onKeyDown={this.handleInsert} />
-						<RaisedButton onTouchTap={this.handleInsert} style={{position: 'absolute', bottom: 5, right: 5}} label='Close'>
+						errorText='Required Field' />
+						<RaisedButton onTouchTap={this.handleInsert} style={{position: 'absolute', bottom: 5, right: 5}} label='Create!'>
 							<ContentAdd />
 						</RaisedButton>
 				</Popover>
