@@ -37671,14 +37671,14 @@
 			value: function pallet() {
 				return {
 					pallet: {
-						type: this.refs.type.value,
+						type: this.refs.type.value.toUpperCase(),
 						lot: this.refs.lot.value,
 						expiration: this.refs.expiration.value,
 						numCases: this.refs.numCases.value,
 						numPops: this.refs.numPops.value,
 						numBars: this.refs.numBars.value,
-						country: this.refs.country.value,
-						locationId: this.refs.locationId.value
+						country: this.refs.country.value.toUpperCase(),
+						locationId: this.refs.locationId.value.toUpperCase()
 					}
 				};
 			}
@@ -37692,6 +37692,7 @@
 				socket.emit('pallet:client:insert', function (pallet) {
 					pallet: pallet;
 				});
+				this.handlePopoverClose();
 			}
 		}, {
 			key: 'render',
@@ -47801,6 +47802,12 @@
 	var socket = _socket2.default.connect('/'); // imported into index.jsx
 	
 	exports.default = function (store) {
+		socket.on('pallet:data', function (pallet) {
+			store.dispatch({
+				type: 'pallet:data',
+				pallet: pallet
+			});
+		});
 		socket.on('pallet:insert', function (pallet) {
 			store.dispatch({
 				type: 'pallet:insert',
@@ -47945,6 +47952,7 @@
 		var state = arguments.length <= 0 || arguments[0] === undefined ? state || initialState : arguments[0];
 		var action = arguments[1];
 	
+		console.log(action);
 		var palletIndex = function palletIndex() {
 			return state.findIndex(function (thisPallet) {
 				return thisPallet && thisPallet.id === action.pallet.id;
@@ -47970,6 +47978,9 @@
 				} else {
 					return state;
 				}
+	
+			case 'pallet:data':
+				console.log(action.pallet);
 	
 			default:
 				return state;

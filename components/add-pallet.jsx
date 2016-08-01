@@ -16,14 +16,14 @@ export default class AddPallet extends React.Component {
 	pallet() {
 		return ({
 			pallet: {
-				type: this.refs.type.value,
+				type: this.refs.type.value.toUpperCase(),
 				lot: this.refs.lot.value,
 				expiration: this.refs.expiration.value,
 				numCases: this.refs.numCases.value,
 				numPops: this.refs.numPops.value,
 				numBars: this.refs.numBars.value,
-				country: this.refs.country.value,
-				locationId: this.refs.locationId.value
+				country: this.refs.country.value.toUpperCase(),
+				locationId: this.refs.locationId.value.toUpperCase()
 			}
 		});
 	};
@@ -34,6 +34,7 @@ export default class AddPallet extends React.Component {
 		socket.emit('pallet:client:insert', pallet => {
 			pallet: pallet
 		});
+		this.handlePopoverClose();
 	};
 	handlePopoverTap = event => {
 		this.setState({

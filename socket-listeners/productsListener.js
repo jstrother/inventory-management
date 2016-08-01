@@ -7,19 +7,19 @@ export default store => {
 	socket.on('products:insert', products => {
 		store.dispatch({
 			type: 'products:insert',
-			products
+			products: products
 		});
 	});
 	socket.on('products:update', products => {
 		store.dispatch({
 			type: 'products:update',
-			products
+			products: products
 		});
 	});
 	socket.on('products:delete', products => {
 		store.dispatch({
 			type: 'products:delete',
-			products
+			products: products
 		});
 	});
 }

@@ -3,6 +3,7 @@
 const initialState = [];
 
 const palletReducer = (state = state || initialState, action) => {
+	console.log(action);
 	const palletIndex = () => {
 		return state.findIndex(thisPallet => {
 			return thisPallet && thisPallet.id === action.pallet.id;
@@ -30,6 +31,9 @@ const palletReducer = (state = state || initialState, action) => {
 			else {
 				return state;
 			}
+
+		case 'pallet:data':
+			console.log(action.pallet);
 
 		default:
 			return state;

@@ -17,20 +17,15 @@ app.get('*', (req, res) => {
 	res.sendFile(path.join(`${__dirname}/public/index.html`));
 });
 
-let connection = null;
-
-r.connect({host: 'localhost', port: 28015}, (err, conn) => {
-	if (err) {
-		throw err;
-	}
-	connection = conn;
-});
-
-r.db('inventory')
-	.then(
+r.connect({db: 'inventory'})
+	.then(connection => {
 		io.on('connection', socket => {
+			r.table('pallet').indexList().run(connection).then(data => {
+					socket.emit('pallet:data', data);
+				});
 			// sockets listening for all changes from the front-end
 			socket.on('pallet:client:insert', pallet => {
+				console.log(pallet);
 				r.table('pallet').insert(pallet).run(connection);
 			});
 			socket.on('pallet:client:update', pallet => {
@@ -73,7 +68,7 @@ r.db('inventory')
 			.then(changefeedSocketEvents(socket, 'products'));
 		});
 		server.listen(SERVER_PORT);
-	)
+	})
 	.error(error => {
 		console.log('Error connecting to database', error);
 	});
