@@ -12,16 +12,16 @@ import PalletSocketListener from './socket-listeners/palletListener.js';
 import ProductsSocketListener from './socket-listeners/productsListener.js';
 import store from './flow/store.js';
 
-PalletSocketListener(store);
-ProductsSocketListener(store);
+PalletSocketListener(store.getState());
+ProductsSocketListener(store.getState());
 injectTapEventPlugin();
 
 console.log('store', store);
-let myStore = store.getState();
-console.log('myStore', myStore);
+// let myStore = store.getState();
+// console.log('myStore', myStore);
 
 render(
-	<Provider store={myStore} >
+	<Provider store={store} >
 		<MuiThemeProvider muiTheme={getMuiTheme()} >
 			<Inventory />
 		</MuiThemeProvider>

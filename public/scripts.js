@@ -86,19 +86,19 @@
 	
 	// top-level of front-end
 	
-	(0, _palletListener2.default)(_store2.default);
+	(0, _palletListener2.default)(_store2.default.getState());
 	// these next two allow for use of material-ui components thru the project
 	
-	(0, _productsListener2.default)(_store2.default);
+	(0, _productsListener2.default)(_store2.default.getState());
 	(0, _reactTapEventPlugin2.default)();
 	
 	console.log('store', _store2.default);
-	var myStore = _store2.default.getState();
-	console.log('myStore', myStore);
+	// let myStore = store.getState();
+	// console.log('myStore', myStore);
 	
 	(0, _reactDom.render)(_react2.default.createElement(
 		_reactRedux.Provider,
-		{ store: myStore },
+		{ store: _store2.default },
 		_react2.default.createElement(
 			_MuiThemeProvider2.default,
 			{ muiTheme: (0, _getMuiTheme2.default)() },
