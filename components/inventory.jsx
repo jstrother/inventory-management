@@ -10,6 +10,7 @@ window.socket = socket;
 
 class Inventory extends React.Component {
 	render() {
+		{console.log('type from Inventory.jsx', this.props.type)}
 		return (
 			<div>
 				<h1>Theo Inventory Management</h1>

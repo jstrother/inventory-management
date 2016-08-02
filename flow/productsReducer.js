@@ -1,10 +1,9 @@
 // imported into reducers.js
 
-import {PRODUCTS_INSERT, PRODUCTS_UPDATE, PRODUCTS_DELETE, newProducts, updateProducts, deleteProducts} from './productsActions.js';
+import {PRODUCTS_INSERT, PRODUCTS_UPDATE, PRODUCTS_DELETE} from './productsActions.js';
 
-const initialState = [];
-
-const productsReducer = (state = state || initialState, action) => {
+const productsReducer = (state = [], action) => {
+	console.log('productsReducer action', action);
 	const productsIndex = () => {
 		return state.findIndex(thisProducts => {
 			return thisProducts && thisProducts.id === action.products.id;
@@ -12,22 +11,25 @@ const productsReducer = (state = state || initialState, action) => {
 	};
 	switch (action.type) {
 		case PRODUCTS_INSERT:
+			console.log('PRODUCTS_INSERT');
 			return productsIndex() > 0 ? [...state, action.products] : state;
 
 		case PRODUCTS_UPDATE:
-			let productsUpdate = productsIndex();
-			if (productsUpdate > -1) {
+			console.log('PRODUCTS_UPDATE');
+			let productsUpdateIndex = productsIndex();
+			if (productsUpdateIndex > -1) {
 				let updatedProducts = Object.assign({}, state[productsUpdate], action.products);
-				return[...state.slice(0, productsUpdate), updatedProducts, ...state.slice(productsUpdate + 1)];
+				return[...state.slice(0, productsUpdateIndex), updatedProducts, ...state.slice(productsUpdateIndex + 1)];
 			}
 			else {
 				return state;
 			}
 
 		case PRODUCTS_DELETE:
-			let productsDelete = productsIndex();
-			if (productsDelete > -1) {
-				return [...state.slice(0, productsDelete), ...state.slice(productsDelete + 1)];
+			console.log('PRODUCTS_DELETE');
+			let productsDeleteIndex = productsIndex();
+			if (productsDeleteIndex > -1) {
+				return [...state.slice(0, productsDeleteIndex), ...state.slice(productsDeleteIndex + 1)];
 			}
 			else {
 				return state;

@@ -92,9 +92,13 @@
 	(0, _productsListener2.default)(_store2.default);
 	(0, _reactTapEventPlugin2.default)();
 	
+	console.log('store', _store2.default);
+	var myStore = _store2.default.getState();
+	console.log('myStore', myStore);
+	
 	(0, _reactDom.render)(_react2.default.createElement(
 		_reactRedux.Provider,
-		{ store: _store2.default },
+		{ store: myStore },
 		_react2.default.createElement(
 			_MuiThemeProvider2.default,
 			{ muiTheme: (0, _getMuiTheme2.default)() },
@@ -30009,6 +30013,9 @@
 		_createClass(Inventory, [{
 			key: 'render',
 			value: function render() {
+				{
+					console.log('type from Inventory.jsx', this.props.type);
+				}
 				return _react2.default.createElement(
 					'div',
 					null,
@@ -37545,6 +37552,9 @@
 		}, {
 			key: 'render',
 			value: function render() {
+				{
+					console.log('type from Pallet.jsx', this.props.type);
+				}
 				return _react2.default.createElement(
 					'div',
 					null,
@@ -37671,14 +37681,14 @@
 			value: function pallet() {
 				return {
 					pallet: {
-						type: this.refs.type.value.toUpperCase(),
-						lot: this.refs.lot.value,
-						expiration: this.refs.expiration.value,
-						numCases: this.refs.numCases.value,
-						numPops: this.refs.numPops.value,
-						numBars: this.refs.numBars.value,
-						country: this.refs.country.value.toUpperCase(),
-						locationId: this.refs.locationId.value.toUpperCase()
+						type: this.props.refs.type.value.toUpperCase(),
+						lot: this.props.refs.lot.value,
+						expiration: this.props.refs.expiration.value,
+						numCases: this.props.refs.numCases.value,
+						numPops: this.props.refs.numPops.value,
+						numBars: this.props.refs.numBars.value,
+						country: this.props.refs.country.value.toUpperCase(),
+						locationId: this.props.refs.locationId.value.toUpperCase()
 					}
 				};
 			}
@@ -37697,6 +37707,9 @@
 		}, {
 			key: 'render',
 			value: function render() {
+				{
+					console.log('add-pallet.jsx');
+				}
 				return _react2.default.createElement(
 					'div',
 					null,
@@ -47919,10 +47932,12 @@
 		return obj && obj.__esModule ? obj : { default: obj };
 	}
 	
+	var initialState = []; // imported into store.js
+	
 	var reducer = (0, _redux.combineReducers)({
 		palletReducer: _palletReducer2.default,
 		productsReducer: _productsReducer2.default
-	}); // imported into store.js
+	}, initialState);
 	
 	exports.default = reducer;
 
@@ -47948,13 +47963,11 @@
 		}
 	} // imported into reducers.js
 	
-	var initialState = [];
-	
 	var palletReducer = function palletReducer() {
-		var state = arguments.length <= 0 || arguments[0] === undefined ? state || initialState : arguments[0];
+		var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
 		var action = arguments[1];
 	
-		console.log(action);
+		console.log('palletReducer action', action);
 		var palletIndex = function palletIndex() {
 			return state.findIndex(function (thisPallet) {
 				return thisPallet && thisPallet.id === action.pallet.id;
@@ -47962,21 +47975,24 @@
 		};
 		switch (action.type) {
 			case _palletActions.PALLET_INSERT:
+				console.log('PALLET_INSERT');
 				return palletIndex() < 0 ? [].concat(_toConsumableArray(state), [action.pallet]) : state;
 	
 			case _palletActions.PALLET_UPDATE:
-				var palletUpdate = palletIndex();
-				if (palletUpdate > -1) {
-					var updatedPallet = Object.assign({}, state[palletUpdate], action.pallet);
-					return [].concat(_toConsumableArray(state.slice(0, palletUpdate)), [updatedPallet], _toConsumableArray(state.slice(palletUpdate + 1)));
+				console.log('PALLET_UPDATE');
+				var palletUpdateIndex = palletIndex();
+				if (palletUpdateIndex > -1) {
+					var updatedPallet = Object.assign({}, state[palletUpdateIndex], action.pallet);
+					return [].concat(_toConsumableArray(state.slice(0, palletUpdateIndex)), [updatedPallet], _toConsumableArray(state.slice(palletUpdateIndex + 1)));
 				} else {
 					return state;
 				}
 	
 			case _palletActions.PALLET_DELETE:
-				var palletDelete = palletIndex();
-				if (palletDelete > -1) {
-					return [].concat(_toConsumableArray(state.slice(0, palletDelete)), _toConsumableArray(state.slice(palletDelete + 1)));
+				console.log('PALLET_DELETE');
+				var palletDeleteIndex = palletIndex();
+				if (palletDeleteIndex > -1) {
+					return [].concat(_toConsumableArray(state.slice(0, palletDeleteIndex)), _toConsumableArray(state.slice(palletDeleteIndex + 1)));
 				} else {
 					return state;
 				}
@@ -48045,12 +48061,11 @@
 		}
 	} // imported into reducers.js
 	
-	var initialState = [];
-	
 	var productsReducer = function productsReducer() {
-		var state = arguments.length <= 0 || arguments[0] === undefined ? state || initialState : arguments[0];
+		var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
 		var action = arguments[1];
 	
+		console.log('productsReducer action', action);
 		var productsIndex = function productsIndex() {
 			return state.findIndex(function (thisProducts) {
 				return thisProducts && thisProducts.id === action.products.id;
@@ -48058,21 +48073,24 @@
 		};
 		switch (action.type) {
 			case _productsActions.PRODUCTS_INSERT:
+				console.log('PRODUCTS_INSERT');
 				return productsIndex() > 0 ? [].concat(_toConsumableArray(state), [action.products]) : state;
 	
 			case _productsActions.PRODUCTS_UPDATE:
-				var productsUpdate = productsIndex();
-				if (productsUpdate > -1) {
+				console.log('PRODUCTS_UPDATE');
+				var productsUpdateIndex = productsIndex();
+				if (productsUpdateIndex > -1) {
 					var updatedProducts = Object.assign({}, state[productsUpdate], action.products);
-					return [].concat(_toConsumableArray(state.slice(0, productsUpdate)), [updatedProducts], _toConsumableArray(state.slice(productsUpdate + 1)));
+					return [].concat(_toConsumableArray(state.slice(0, productsUpdateIndex)), [updatedProducts], _toConsumableArray(state.slice(productsUpdateIndex + 1)));
 				} else {
 					return state;
 				}
 	
 			case _productsActions.PRODUCTS_DELETE:
-				var productsDelete = productsIndex();
-				if (productsDelete > -1) {
-					return [].concat(_toConsumableArray(state.slice(0, productsDelete)), _toConsumableArray(state.slice(productsDelete + 1)));
+				console.log('PRODUCTS_DELETE');
+				var productsDeleteIndex = productsIndex();
+				if (productsDeleteIndex > -1) {
+					return [].concat(_toConsumableArray(state.slice(0, productsDeleteIndex)), _toConsumableArray(state.slice(productsDeleteIndex + 1)));
 				} else {
 					return state;
 				}

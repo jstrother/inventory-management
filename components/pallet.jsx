@@ -14,6 +14,7 @@ class Pallet extends React.Component {
 		});
 	};
 	render() {
+		{console.log('type from Pallet.jsx', this.props.type)}
 		return (
 			<div>
 					<h3>Type: {this.props.type}</h3>

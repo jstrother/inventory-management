@@ -1,11 +1,9 @@
 // imported into reducers.js
 
-import {PALLET_INSERT, PALLET_UPDATE, PALLET_DELETE, newPallet, updatePallet, deletePallet} from './palletActions.js';
+import {PALLET_INSERT, PALLET_UPDATE, PALLET_DELETE} from './palletActions.js';
 
-const initialState = [];
-
-const palletReducer = (state = state || initialState, action) => {
-	console.log(action);
+const palletReducer = (state = [], action) => {
+	console.log('palletReducer action', action);
 	const palletIndex = () => {
 		return state.findIndex(thisPallet => {
 			return thisPallet && thisPallet.id === action.pallet.id;
@@ -13,22 +11,25 @@ const palletReducer = (state = state || initialState, action) => {
 	};
 	switch (action.type) {
 		case PALLET_INSERT:
+			console.log('PALLET_INSERT');
 			return palletIndex() < 0 ? [...state, action.pallet] : state;
 
 		case PALLET_UPDATE:
-			let palletUpdate = palletIndex();
-			if (palletUpdate > -1) {
-				let updatedPallet = Object.assign({}, state[palletUpdate], action.pallet);
-				return [...state.slice(0, palletUpdate), updatedPallet, ...state.slice(palletUpdate + 1)];
+			console.log('PALLET_UPDATE');
+			let palletUpdateIndex = palletIndex();
+			if (palletUpdateIndex > -1) {
+				let updatedPallet = Object.assign({}, state[palletUpdateIndex], action.pallet);
+				return [...state.slice(0, palletUpdateIndex), updatedPallet, ...state.slice(palletUpdateIndex + 1)];
 			}
 			else {
 				return state;
 			}
 
 		case PALLET_DELETE:
-			let palletDelete = palletIndex();
-			if (palletDelete > -1) {
-				return [...state.slice(0, palletDelete), ...state.slice(palletDelete + 1)];
+			console.log('PALLET_DELETE');
+			let palletDeleteIndex = palletIndex();
+			if (palletDeleteIndex > -1) {
+				return [...state.slice(0, palletDeleteIndex), ...state.slice(palletDeleteIndex + 1)];
 			}
 			else {
 				return state;

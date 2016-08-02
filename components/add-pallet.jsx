@@ -16,14 +16,14 @@ export default class AddPallet extends React.Component {
 	pallet() {
 		return ({
 			pallet: {
-				type: this.refs.type.value.toUpperCase(),
-				lot: this.refs.lot.value,
-				expiration: this.refs.expiration.value,
-				numCases: this.refs.numCases.value,
-				numPops: this.refs.numPops.value,
-				numBars: this.refs.numBars.value,
-				country: this.refs.country.value.toUpperCase(),
-				locationId: this.refs.locationId.value.toUpperCase()
+				type: this.props.refs.type.value.toUpperCase(),
+				lot: this.props.refs.lot.value,
+				expiration: this.props.refs.expiration.value,
+				numCases: this.props.refs.numCases.value,
+				numPops: this.props.refs.numPops.value,
+				numBars: this.props.refs.numBars.value,
+				country: this.props.refs.country.value.toUpperCase(),
+				locationId: this.props.refs.locationId.value.toUpperCase()
 			}
 		});
 	};
@@ -48,6 +48,7 @@ export default class AddPallet extends React.Component {
 		});
 	};
 	render() {
+		{console.log('add-pallet.jsx')}
 		return (
 			<div>
 				<RaisedButton onTouchTap={this.handlePopoverTap} style={{position: 'absolute'}} label='Add New Pallet'>
