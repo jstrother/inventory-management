@@ -47919,12 +47919,12 @@
 		return obj && obj.__esModule ? obj : { default: obj };
 	}
 	
-	var inventoryReducer = (0, _redux.combineReducers)({
+	var reducer = (0, _redux.combineReducers)({
 		palletReducer: _palletReducer2.default,
 		productsReducer: _productsReducer2.default
 	}); // imported into store.js
 	
-	exports.default = inventoryReducer;
+	exports.default = reducer;
 
 /***/ },
 /* 485 */

@@ -4,9 +4,9 @@ import {combineReducers} from 'redux';
 import palletReducer from './palletReducer.js';
 import productsReducer from './productsReducer.js';
 
-const inventoryReducer = combineReducers({
+const reducer = combineReducers({
 	palletReducer,
 	productsReducer
 });
 
-export default inventoryReducer;
+export default reducer;

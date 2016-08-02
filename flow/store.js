@@ -1,6 +1,6 @@
 // imported into index.jsx
 
 import {createStore} from 'redux';
-import inventoryReducer from './reducers.js';
+import reducer from './reducers.js';
 
-export default createStore(inventoryReducer);
+export default createStore(reducer);
