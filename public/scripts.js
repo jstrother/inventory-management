@@ -47817,30 +47817,24 @@
 	var socket = _socket2.default.connect('/'); // imported into index.jsx
 	
 	exports.default = function (store) {
-		socket.on('pallet:data', function (pallet) {
-			store.dispatch({
-				type: 'pallet:data',
-				pallet: pallet
-			});
-		});
-		socket.on('pallet:insert', function (pallet) {
+		store.subscribe(socket.on('pallet:insert', function (pallet) {
 			store.dispatch({
 				type: 'pallet:insert',
 				pallet: pallet
 			});
-		});
-		socket.on('pallet:update', function (pallet) {
+		}));
+		store.subscribe(socket.on('pallet:update', function (pallet) {
 			store.dispatch({
 				type: 'pallet:update',
 				pallet: pallet
 			});
-		});
-		socket.on('pallet:delete', function (pallet) {
+		}));
+		store.subscribe(socket.on('pallet:delete', function (pallet) {
 			store.dispatch({
 				type: 'pallet:delete',
 				pallet: pallet
 			});
-		});
+		}));
 	};
 
 /***/ },
@@ -47864,24 +47858,24 @@
 	var socket = _socket2.default.connect('/'); // imported into index.jsx
 	
 	exports.default = function (store) {
-		socket.on('products:insert', function (products) {
+		store.subscribe(socket.on('products:insert', function (products) {
 			store.dispatch({
 				type: 'products:insert',
 				products: products
 			});
-		});
-		socket.on('products:update', function (products) {
+		}));
+		store.subscribe(socket.on('products:update', function (products) {
 			store.dispatch({
 				type: 'products:update',
 				products: products
 			});
-		});
-		socket.on('products:delete', function (products) {
+		}));
+		store.subscribe(socket.on('products:delete', function (products) {
 			store.dispatch({
 				type: 'products:delete',
 				products: products
 			});
-		});
+		}));
 	};
 
 /***/ },
