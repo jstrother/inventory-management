@@ -86,10 +86,10 @@
 	
 	// top-level of front-end
 	
-	(0, _palletListener2.default)(_store2.default.getState());
+	(0, _palletListener2.default)(_store2.default);
 	// these next two allow for use of material-ui components thru the project
 	
-	(0, _productsListener2.default)(_store2.default.getState());
+	(0, _productsListener2.default)(_store2.default);
 	(0, _reactTapEventPlugin2.default)();
 	
 	console.log('store', _store2.default);
@@ -37523,6 +37523,10 @@
 	
 	var _updatePallet2 = _interopRequireDefault(_updatePallet);
 	
+	var _palletActions = __webpack_require__(486);
+	
+	var _palletActions2 = _interopRequireDefault(_palletActions);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -37640,6 +37644,10 @@
 	var _socket = __webpack_require__(356);
 	
 	var _socket2 = _interopRequireDefault(_socket);
+	
+	var _palletActions = __webpack_require__(486);
+	
+	var _palletActions2 = _interopRequireDefault(_palletActions);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -43728,6 +43736,10 @@
 	
 	var _socket2 = _interopRequireDefault(_socket);
 	
+	var _palletActions = __webpack_require__(486);
+	
+	var _palletActions2 = _interopRequireDefault(_palletActions);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -44411,6 +44423,8 @@
 	var _socket = __webpack_require__(356);
 	
 	var _socket2 = _interopRequireDefault(_socket);
+	
+	var _productsActions = __webpack_require__(488);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -47706,6 +47720,10 @@
 	
 	var _socket2 = _interopRequireDefault(_socket);
 	
+	var _productsActions = __webpack_require__(488);
+	
+	var _productsActions2 = _interopRequireDefault(_productsActions);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -47817,24 +47835,24 @@
 	var socket = _socket2.default.connect('/'); // imported into index.jsx
 	
 	exports.default = function (store) {
-		store.subscribe(socket.on('pallet:insert', function (pallet) {
+		socket.on('pallet:insert', function (pallet) {
 			store.dispatch({
 				type: 'pallet:insert',
 				pallet: pallet
 			});
-		}));
-		store.subscribe(socket.on('pallet:update', function (pallet) {
+		});
+		socket.on('pallet:update', function (pallet) {
 			store.dispatch({
 				type: 'pallet:update',
 				pallet: pallet
 			});
-		}));
-		store.subscribe(socket.on('pallet:delete', function (pallet) {
+		});
+		socket.on('pallet:delete', function (pallet) {
 			store.dispatch({
 				type: 'pallet:delete',
 				pallet: pallet
 			});
-		}));
+		});
 	};
 
 /***/ },
@@ -47858,24 +47876,24 @@
 	var socket = _socket2.default.connect('/'); // imported into index.jsx
 	
 	exports.default = function (store) {
-		store.subscribe(socket.on('products:insert', function (products) {
+		socket.on('products:insert', function (products) {
 			store.dispatch({
 				type: 'products:insert',
 				products: products
 			});
-		}));
-		store.subscribe(socket.on('products:update', function (products) {
+		});
+		socket.on('products:update', function (products) {
 			store.dispatch({
 				type: 'products:update',
 				products: products
 			});
-		}));
-		store.subscribe(socket.on('products:delete', function (products) {
+		});
+		socket.on('products:delete', function (products) {
 			store.dispatch({
 				type: 'products:delete',
 				products: products
 			});
-		}));
+		});
 	};
 
 /***/ },
@@ -48009,6 +48027,14 @@
 	});
 	// imported into palletReducer.js
 	
+	var PALLET_DATA = exports.PALLET_DATA = 'pallet:data';
+	var palletData = exports.palletData = function palletData(pallet) {
+		return {
+			type: PALLET_DATA,
+			pallet: pallet
+		};
+	};
+	
 	var PALLET_INSERT = exports.PALLET_INSERT = 'pallet:insert';
 	var newPallet = exports.newPallet = function newPallet(pallet) {
 		return {
@@ -48106,6 +48132,14 @@
 		value: true
 	});
 	// imported into productsReducers.js
+	
+	var PRODUCTS_DATA = exports.PRODUCTS_DATA = 'products:data';
+	var productsData = exports.productsData = function productsData(products) {
+		return {
+			type: PRODUCTS_DATA,
+			products: products
+		};
+	};
 	
 	var PRODUCTS_INSERT = exports.PRODUCTS_INSERT = 'products:insert';
 	var newProducts = exports.newProducts = function newProducts(products) {

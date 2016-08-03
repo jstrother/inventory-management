@@ -1,5 +1,13 @@
 // imported into palletReducer.js
 
+export const PALLET_DATA	= 'pallet:data';
+export const palletData = pallet => {
+	return {
+		type: PALLET_DATA,
+		pallet: pallet
+	};
+};
+
 export const PALLET_INSERT = 'pallet:insert';
 export const newPallet = pallet => {
 	return {

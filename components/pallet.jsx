@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import io from 'socket.io-client';
 import AddPallet from './add-pallet.jsx';
 import UpdatePallet from './update-pallet.jsx';
+import deletePallet from '../flow/palletActions.js';
 const socket = io.connect('/');
 
 class Pallet extends React.Component {

@@ -12,8 +12,8 @@ import PalletSocketListener from './socket-listeners/palletListener.js';
 import ProductsSocketListener from './socket-listeners/productsListener.js';
 import store from './flow/store.js';
 
-PalletSocketListener(store.getState());
-ProductsSocketListener(store.getState());
+PalletSocketListener(store);
+ProductsSocketListener(store);
 injectTapEventPlugin();
 
 console.log('store', store);

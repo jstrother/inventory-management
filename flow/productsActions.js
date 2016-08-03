@@ -1,5 +1,13 @@
 // imported into productsReducers.js
 
+export const PRODUCTS_DATA	= 'products:data';
+export const productsData = products => {
+	return {
+		type: PRODUCTS_DATA,
+		products: products
+	};
+};
+
 export const PRODUCTS_INSERT = 'products:insert';
 export const newProducts = products => {
 	return {

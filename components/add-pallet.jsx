@@ -6,6 +6,7 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import io from 'socket.io-client';
+import newPallet from '../flow/palletActions.js';
 const socket = io.connect('/');
 
 export default class AddPallet extends React.Component {

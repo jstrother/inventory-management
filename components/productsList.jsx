@@ -6,6 +6,7 @@ import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow} from 'materi
 import Products from './products.jsx';
 import AddProducts from './add-products.jsx';
 import io from 'socket.io-client';
+import {updateProducts, deleteProducts} from '../flow/productsActions.js';
 const socket = io.connect('/');
 
 class ProductsList extends React.Component {
