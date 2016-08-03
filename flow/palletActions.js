@@ -1,14 +1,14 @@
 // imported into palletReducer.js
 
-export const PALLET_DATA	= 'pallet:data';
-export const palletData = pallet => {
+import {PALLET_DATA, PALLET_INSERT, PALLET_UPDATE, PALLET_DELETE} from './reduxFlowVariables.js';
+
+export const palletData = data => {
 	return {
 		type: PALLET_DATA,
-		pallet: pallet
+		pallet: data
 	};
 };
 
-export const PALLET_INSERT = 'pallet:insert';
 export const newPallet = pallet => {
 	return {
 		type: PALLET_INSERT,
@@ -16,7 +16,6 @@ export const newPallet = pallet => {
 	};
 };
 
-export const PALLET_UPDATE = 'pallet:update';
 export const updatePallet = pallet => {
 	return {
 		type: PALLET_UPDATE,
@@ -24,7 +23,6 @@ export const updatePallet = pallet => {
 	};
 };
 
-export const PALLET_DELETE = 'pallet:delete';
 export const deletePallet = pallet => {
 	return {
 		type: PALLET_DELETE,

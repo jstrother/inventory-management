@@ -10,9 +10,10 @@ const socket = io.connect('/');
 // need to handle palletData
 class Pallet extends React.Component {
 	handleDelete(pallet) {
-		socket.emit('pallet:client:delete', pallet => {
-			pallet: pallet
-		});
+		socket.emit('pallet:client:delete', deletePallet(pallet));
+	};
+	handleData(pallet) {
+		socket.emit('pallet:client:data', palletData(pallet));
 	};
 	render() {
 		{console.log('type from Pallet.jsx', this.props.type)}

@@ -37548,9 +37548,12 @@
 		_createClass(Pallet, [{
 			key: 'handleDelete',
 			value: function handleDelete(pallet) {
-				socket.emit('pallet:client:delete', function (pallet) {
-					pallet: pallet;
-				});
+				socket.emit('pallet:client:delete', (0, _palletActions.deletePallet)(pallet));
+			}
+		}, {
+			key: 'handleData',
+			value: function handleData(pallet) {
+				socket.emit('pallet:client:data', (0, _palletActions.palletData)(pallet));
 			}
 		}, {
 			key: 'render',
@@ -47853,6 +47856,12 @@
 				pallet: pallet
 			});
 		});
+		socket.on('pallet:data', function (data) {
+			store.dispatch({
+				type: 'pallet:data',
+				pallet: data
+			});
+		});
 	};
 
 /***/ },
@@ -47892,6 +47901,12 @@
 			store.dispatch({
 				type: 'products:delete',
 				products: products
+			});
+		});
+		socket.on('products:data', function (data) {
+			store.dispatch({
+				type: 'products:data',
+				products: data
 			});
 		});
 	};
@@ -47963,7 +47978,7 @@
 		value: true
 	});
 	
-	var _palletActions = __webpack_require__(486);
+	var _reduxFlowVariables = __webpack_require__(489);
 	
 	function _toConsumableArray(arr) {
 		if (Array.isArray(arr)) {
@@ -47986,8 +48001,9 @@
 			});
 		};
 		switch (action.type) {
-			case _palletActions.PALLET_DATA:
+			case _reduxFlowVariables.PALLET_DATA:
 				console.log('PALLET_DATA');
+				// is the following even right?
 				var palletDataIndex = palletIndex();
 				if (palletDataIndex > -1) {
 					var dataPallet = Object.assign({}, state[palletDataIndex], action.pallet);
@@ -47996,11 +48012,11 @@
 					return state;
 				}
 	
-			case _palletActions.PALLET_INSERT:
+			case _reduxFlowVariables.PALLET_INSERT:
 				console.log('PALLET_INSERT');
 				return palletIndex() < 0 ? [].concat(_toConsumableArray(state), [action.pallet]) : state;
 	
-			case _palletActions.PALLET_UPDATE:
+			case _reduxFlowVariables.PALLET_UPDATE:
 				console.log('PALLET_UPDATE');
 				var palletUpdateIndex = palletIndex();
 				if (palletUpdateIndex > -1) {
@@ -48010,7 +48026,7 @@
 					return state;
 				}
 	
-			case _palletActions.PALLET_DELETE:
+			case _reduxFlowVariables.PALLET_DELETE:
 				console.log('PALLET_DELETE');
 				var palletDeleteIndex = palletIndex();
 				if (palletDeleteIndex > -1) {
@@ -48028,43 +48044,41 @@
 
 /***/ },
 /* 486 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
-	// imported into palletReducer.js
+	exports.deletePallet = exports.updatePallet = exports.newPallet = exports.palletData = undefined;
 	
-	var PALLET_DATA = exports.PALLET_DATA = 'pallet:data';
-	var palletData = exports.palletData = function palletData(pallet) {
+	var _reduxFlowVariables = __webpack_require__(489);
+	
+	var palletData = exports.palletData = function palletData(data) {
 		return {
-			type: PALLET_DATA,
-			pallet: pallet
+			type: _reduxFlowVariables.PALLET_DATA,
+			pallet: data
 		};
-	};
+	}; // imported into palletReducer.js
 	
-	var PALLET_INSERT = exports.PALLET_INSERT = 'pallet:insert';
 	var newPallet = exports.newPallet = function newPallet(pallet) {
 		return {
-			type: PALLET_INSERT,
+			type: _reduxFlowVariables.PALLET_INSERT,
 			pallet: pallet
 		};
 	};
 	
-	var PALLET_UPDATE = exports.PALLET_UPDATE = 'pallet:update';
 	var updatePallet = exports.updatePallet = function updatePallet(pallet) {
 		return {
-			type: PALLET_UPDATE,
+			type: _reduxFlowVariables.PALLET_UPDATE,
 			pallet: pallet
 		};
 	};
 	
-	var PALLET_DELETE = exports.PALLET_DELETE = 'pallet:delete';
 	var deletePallet = exports.deletePallet = function deletePallet(pallet) {
 		return {
-			type: PALLET_DELETE,
+			type: _reduxFlowVariables.PALLET_DELETE,
 			pallet: pallet
 		};
 	};
@@ -48079,7 +48093,7 @@
 		value: true
 	});
 	
-	var _productsActions = __webpack_require__(488);
+	var _reduxFlowVariables = __webpack_require__(489);
 	
 	function _toConsumableArray(arr) {
 		if (Array.isArray(arr)) {
@@ -48102,8 +48116,9 @@
 			});
 		};
 		switch (action.type) {
-			case _productsActions.PRODUCTS_DATA:
+			case _reduxFlowVariables.PRODUCTS_DATA:
 				console.log('PRODUCTS_DATA');
+				// is the following even right?
 				var productsDataIndex = productsIndex();
 				if (productsDataIndex > -1) {
 					var dataProducts = Object.assign({}, state[productsDataIndex], action.products);
@@ -48112,11 +48127,11 @@
 					return state;
 				}
 	
-			case _productsActions.PRODUCTS_INSERT:
+			case _reduxFlowVariables.PRODUCTS_INSERT:
 				console.log('PRODUCTS_INSERT');
 				return productsIndex() > 0 ? [].concat(_toConsumableArray(state), [action.products]) : state;
 	
-			case _productsActions.PRODUCTS_UPDATE:
+			case _reduxFlowVariables.PRODUCTS_UPDATE:
 				console.log('PRODUCTS_UPDATE');
 				var productsUpdateIndex = productsIndex();
 				if (productsUpdateIndex > -1) {
@@ -48126,7 +48141,7 @@
 					return state;
 				}
 	
-			case _productsActions.PRODUCTS_DELETE:
+			case _reduxFlowVariables.PRODUCTS_DELETE:
 				console.log('PRODUCTS_DELETE');
 				var productsDeleteIndex = productsIndex();
 				if (productsDeleteIndex > -1) {
@@ -48144,46 +48159,65 @@
 
 /***/ },
 /* 488 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
-	// imported into productsReducers.js
+	exports.deleteProducts = exports.updateProducts = exports.newProducts = exports.productsData = undefined;
 	
-	var PRODUCTS_DATA = exports.PRODUCTS_DATA = 'products:data';
-	var productsData = exports.productsData = function productsData(products) {
+	var _reduxFlowVariables = __webpack_require__(489);
+	
+	var productsData = exports.productsData = function productsData(data) {
 		return {
-			type: PRODUCTS_DATA,
-			products: products
+			type: _reduxFlowVariables.PRODUCTS_DATA,
+			products: data
 		};
-	};
+	}; // imported into productsReducers.js
 	
-	var PRODUCTS_INSERT = exports.PRODUCTS_INSERT = 'products:insert';
 	var newProducts = exports.newProducts = function newProducts(products) {
 		return {
-			type: PRODUCTS_INSERT,
+			type: _reduxFlowVariables.PRODUCTS_INSERT,
 			products: products
 		};
 	};
 	
-	var PRODUCTS_UPDATE = exports.PRODUCTS_UPDATE = 'products:update';
 	var updateProducts = exports.updateProducts = function updateProducts(products) {
 		return {
-			type: PRODUCTS_UPDATE,
+			type: _reduxFlowVariables.PRODUCTS_UPDATE,
 			products: products
 		};
 	};
 	
-	var PRODUCTS_DELETE = exports.PRODUCTS_DELETE = 'products:delete';
 	var deleteProducts = exports.deleteProducts = function deleteProducts(products) {
 		return {
-			type: PRODUCTS_DELETE,
+			type: _reduxFlowVariables.PRODUCTS_DELETE,
 			products: products
 		};
 	};
+
+/***/ },
+/* 489 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	// imported into all action and reducer files
+	
+	var PALLET_DATA = exports.PALLET_DATA = 'pallet:data';
+	var PALLET_INSERT = exports.PALLET_INSERT = 'pallet:insert';
+	var PALLET_UPDATE = exports.PALLET_UPDATE = 'pallet:update';
+	var PALLET_DELETE = exports.PALLET_DELETE = 'pallet:delete';
+	
+	var PRODUCTS_DATA = exports.PRODUCTS_DATA = 'products:data';
+	var PRODUCTS_INSERT = exports.PRODUCTS_INSERT = 'products:insert';
+	var PRODUCTS_UPDATE = exports.PRODUCTS_UPDATE = 'products:update';
+	var PRODUCTS_DELETE = exports.PRODUCTS_DELETE = 'products:delete';
 
 /***/ }
 /******/ ]);

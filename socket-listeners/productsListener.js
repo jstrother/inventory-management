@@ -22,4 +22,10 @@ export default store => {
 			products: products
 		});
 	});
+	socket.on('products:data', data => {
+		store.dispatch({
+			type: 'products:data',
+			products: data
+		});
+	});
 }

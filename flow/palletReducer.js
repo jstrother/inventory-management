@@ -1,6 +1,6 @@
 // imported into reducers.js
 
-import {PALLET_DATA, PALLET_INSERT, PALLET_UPDATE, PALLET_DELETE} from './palletActions.js';
+import {PALLET_DATA, PALLET_INSERT, PALLET_UPDATE, PALLET_DELETE} from './reduxFlowVariables.js';
 
 const palletReducer = (state = [], action) => {
 	console.log('palletReducer action', action);
@@ -12,6 +12,7 @@ const palletReducer = (state = [], action) => {
 	switch (action.type) {
 		case PALLET_DATA:
 			console.log('PALLET_DATA');
+			// is the following even right?
 			let palletDataIndex = palletIndex();
 			if (palletDataIndex > -1) {
 				let dataPallet = Object.assign({}, state[palletDataIndex], action.pallet);

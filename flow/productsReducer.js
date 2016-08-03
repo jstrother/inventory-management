@@ -1,6 +1,6 @@
 // imported into reducers.js
 
-import {PRODUCTS_DATA, PRODUCTS_INSERT, PRODUCTS_UPDATE, PRODUCTS_DELETE} from './productsActions.js';
+import {PRODUCTS_DATA, PRODUCTS_INSERT, PRODUCTS_UPDATE, PRODUCTS_DELETE} from './reduxFlowVariables.js';
 
 const productsReducer = (state = [], action) => {
 	console.log('productsReducer action', action);
@@ -12,6 +12,7 @@ const productsReducer = (state = [], action) => {
 	switch (action.type) {
 		case PRODUCTS_DATA:
 			console.log('PRODUCTS_DATA');
+			// is the following even right?
 			let productsDataIndex = productsIndex();
 			if (productsDataIndex > -1) {
 				let dataProducts = Object.assign({}, state[productsDataIndex], action.products);

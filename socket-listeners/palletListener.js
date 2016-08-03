@@ -22,4 +22,10 @@ export default store => {
 			pallet: pallet
 		});
 	});
+	socket.on('pallet:data', data => {
+		store.dispatch({
+			type: 'pallet:data',
+			pallet: data
+		});
+	});
 }
