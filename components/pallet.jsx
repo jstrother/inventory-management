@@ -5,9 +5,9 @@ import {connect} from 'react-redux';
 import io from 'socket.io-client';
 import AddPallet from './add-pallet.jsx';
 import UpdatePallet from './update-pallet.jsx';
-import deletePallet from '../flow/palletActions.js';
+import {palletData, deletePallet} from '../flow/palletActions.js';
 const socket = io.connect('/');
-
+// need to handle palletData
 class Pallet extends React.Component {
 	handleDelete(pallet) {
 		socket.emit('pallet:client:delete', pallet => {

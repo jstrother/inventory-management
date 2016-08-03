@@ -15,7 +15,7 @@ const productsReducer = (state = [], action) => {
 			let productsDataIndex = productsIndex();
 			if (productsDataIndex > -1) {
 				let dataProducts = Object.assign({}, state[productsDataIndex], action.products);
-				return dataProducts;
+				return [dataProducts, ...state];
 			}
 			else {
 				return state;

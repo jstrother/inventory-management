@@ -15,12 +15,12 @@ const palletReducer = (state = [], action) => {
 			let palletDataIndex = palletIndex();
 			if (palletDataIndex > -1) {
 				let dataPallet = Object.assign({}, state[palletDataIndex], action.pallet);
-				return dataPallet;
+				return [dataPallet, ...state];
 			}
 			else {
 				return state;
 			}
-			
+
 		case PALLET_INSERT:
 			console.log('PALLET_INSERT');
 			return palletIndex() < 0 ? [...state, action.pallet] : state;

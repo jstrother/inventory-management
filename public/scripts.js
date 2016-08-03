@@ -37525,8 +37525,6 @@
 	
 	var _palletActions = __webpack_require__(486);
 	
-	var _palletActions2 = _interopRequireDefault(_palletActions);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -37536,6 +37534,7 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // imported into inventory.jsx
 	
 	var socket = _socket2.default.connect('/');
+	// need to handle palletData
 	
 	var Pallet = function (_React$Component) {
 		_inherits(Pallet, _React$Component);
@@ -44435,6 +44434,7 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // imported into inventory.jsx
 	
 	var socket = _socket2.default.connect('/');
+	// need to handle productsData
 	
 	var ProductsList = function (_React$Component) {
 		_inherits(ProductsList, _React$Component);
@@ -47991,7 +47991,7 @@
 				var palletDataIndex = palletIndex();
 				if (palletDataIndex > -1) {
 					var dataPallet = Object.assign({}, state[palletDataIndex], action.pallet);
-					return dataPallet;
+					return [dataPallet].concat(_toConsumableArray(state));
 				} else {
 					return state;
 				}
@@ -48107,7 +48107,7 @@
 				var productsDataIndex = productsIndex();
 				if (productsDataIndex > -1) {
 					var dataProducts = Object.assign({}, state[productsDataIndex], action.products);
-					return dataProducts;
+					return [dataProducts].concat(_toConsumableArray(state));
 				} else {
 					return state;
 				}
