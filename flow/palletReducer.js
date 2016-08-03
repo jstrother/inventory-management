@@ -1,6 +1,7 @@
 // imported into reducers.js
 
 import {PALLET_DATA, PALLET_INSERT, PALLET_UPDATE, PALLET_DELETE} from './reduxFlowVariables.js';
+import {palletData, newPallet, updatePallet, deletePallet} from './palletActions.js';
 
 const palletReducer = (state = [], action) => {
 	console.log('palletReducer action', action);

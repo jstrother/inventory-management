@@ -47980,6 +47980,8 @@
 	
 	var _reduxFlowVariables = __webpack_require__(489);
 	
+	var _palletActions = __webpack_require__(486);
+	
 	function _toConsumableArray(arr) {
 		if (Array.isArray(arr)) {
 			for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
@@ -48094,6 +48096,8 @@
 	});
 	
 	var _reduxFlowVariables = __webpack_require__(489);
+	
+	var _productsActions = __webpack_require__(488);
 	
 	function _toConsumableArray(arr) {
 		if (Array.isArray(arr)) {
