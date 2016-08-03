@@ -47986,6 +47986,16 @@
 			});
 		};
 		switch (action.type) {
+			case _palletActions.PALLET_DATA:
+				console.log('PALLET_DATA');
+				var palletDataIndex = palletIndex();
+				if (palletDataIndex > -1) {
+					var dataPallet = Object.assign({}, state[palletDataIndex], action.pallet);
+					return dataPallet;
+				} else {
+					return state;
+				}
+	
 			case _palletActions.PALLET_INSERT:
 				console.log('PALLET_INSERT');
 				return palletIndex() < 0 ? [].concat(_toConsumableArray(state), [action.pallet]) : state;
@@ -48092,6 +48102,16 @@
 			});
 		};
 		switch (action.type) {
+			case _productsActions.PRODUCTS_DATA:
+				console.log('PRODUCTS_DATA');
+				var productsDataIndex = productsIndex();
+				if (productsDataIndex > -1) {
+					var dataProducts = Object.assign({}, state[productsDataIndex], action.products);
+					return dataProducts;
+				} else {
+					return state;
+				}
+	
 			case _productsActions.PRODUCTS_INSERT:
 				console.log('PRODUCTS_INSERT');
 				return productsIndex() > 0 ? [].concat(_toConsumableArray(state), [action.products]) : state;

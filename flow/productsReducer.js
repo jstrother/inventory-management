@@ -1,6 +1,6 @@
 // imported into reducers.js
 
-import {PRODUCTS_INSERT, PRODUCTS_UPDATE, PRODUCTS_DELETE} from './productsActions.js';
+import {PRODUCTS_DATA, PRODUCTS_INSERT, PRODUCTS_UPDATE, PRODUCTS_DELETE} from './productsActions.js';
 
 const productsReducer = (state = [], action) => {
 	console.log('productsReducer action', action);
@@ -10,6 +10,17 @@ const productsReducer = (state = [], action) => {
 		});
 	};
 	switch (action.type) {
+		case PRODUCTS_DATA:
+			console.log('PRODUCTS_DATA');
+			let productsDataIndex = productsIndex();
+			if (productsDataIndex > -1) {
+				let dataProducts = Object.assign({}, state[productsDataIndex], action.products);
+				return dataProducts;
+			}
+			else {
+				return state;
+			}
+
 		case PRODUCTS_INSERT:
 			console.log('PRODUCTS_INSERT');
 			return productsIndex() > 0 ? [...state, action.products] : state;
