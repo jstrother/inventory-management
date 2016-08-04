@@ -32,9 +32,7 @@ export default class AddPallet extends React.Component {
 
 	// };
 	handleInsert(pallet) {
-		socket.emit('pallet:client:insert', pallet => {
-			pallet: pallet
-		});
+		socket.emit('pallet:client:insert', newPallet(pallet));
 		this.handlePopoverClose();
 	};
 	handlePopoverTap = event => {

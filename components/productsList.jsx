@@ -8,17 +8,16 @@ import AddProducts from './add-products.jsx';
 import io from 'socket.io-client';
 import {productsData, updateProducts, deleteProducts} from '../flow/productsActions.js';
 const socket = io.connect('/');
-// need to handle productsData
+
 class ProductsList extends React.Component {
+	handleData(products) {
+		socket.on('products:data', productsData(products))
+	};
 	handleUpdate(products) {
-		socket.emit('products:client:update',  products => {
-			products: products
-		});
+		socket.emit('products:client:update',  updateProducts(products));
 	};
 	handleDelete(products) {
-		socket.emit('products:client:delete',  products => {
-			products: products
-		});
+		socket.emit('products:client:delete',  deleteProducts(products));
 	};
 	// need buttons for each of the above
 	render() {

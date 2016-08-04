@@ -16,9 +16,7 @@ export default class UpdatePallet extends React.Component {
 		this.state = {open: false};
 	};
 	handleUpdate(pallet) {
-		socket.emit('pallet:client:update', pallet => {
-			pallet: pallet
-		});
+		socket.emit('pallet:client:update', updatePallet(pallet));
 	};
 	handlePopoverTap = event => {
 		this.setState({

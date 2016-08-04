@@ -1,7 +1,6 @@
 // imported into reducers.js
 
 import {PRODUCTS_DATA, PRODUCTS_INSERT, PRODUCTS_UPDATE, PRODUCTS_DELETE} from './reduxFlowVariables.js';
-import {productsData, newProducts, updateProducts, deleteProducts} from './productsActions.js';
 
 const productsReducer = (state = [], action) => {
 	console.log('productsReducer action', action);
