@@ -24,15 +24,14 @@ r.connect({
 	.then(connection => {
 		console.log('connected to rethinkDB');
 		io.on('connection', socket => {
-			r.table('pallet').indexList().run(connection).then(data => {
+			r.table('pallet').run(connection).then(cursor => cursor.toArray()).then(data => {
 					socket.emit('pallet:data', data);
 				});
-			r.table('products').indexList().run(connection).then(data => {
+			r.table('products').run(connection).then(cursor => cursor.toArray()).then(data => {
 				socket.emit('products:data', data);
 			});
 			// sockets listening for all changes from the front-end
 			socket.on('pallet:client:insert', pallet => {
-				console.log(pallet);
 				r.table('pallet').insert(pallet).run(connection);
 			});
 			socket.on('pallet:client:update', pallet => {

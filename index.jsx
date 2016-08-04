@@ -16,10 +16,6 @@ PalletSocketListener(store);
 ProductsSocketListener(store);
 injectTapEventPlugin();
 
-console.log('store', store);
-// let myStore = store.getState();
-// console.log('myStore', myStore);
-
 render(
 	<Provider store={store} >
 		<MuiThemeProvider muiTheme={getMuiTheme()} >

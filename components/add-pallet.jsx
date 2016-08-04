@@ -47,7 +47,6 @@ export default class AddPallet extends React.Component {
 		});
 	};
 	render() {
-		{console.log('add-pallet.jsx')}
 		return (
 			<div>
 				<RaisedButton onTouchTap={this.handlePopoverTap} style={{position: 'absolute'}} label='Add New Pallet'>

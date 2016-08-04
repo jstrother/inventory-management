@@ -70,15 +70,15 @@
 	
 	var _inventory2 = _interopRequireDefault(_inventory);
 	
-	var _palletListener = __webpack_require__(483);
+	var _palletListener = __webpack_require__(484);
 	
 	var _palletListener2 = _interopRequireDefault(_palletListener);
 	
-	var _productsListener = __webpack_require__(484);
+	var _productsListener = __webpack_require__(485);
 	
 	var _productsListener2 = _interopRequireDefault(_productsListener);
 	
-	var _store = __webpack_require__(485);
+	var _store = __webpack_require__(486);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
@@ -91,10 +91,6 @@
 	
 	(0, _productsListener2.default)(_store2.default);
 	(0, _reactTapEventPlugin2.default)();
-	
-	console.log('store', _store2.default);
-	// let myStore = store.getState();
-	// console.log('myStore', myStore);
 	
 	(0, _reactDom.render)(_react2.default.createElement(
 		_reactRedux.Provider,
@@ -29986,7 +29982,7 @@
 	
 	var _pallet2 = _interopRequireDefault(_pallet);
 	
-	var _productsList = __webpack_require__(464);
+	var _productsList = __webpack_require__(465);
 	
 	var _productsList2 = _interopRequireDefault(_productsList);
 	
@@ -30014,7 +30010,7 @@
 			key: 'render',
 			value: function render() {
 				{
-					console.log('type from Inventory.jsx', this.props.type);
+					console.log('props from Inventory.jsx', this.props.pallet);
 				}
 				return _react2.default.createElement(
 					'div',
@@ -30047,20 +30043,22 @@
 	}(_react2.default.Component);
 	
 	var mapStateToProps = function mapStateToProps(state, props) {
+		var pallet = JSON.stringify(state.palletReducer[0]);
 		return {
-			type: state.type,
-			lot: state.lot,
-			expiration: state.expiration,
-			numCases: state.numCases,
-			numPops: state.numPops,
-			numBars: state.numBars,
-			country: state.country,
-			locationId: state.locationId,
-			allTypes: state.allTypes,
-			allNumCases: state.allNumCases,
-			allNumPops: state.allNumPops,
-			allNumBars: state.allNumBars,
-			allLocations: state.allLocations
+			pallet: pallet
+			// type: state.type,
+			// lot: state.lot,
+			// expiration: state.expiration,
+			// numCases: state.numCases,
+			// numPops: state.numPops,
+			// numBars: state.numBars,
+			// country: state.country,
+			// locationId: state.locationId,
+			// allTypes: state.allTypes,
+			// allNumCases: state.allNumCases,
+			// allNumPops: state.allNumPops,
+			// allNumBars: state.allNumBars,
+			// allLocations: state.allLocations
 		};
 	};
 	
@@ -37519,7 +37517,7 @@
 	
 	var _addPallet2 = _interopRequireDefault(_addPallet);
 	
-	var _updatePallet = __webpack_require__(459);
+	var _updatePallet = __webpack_require__(460);
 	
 	var _updatePallet2 = _interopRequireDefault(_updatePallet);
 	
@@ -37558,9 +37556,6 @@
 		}, {
 			key: 'render',
 			value: function render() {
-				{
-					console.log('type from Pallet.jsx', this.props.type);
-				}
 				return _react2.default.createElement(
 					'div',
 					null,
@@ -37715,9 +37710,6 @@
 		}, {
 			key: 'render',
 			value: function render() {
-				{
-					console.log('add-pallet.jsx');
-				}
 				return _react2.default.createElement(
 					'div',
 					null,
@@ -43707,7 +43699,7 @@
 	});
 	exports.deletePallet = exports.updatePallet = exports.newPallet = exports.palletData = undefined;
 	
-	var _reduxFlowVariables = __webpack_require__(489);
+	var _reduxFlowVariables = __webpack_require__(459);
 	
 	var palletData = exports.palletData = function palletData(data) {
 		return {
@@ -43739,6 +43731,27 @@
 
 /***/ },
 /* 459 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	// imported into all action and reducer files
+	
+	var PALLET_DATA = exports.PALLET_DATA = 'pallet:data';
+	var PALLET_INSERT = exports.PALLET_INSERT = 'pallet:insert';
+	var PALLET_UPDATE = exports.PALLET_UPDATE = 'pallet:update';
+	var PALLET_DELETE = exports.PALLET_DELETE = 'pallet:delete';
+	
+	var PRODUCTS_DATA = exports.PRODUCTS_DATA = 'products:data';
+	var PRODUCTS_INSERT = exports.PRODUCTS_INSERT = 'products:insert';
+	var PRODUCTS_UPDATE = exports.PRODUCTS_UPDATE = 'products:update';
+	var PRODUCTS_DELETE = exports.PRODUCTS_DELETE = 'products:delete';
+
+/***/ },
+/* 460 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43757,7 +43770,7 @@
 	
 	var _Popover2 = _interopRequireDefault(_Popover);
 	
-	var _FloatingActionButton = __webpack_require__(460);
+	var _FloatingActionButton = __webpack_require__(461);
 	
 	var _FloatingActionButton2 = _interopRequireDefault(_FloatingActionButton);
 	
@@ -43890,7 +43903,7 @@
 	exports.default = UpdatePallet;
 
 /***/ },
-/* 460 */
+/* 461 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43900,7 +43913,7 @@
 	});
 	exports.default = undefined;
 	
-	var _FloatingActionButton = __webpack_require__(461);
+	var _FloatingActionButton = __webpack_require__(462);
 	
 	var _FloatingActionButton2 = _interopRequireDefault(_FloatingActionButton);
 	
@@ -43909,7 +43922,7 @@
 	exports.default = _FloatingActionButton2.default;
 
 /***/ },
-/* 461 */
+/* 462 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -43940,7 +43953,7 @@
 	
 	var _EnhancedButton2 = _interopRequireDefault(_EnhancedButton);
 	
-	var _FontIcon = __webpack_require__(462);
+	var _FontIcon = __webpack_require__(463);
 	
 	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 	
@@ -44267,7 +44280,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 462 */
+/* 463 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44277,7 +44290,7 @@
 	});
 	exports.default = undefined;
 	
-	var _FontIcon = __webpack_require__(463);
+	var _FontIcon = __webpack_require__(464);
 	
 	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 	
@@ -44286,7 +44299,7 @@
 	exports.default = _FontIcon2.default;
 
 /***/ },
-/* 463 */
+/* 464 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44432,7 +44445,7 @@
 	exports.default = FontIcon;
 
 /***/ },
-/* 464 */
+/* 465 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44449,13 +44462,13 @@
 	
 	var _reactRedux = __webpack_require__(172);
 	
-	var _Table = __webpack_require__(465);
+	var _Table = __webpack_require__(466);
 	
-	var _products = __webpack_require__(480);
+	var _products = __webpack_require__(481);
 	
 	var _products2 = _interopRequireDefault(_products);
 	
-	var _addProducts = __webpack_require__(481);
+	var _addProducts = __webpack_require__(482);
 	
 	var _addProducts2 = _interopRequireDefault(_addProducts);
 	
@@ -44463,7 +44476,7 @@
 	
 	var _socket2 = _interopRequireDefault(_socket);
 	
-	var _productsActions = __webpack_require__(482);
+	var _productsActions = __webpack_require__(483);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -44572,7 +44585,7 @@
 	exports.default = (0, _reactRedux.connect)()(ProductsList);
 
 /***/ },
-/* 465 */
+/* 466 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44582,31 +44595,31 @@
 	});
 	exports.default = exports.TableRowColumn = exports.TableRow = exports.TableHeaderColumn = exports.TableHeader = exports.TableFooter = exports.TableBody = exports.Table = undefined;
 	
-	var _Table2 = __webpack_require__(466);
+	var _Table2 = __webpack_require__(467);
 	
 	var _Table3 = _interopRequireDefault(_Table2);
 	
-	var _TableBody2 = __webpack_require__(467);
+	var _TableBody2 = __webpack_require__(468);
 	
 	var _TableBody3 = _interopRequireDefault(_TableBody2);
 	
-	var _TableFooter2 = __webpack_require__(475);
+	var _TableFooter2 = __webpack_require__(476);
 	
 	var _TableFooter3 = _interopRequireDefault(_TableFooter2);
 	
-	var _TableHeader2 = __webpack_require__(476);
+	var _TableHeader2 = __webpack_require__(477);
 	
 	var _TableHeader3 = _interopRequireDefault(_TableHeader2);
 	
-	var _TableHeaderColumn2 = __webpack_require__(477);
+	var _TableHeaderColumn2 = __webpack_require__(478);
 	
 	var _TableHeaderColumn3 = _interopRequireDefault(_TableHeaderColumn2);
 	
-	var _TableRow2 = __webpack_require__(479);
+	var _TableRow2 = __webpack_require__(480);
 	
 	var _TableRow3 = _interopRequireDefault(_TableRow2);
 	
-	var _TableRowColumn2 = __webpack_require__(473);
+	var _TableRowColumn2 = __webpack_require__(474);
 	
 	var _TableRowColumn3 = _interopRequireDefault(_TableRowColumn2);
 	
@@ -44622,7 +44635,7 @@
 	exports.default = _Table3.default;
 
 /***/ },
-/* 466 */
+/* 467 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44972,7 +44985,7 @@
 	exports.default = Table;
 
 /***/ },
-/* 467 */
+/* 468 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44995,15 +45008,15 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Checkbox = __webpack_require__(468);
+	var _Checkbox = __webpack_require__(469);
 	
 	var _Checkbox2 = _interopRequireDefault(_Checkbox);
 	
-	var _TableRowColumn = __webpack_require__(473);
+	var _TableRowColumn = __webpack_require__(474);
 	
 	var _TableRowColumn2 = _interopRequireDefault(_TableRowColumn);
 	
-	var _ClickAwayListener = __webpack_require__(474);
+	var _ClickAwayListener = __webpack_require__(475);
 	
 	var _ClickAwayListener2 = _interopRequireDefault(_ClickAwayListener);
 	
@@ -45481,7 +45494,7 @@
 	exports.default = TableBody;
 
 /***/ },
-/* 468 */
+/* 469 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45491,7 +45504,7 @@
 	});
 	exports.default = undefined;
 	
-	var _Checkbox = __webpack_require__(469);
+	var _Checkbox = __webpack_require__(470);
 	
 	var _Checkbox2 = _interopRequireDefault(_Checkbox);
 	
@@ -45500,7 +45513,7 @@
 	exports.default = _Checkbox2.default;
 
 /***/ },
-/* 469 */
+/* 470 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45521,7 +45534,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _EnhancedSwitch = __webpack_require__(470);
+	var _EnhancedSwitch = __webpack_require__(471);
 	
 	var _EnhancedSwitch2 = _interopRequireDefault(_EnhancedSwitch);
 	
@@ -45529,11 +45542,11 @@
 	
 	var _transitions2 = _interopRequireDefault(_transitions);
 	
-	var _checkBoxOutlineBlank = __webpack_require__(471);
+	var _checkBoxOutlineBlank = __webpack_require__(472);
 	
 	var _checkBoxOutlineBlank2 = _interopRequireDefault(_checkBoxOutlineBlank);
 	
-	var _checkBox = __webpack_require__(472);
+	var _checkBox = __webpack_require__(473);
 	
 	var _checkBox2 = _interopRequireDefault(_checkBox);
 	
@@ -45782,7 +45795,7 @@
 	exports.default = Checkbox;
 
 /***/ },
-/* 470 */
+/* 471 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -46225,7 +46238,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 471 */
+/* 472 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46262,7 +46275,7 @@
 	exports.default = ToggleCheckBoxOutlineBlank;
 
 /***/ },
-/* 472 */
+/* 473 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46299,7 +46312,7 @@
 	exports.default = ToggleCheckBox;
 
 /***/ },
-/* 473 */
+/* 474 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46470,7 +46483,7 @@
 	exports.default = TableRowColumn;
 
 /***/ },
-/* 474 */
+/* 475 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46589,7 +46602,7 @@
 	exports.default = ClickAwayListener;
 
 /***/ },
-/* 475 */
+/* 476 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46610,7 +46623,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _TableRowColumn = __webpack_require__(473);
+	var _TableRowColumn = __webpack_require__(474);
 	
 	var _TableRowColumn2 = _interopRequireDefault(_TableRowColumn);
 	
@@ -46727,7 +46740,7 @@
 	exports.default = TableFooter;
 
 /***/ },
-/* 476 */
+/* 477 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46746,11 +46759,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Checkbox = __webpack_require__(468);
+	var _Checkbox = __webpack_require__(469);
 	
 	var _Checkbox2 = _interopRequireDefault(_Checkbox);
 	
-	var _TableHeaderColumn = __webpack_require__(477);
+	var _TableHeaderColumn = __webpack_require__(478);
 	
 	var _TableHeaderColumn2 = _interopRequireDefault(_TableHeaderColumn);
 	
@@ -46967,7 +46980,7 @@
 	exports.default = TableHeader;
 
 /***/ },
-/* 477 */
+/* 478 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46988,7 +47001,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Tooltip = __webpack_require__(478);
+	var _Tooltip = __webpack_require__(479);
 	
 	var _Tooltip2 = _interopRequireDefault(_Tooltip);
 	
@@ -47157,7 +47170,7 @@
 	exports.default = TableHeaderColumn;
 
 /***/ },
-/* 478 */
+/* 479 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47372,7 +47385,7 @@
 	exports.default = Tooltip;
 
 /***/ },
-/* 479 */
+/* 480 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47638,7 +47651,7 @@
 	exports.default = TableRow;
 
 /***/ },
-/* 480 */
+/* 481 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47655,7 +47668,7 @@
 	
 	var _reactRedux = __webpack_require__(172);
 	
-	var _Table = __webpack_require__(465);
+	var _Table = __webpack_require__(466);
 	
 	var _socket = __webpack_require__(356);
 	
@@ -47721,7 +47734,7 @@
 	exports.default = (0, _reactRedux.connect)()(Products);
 
 /***/ },
-/* 481 */
+/* 482 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47740,7 +47753,7 @@
 	
 	var _Popover2 = _interopRequireDefault(_Popover);
 	
-	var _FloatingActionButton = __webpack_require__(460);
+	var _FloatingActionButton = __webpack_require__(461);
 	
 	var _FloatingActionButton2 = _interopRequireDefault(_FloatingActionButton);
 	
@@ -47760,7 +47773,7 @@
 	
 	var _socket2 = _interopRequireDefault(_socket);
 	
-	var _productsActions = __webpack_require__(482);
+	var _productsActions = __webpack_require__(483);
 	
 	var _productsActions2 = _interopRequireDefault(_productsActions);
 	
@@ -47855,7 +47868,7 @@
 	exports.default = AddProducts;
 
 /***/ },
-/* 482 */
+/* 483 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47865,7 +47878,7 @@
 	});
 	exports.deleteProducts = exports.updateProducts = exports.newProducts = exports.productsData = undefined;
 	
-	var _reduxFlowVariables = __webpack_require__(489);
+	var _reduxFlowVariables = __webpack_require__(459);
 	
 	var productsData = exports.productsData = function productsData(data) {
 		return {
@@ -47896,7 +47909,7 @@
 	};
 
 /***/ },
-/* 483 */
+/* 484 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47943,7 +47956,7 @@
 	};
 
 /***/ },
-/* 484 */
+/* 485 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47990,7 +48003,7 @@
 	};
 
 /***/ },
-/* 485 */
+/* 486 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48001,20 +48014,24 @@
 	
 	var _redux = __webpack_require__(179);
 	
-	var _reducers = __webpack_require__(486);
+	var _reducers = __webpack_require__(487);
 	
 	var _reducers2 = _interopRequireDefault(_reducers);
+	
+	var _reduxLogger = __webpack_require__(490);
+	
+	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
 	
 	function _interopRequireDefault(obj) {
 	  return obj && obj.__esModule ? obj : { default: obj };
 	}
 	
-	// imported into index.jsx
+	var logger = (0, _reduxLogger2.default)(); // imported into index.jsx
 	
-	exports.default = (0, _redux.createStore)(_reducers2.default);
+	exports.default = (0, _redux.createStore)(_reducers2.default, (0, _redux.applyMiddleware)(logger));
 
 /***/ },
-/* 486 */
+/* 487 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48025,11 +48042,11 @@
 	
 	var _redux = __webpack_require__(179);
 	
-	var _palletReducer = __webpack_require__(487);
+	var _palletReducer = __webpack_require__(488);
 	
 	var _palletReducer2 = _interopRequireDefault(_palletReducer);
 	
-	var _productsReducer = __webpack_require__(488);
+	var _productsReducer = __webpack_require__(489);
 	
 	var _productsReducer2 = _interopRequireDefault(_productsReducer);
 	
@@ -48047,7 +48064,7 @@
 	exports.default = reducer;
 
 /***/ },
-/* 487 */
+/* 488 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48056,7 +48073,7 @@
 		value: true
 	});
 	
-	var _reduxFlowVariables = __webpack_require__(489);
+	var _reduxFlowVariables = __webpack_require__(459);
 	
 	function _toConsumableArray(arr) {
 		if (Array.isArray(arr)) {
@@ -48072,7 +48089,6 @@
 		var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
 		var action = arguments[1];
 	
-		console.log('palletReducer action', action);
 		var palletIndex = function palletIndex() {
 			return state.findIndex(function (thisPallet) {
 				return thisPallet && thisPallet.id === action.pallet.id;
@@ -48080,22 +48096,14 @@
 		};
 		switch (action.type) {
 			case _reduxFlowVariables.PALLET_DATA:
-				console.log('PALLET_DATA');
-				// is the following even right?
-				var palletDataIndex = palletIndex();
-				if (palletDataIndex > -1) {
-					var dataPallet = Object.assign({}, state[palletDataIndex], action.pallet);
-					return [dataPallet].concat(_toConsumableArray(state));
-				} else {
-					return state;
+				if (action.pallet !== state.pallet) {
+					return [].concat(_toConsumableArray(action.pallet), _toConsumableArray(state));
 				}
 	
 			case _reduxFlowVariables.PALLET_INSERT:
-				console.log('PALLET_INSERT');
 				return palletIndex() < 0 ? [].concat(_toConsumableArray(state), [action.pallet]) : state;
 	
 			case _reduxFlowVariables.PALLET_UPDATE:
-				console.log('PALLET_UPDATE');
 				var palletUpdateIndex = palletIndex();
 				if (palletUpdateIndex > -1) {
 					var updatedPallet = Object.assign({}, state[palletUpdateIndex], action.pallet);
@@ -48105,7 +48113,6 @@
 				}
 	
 			case _reduxFlowVariables.PALLET_DELETE:
-				console.log('PALLET_DELETE');
 				var palletDeleteIndex = palletIndex();
 				if (palletDeleteIndex > -1) {
 					return [].concat(_toConsumableArray(state.slice(0, palletDeleteIndex)), _toConsumableArray(state.slice(palletDeleteIndex + 1)));
@@ -48121,7 +48128,7 @@
 	exports.default = palletReducer;
 
 /***/ },
-/* 488 */
+/* 489 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48130,7 +48137,7 @@
 		value: true
 	});
 	
-	var _reduxFlowVariables = __webpack_require__(489);
+	var _reduxFlowVariables = __webpack_require__(459);
 	
 	function _toConsumableArray(arr) {
 		if (Array.isArray(arr)) {
@@ -48146,7 +48153,6 @@
 		var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
 		var action = arguments[1];
 	
-		console.log('productsReducer action', action);
 		var productsIndex = function productsIndex() {
 			return state.findIndex(function (thisProducts) {
 				return thisProducts && thisProducts.id === action.products.id;
@@ -48154,22 +48160,12 @@
 		};
 		switch (action.type) {
 			case _reduxFlowVariables.PRODUCTS_DATA:
-				console.log('PRODUCTS_DATA');
-				// is the following even right?
-				var productsDataIndex = productsIndex();
-				if (productsDataIndex > -1) {
-					var dataProducts = Object.assign({}, state[productsDataIndex], action.products);
-					return [dataProducts].concat(_toConsumableArray(state));
-				} else {
-					return state;
-				}
+				return [].concat(_toConsumableArray(action.products), _toConsumableArray(state));
 	
 			case _reduxFlowVariables.PRODUCTS_INSERT:
-				console.log('PRODUCTS_INSERT');
 				return productsIndex() > 0 ? [].concat(_toConsumableArray(state), [action.products]) : state;
 	
 			case _reduxFlowVariables.PRODUCTS_UPDATE:
-				console.log('PRODUCTS_UPDATE');
 				var productsUpdateIndex = productsIndex();
 				if (productsUpdateIndex > -1) {
 					var updatedProducts = Object.assign({}, state[productsUpdate], action.products);
@@ -48179,7 +48175,6 @@
 				}
 	
 			case _reduxFlowVariables.PRODUCTS_DELETE:
-				console.log('PRODUCTS_DELETE');
 				var productsDeleteIndex = productsIndex();
 				if (productsDeleteIndex > -1) {
 					return [].concat(_toConsumableArray(state.slice(0, productsDeleteIndex)), _toConsumableArray(state.slice(productsDeleteIndex + 1)));
@@ -48195,25 +48190,237 @@
 	exports.default = productsReducer;
 
 /***/ },
-/* 489 */
+/* 490 */
 /***/ function(module, exports) {
 
-	'use strict';
+	"use strict";
 	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	// imported into all action and reducer files
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 	
-	var PALLET_DATA = exports.PALLET_DATA = 'pallet:data';
-	var PALLET_INSERT = exports.PALLET_INSERT = 'pallet:insert';
-	var PALLET_UPDATE = exports.PALLET_UPDATE = 'pallet:update';
-	var PALLET_DELETE = exports.PALLET_DELETE = 'pallet:delete';
+	function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
 	
-	var PRODUCTS_DATA = exports.PRODUCTS_DATA = 'products:data';
-	var PRODUCTS_INSERT = exports.PRODUCTS_INSERT = 'products:insert';
-	var PRODUCTS_UPDATE = exports.PRODUCTS_UPDATE = 'products:update';
-	var PRODUCTS_DELETE = exports.PRODUCTS_DELETE = 'products:delete';
+	var repeat = function repeat(str, times) {
+	  return new Array(times + 1).join(str);
+	};
+	var pad = function pad(num, maxLength) {
+	  return repeat("0", maxLength - num.toString().length) + num;
+	};
+	var formatTime = function formatTime(time) {
+	  return "@ " + pad(time.getHours(), 2) + ":" + pad(time.getMinutes(), 2) + ":" + pad(time.getSeconds(), 2) + "." + pad(time.getMilliseconds(), 3);
+	};
+	
+	// Use the new performance api to get better precision if available
+	var timer = typeof performance !== "undefined" && typeof performance.now === "function" ? performance : Date;
+	
+	/**
+	 * parse the level option of createLogger
+	 *
+	 * @property {string | function | object} level - console[level]
+	 * @property {object} action
+	 * @property {array} payload
+	 * @property {string} type
+	 */
+	
+	function getLogLevel(level, action, payload, type) {
+	  switch (typeof level === "undefined" ? "undefined" : _typeof(level)) {
+	    case "object":
+	      return typeof level[type] === "function" ? level[type].apply(level, _toConsumableArray(payload)) : level[type];
+	    case "function":
+	      return level(action);
+	    default:
+	      return level;
+	  }
+	}
+	
+	/**
+	 * Creates logger with followed options
+	 *
+	 * @namespace
+	 * @property {object} options - options for logger
+	 * @property {string | function | object} options.level - console[level]
+	 * @property {boolean} options.duration - print duration of each action?
+	 * @property {boolean} options.timestamp - print timestamp with each action?
+	 * @property {object} options.colors - custom colors
+	 * @property {object} options.logger - implementation of the `console` API
+	 * @property {boolean} options.logErrors - should errors in action execution be caught, logged, and re-thrown?
+	 * @property {boolean} options.collapsed - is group collapsed?
+	 * @property {boolean} options.predicate - condition which resolves logger behavior
+	 * @property {function} options.stateTransformer - transform state before print
+	 * @property {function} options.actionTransformer - transform action before print
+	 * @property {function} options.errorTransformer - transform error before print
+	 */
+	
+	function createLogger() {
+	  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	  var _options$level = options.level;
+	  var level = _options$level === undefined ? "log" : _options$level;
+	  var _options$logger = options.logger;
+	  var logger = _options$logger === undefined ? console : _options$logger;
+	  var _options$logErrors = options.logErrors;
+	  var logErrors = _options$logErrors === undefined ? true : _options$logErrors;
+	  var collapsed = options.collapsed;
+	  var predicate = options.predicate;
+	  var _options$duration = options.duration;
+	  var duration = _options$duration === undefined ? false : _options$duration;
+	  var _options$timestamp = options.timestamp;
+	  var timestamp = _options$timestamp === undefined ? true : _options$timestamp;
+	  var transformer = options.transformer;
+	  var _options$stateTransfo = options.stateTransformer;
+	  var // deprecated
+	  stateTransformer = _options$stateTransfo === undefined ? function (state) {
+	    return state;
+	  } : _options$stateTransfo;
+	  var _options$actionTransf = options.actionTransformer;
+	  var actionTransformer = _options$actionTransf === undefined ? function (actn) {
+	    return actn;
+	  } : _options$actionTransf;
+	  var _options$errorTransfo = options.errorTransformer;
+	  var errorTransformer = _options$errorTransfo === undefined ? function (error) {
+	    return error;
+	  } : _options$errorTransfo;
+	  var _options$colors = options.colors;
+	  var colors = _options$colors === undefined ? {
+	    title: function title() {
+	      return "#000000";
+	    },
+	    prevState: function prevState() {
+	      return "#9E9E9E";
+	    },
+	    action: function action() {
+	      return "#03A9F4";
+	    },
+	    nextState: function nextState() {
+	      return "#4CAF50";
+	    },
+	    error: function error() {
+	      return "#F20404";
+	    }
+	  } : _options$colors;
+	
+	  // exit if console undefined
+	
+	  if (typeof logger === "undefined") {
+	    return function () {
+	      return function (next) {
+	        return function (action) {
+	          return next(action);
+	        };
+	      };
+	    };
+	  }
+	
+	  if (transformer) {
+	    console.error("Option 'transformer' is deprecated, use stateTransformer instead");
+	  }
+	
+	  var logBuffer = [];
+	  function printBuffer() {
+	    logBuffer.forEach(function (logEntry, key) {
+	      var started = logEntry.started;
+	      var startedTime = logEntry.startedTime;
+	      var action = logEntry.action;
+	      var prevState = logEntry.prevState;
+	      var error = logEntry.error;
+	      var took = logEntry.took;
+	      var nextState = logEntry.nextState;
+	
+	      var nextEntry = logBuffer[key + 1];
+	      if (nextEntry) {
+	        nextState = nextEntry.prevState;
+	        took = nextEntry.started - started;
+	      }
+	      // message
+	      var formattedAction = actionTransformer(action);
+	      var isCollapsed = typeof collapsed === "function" ? collapsed(function () {
+	        return nextState;
+	      }, action) : collapsed;
+	
+	      var formattedTime = formatTime(startedTime);
+	      var titleCSS = colors.title ? "color: " + colors.title(formattedAction) + ";" : null;
+	      var title = "action " + (timestamp ? formattedTime : "") + " " + formattedAction.type + " " + (duration ? "(in " + took.toFixed(2) + " ms)" : "");
+	
+	      // render
+	      try {
+	        if (isCollapsed) {
+	          if (colors.title) logger.groupCollapsed("%c " + title, titleCSS);else logger.groupCollapsed(title);
+	        } else {
+	          if (colors.title) logger.group("%c " + title, titleCSS);else logger.group(title);
+	        }
+	      } catch (e) {
+	        logger.log(title);
+	      }
+	
+	      var prevStateLevel = getLogLevel(level, formattedAction, [prevState], "prevState");
+	      var actionLevel = getLogLevel(level, formattedAction, [formattedAction], "action");
+	      var errorLevel = getLogLevel(level, formattedAction, [error, prevState], "error");
+	      var nextStateLevel = getLogLevel(level, formattedAction, [nextState], "nextState");
+	
+	      if (prevStateLevel) {
+	        if (colors.prevState) logger[prevStateLevel]("%c prev state", "color: " + colors.prevState(prevState) + "; font-weight: bold", prevState);else logger[prevStateLevel]("prev state", prevState);
+	      }
+	
+	      if (actionLevel) {
+	        if (colors.action) logger[actionLevel]("%c action", "color: " + colors.action(formattedAction) + "; font-weight: bold", formattedAction);else logger[actionLevel]("action", formattedAction);
+	      }
+	
+	      if (error && errorLevel) {
+	        if (colors.error) logger[errorLevel]("%c error", "color: " + colors.error(error, prevState) + "; font-weight: bold", error);else logger[errorLevel]("error", error);
+	      }
+	
+	      if (nextStateLevel) {
+	        if (colors.nextState) logger[nextStateLevel]("%c next state", "color: " + colors.nextState(nextState) + "; font-weight: bold", nextState);else logger[nextStateLevel]("next state", nextState);
+	      }
+	
+	      try {
+	        logger.groupEnd();
+	      } catch (e) {
+	        logger.log("—— log end ——");
+	      }
+	    });
+	    logBuffer.length = 0;
+	  }
+	
+	  return function (_ref) {
+	    var getState = _ref.getState;
+	    return function (next) {
+	      return function (action) {
+	        // exit early if predicate function returns false
+	        if (typeof predicate === "function" && !predicate(getState, action)) {
+	          return next(action);
+	        }
+	
+	        var logEntry = {};
+	        logBuffer.push(logEntry);
+	
+	        logEntry.started = timer.now();
+	        logEntry.startedTime = new Date();
+	        logEntry.prevState = stateTransformer(getState());
+	        logEntry.action = action;
+	
+	        var returnedValue = undefined;
+	        if (logErrors) {
+	          try {
+	            returnedValue = next(action);
+	          } catch (e) {
+	            logEntry.error = errorTransformer(e);
+	          }
+	        } else {
+	          returnedValue = next(action);
+	        }
+	
+	        logEntry.took = timer.now() - logEntry.started;
+	        logEntry.nextState = stateTransformer(getState());
+	
+	        printBuffer();
+	
+	        if (logEntry.error) throw logEntry.error;
+	        return returnedValue;
+	      };
+	    };
+	  };
+	}
+	
+	module.exports = createLogger;
 
 /***/ }
 /******/ ]);
