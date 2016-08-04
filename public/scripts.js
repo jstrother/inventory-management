@@ -30010,7 +30010,7 @@
 			key: 'render',
 			value: function render() {
 				{
-					console.log('props from Inventory.jsx', this.props.pallet);
+					console.log('pallet from Inventory.jsx', this.props.pallet);
 				}
 				return _react2.default.createElement(
 					'div',
@@ -30043,22 +30043,8 @@
 	}(_react2.default.Component);
 	
 	var mapStateToProps = function mapStateToProps(state, props) {
-		var pallet = JSON.stringify(state.palletReducer[0]);
 		return {
-			pallet: pallet
-			// type: state.type,
-			// lot: state.lot,
-			// expiration: state.expiration,
-			// numCases: state.numCases,
-			// numPops: state.numPops,
-			// numBars: state.numBars,
-			// country: state.country,
-			// locationId: state.locationId,
-			// allTypes: state.allTypes,
-			// allNumCases: state.allNumCases,
-			// allNumPops: state.allNumPops,
-			// allNumBars: state.allNumBars,
-			// allLocations: state.allLocations
+			pallet: JSON.stringify(state.palletReducer[0])
 		};
 	};
 	
