@@ -70,15 +70,15 @@
 	
 	var _inventory2 = _interopRequireDefault(_inventory);
 	
-	var _palletListener = __webpack_require__(484);
+	var _palletListener = __webpack_require__(483);
 	
 	var _palletListener2 = _interopRequireDefault(_palletListener);
 	
-	var _productsListener = __webpack_require__(485);
+	var _productsListener = __webpack_require__(484);
 	
 	var _productsListener2 = _interopRequireDefault(_productsListener);
 	
-	var _store = __webpack_require__(486);
+	var _store = __webpack_require__(485);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
@@ -29986,7 +29986,7 @@
 	
 	var _pallet2 = _interopRequireDefault(_pallet);
 	
-	var _productsList = __webpack_require__(465);
+	var _productsList = __webpack_require__(464);
 	
 	var _productsList2 = _interopRequireDefault(_productsList);
 	
@@ -37519,7 +37519,7 @@
 	
 	var _addPallet2 = _interopRequireDefault(_addPallet);
 	
-	var _updatePallet = __webpack_require__(460);
+	var _updatePallet = __webpack_require__(459);
 	
 	var _updatePallet2 = _interopRequireDefault(_updatePallet);
 	
@@ -43707,7 +43707,7 @@
 	});
 	exports.deletePallet = exports.updatePallet = exports.newPallet = exports.palletData = undefined;
 	
-	var _reduxFlowVariables = __webpack_require__(459);
+	var _reduxFlowVariables = __webpack_require__(489);
 	
 	var palletData = exports.palletData = function palletData(data) {
 		return {
@@ -43739,27 +43739,6 @@
 
 /***/ },
 /* 459 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	// imported into all action and reducer files
-	
-	var PALLET_DATA = exports.PALLET_DATA = 'pallet:data';
-	var PALLET_INSERT = exports.PALLET_INSERT = 'pallet:insert';
-	var PALLET_UPDATE = exports.PALLET_UPDATE = 'pallet:update';
-	var PALLET_DELETE = exports.PALLET_DELETE = 'pallet:delete';
-	
-	var PRODUCTS_DATA = exports.PRODUCTS_DATA = 'products:data';
-	var PRODUCTS_INSERT = exports.PRODUCTS_INSERT = 'products:insert';
-	var PRODUCTS_UPDATE = exports.PRODUCTS_UPDATE = 'products:update';
-	var PRODUCTS_DELETE = exports.PRODUCTS_DELETE = 'products:delete';
-
-/***/ },
-/* 460 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43778,7 +43757,7 @@
 	
 	var _Popover2 = _interopRequireDefault(_Popover);
 	
-	var _FloatingActionButton = __webpack_require__(461);
+	var _FloatingActionButton = __webpack_require__(460);
 	
 	var _FloatingActionButton2 = _interopRequireDefault(_FloatingActionButton);
 	
@@ -43911,7 +43890,7 @@
 	exports.default = UpdatePallet;
 
 /***/ },
-/* 461 */
+/* 460 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43921,7 +43900,7 @@
 	});
 	exports.default = undefined;
 	
-	var _FloatingActionButton = __webpack_require__(462);
+	var _FloatingActionButton = __webpack_require__(461);
 	
 	var _FloatingActionButton2 = _interopRequireDefault(_FloatingActionButton);
 	
@@ -43930,7 +43909,7 @@
 	exports.default = _FloatingActionButton2.default;
 
 /***/ },
-/* 462 */
+/* 461 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -43961,7 +43940,7 @@
 	
 	var _EnhancedButton2 = _interopRequireDefault(_EnhancedButton);
 	
-	var _FontIcon = __webpack_require__(463);
+	var _FontIcon = __webpack_require__(462);
 	
 	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 	
@@ -44288,7 +44267,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 463 */
+/* 462 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44298,7 +44277,7 @@
 	});
 	exports.default = undefined;
 	
-	var _FontIcon = __webpack_require__(464);
+	var _FontIcon = __webpack_require__(463);
 	
 	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 	
@@ -44307,7 +44286,7 @@
 	exports.default = _FontIcon2.default;
 
 /***/ },
-/* 464 */
+/* 463 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44453,7 +44432,7 @@
 	exports.default = FontIcon;
 
 /***/ },
-/* 465 */
+/* 464 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44470,13 +44449,13 @@
 	
 	var _reactRedux = __webpack_require__(172);
 	
-	var _Table = __webpack_require__(466);
+	var _Table = __webpack_require__(465);
 	
-	var _products = __webpack_require__(481);
+	var _products = __webpack_require__(480);
 	
 	var _products2 = _interopRequireDefault(_products);
 	
-	var _addProducts = __webpack_require__(482);
+	var _addProducts = __webpack_require__(481);
 	
 	var _addProducts2 = _interopRequireDefault(_addProducts);
 	
@@ -44484,7 +44463,7 @@
 	
 	var _socket2 = _interopRequireDefault(_socket);
 	
-	var _productsActions = __webpack_require__(483);
+	var _productsActions = __webpack_require__(482);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -44593,7 +44572,7 @@
 	exports.default = (0, _reactRedux.connect)()(ProductsList);
 
 /***/ },
-/* 466 */
+/* 465 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44603,31 +44582,31 @@
 	});
 	exports.default = exports.TableRowColumn = exports.TableRow = exports.TableHeaderColumn = exports.TableHeader = exports.TableFooter = exports.TableBody = exports.Table = undefined;
 	
-	var _Table2 = __webpack_require__(467);
+	var _Table2 = __webpack_require__(466);
 	
 	var _Table3 = _interopRequireDefault(_Table2);
 	
-	var _TableBody2 = __webpack_require__(468);
+	var _TableBody2 = __webpack_require__(467);
 	
 	var _TableBody3 = _interopRequireDefault(_TableBody2);
 	
-	var _TableFooter2 = __webpack_require__(476);
+	var _TableFooter2 = __webpack_require__(475);
 	
 	var _TableFooter3 = _interopRequireDefault(_TableFooter2);
 	
-	var _TableHeader2 = __webpack_require__(477);
+	var _TableHeader2 = __webpack_require__(476);
 	
 	var _TableHeader3 = _interopRequireDefault(_TableHeader2);
 	
-	var _TableHeaderColumn2 = __webpack_require__(478);
+	var _TableHeaderColumn2 = __webpack_require__(477);
 	
 	var _TableHeaderColumn3 = _interopRequireDefault(_TableHeaderColumn2);
 	
-	var _TableRow2 = __webpack_require__(480);
+	var _TableRow2 = __webpack_require__(479);
 	
 	var _TableRow3 = _interopRequireDefault(_TableRow2);
 	
-	var _TableRowColumn2 = __webpack_require__(474);
+	var _TableRowColumn2 = __webpack_require__(473);
 	
 	var _TableRowColumn3 = _interopRequireDefault(_TableRowColumn2);
 	
@@ -44643,7 +44622,7 @@
 	exports.default = _Table3.default;
 
 /***/ },
-/* 467 */
+/* 466 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44993,7 +44972,7 @@
 	exports.default = Table;
 
 /***/ },
-/* 468 */
+/* 467 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45016,15 +44995,15 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Checkbox = __webpack_require__(469);
+	var _Checkbox = __webpack_require__(468);
 	
 	var _Checkbox2 = _interopRequireDefault(_Checkbox);
 	
-	var _TableRowColumn = __webpack_require__(474);
+	var _TableRowColumn = __webpack_require__(473);
 	
 	var _TableRowColumn2 = _interopRequireDefault(_TableRowColumn);
 	
-	var _ClickAwayListener = __webpack_require__(475);
+	var _ClickAwayListener = __webpack_require__(474);
 	
 	var _ClickAwayListener2 = _interopRequireDefault(_ClickAwayListener);
 	
@@ -45502,7 +45481,7 @@
 	exports.default = TableBody;
 
 /***/ },
-/* 469 */
+/* 468 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45512,7 +45491,7 @@
 	});
 	exports.default = undefined;
 	
-	var _Checkbox = __webpack_require__(470);
+	var _Checkbox = __webpack_require__(469);
 	
 	var _Checkbox2 = _interopRequireDefault(_Checkbox);
 	
@@ -45521,7 +45500,7 @@
 	exports.default = _Checkbox2.default;
 
 /***/ },
-/* 470 */
+/* 469 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45542,7 +45521,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _EnhancedSwitch = __webpack_require__(471);
+	var _EnhancedSwitch = __webpack_require__(470);
 	
 	var _EnhancedSwitch2 = _interopRequireDefault(_EnhancedSwitch);
 	
@@ -45550,11 +45529,11 @@
 	
 	var _transitions2 = _interopRequireDefault(_transitions);
 	
-	var _checkBoxOutlineBlank = __webpack_require__(472);
+	var _checkBoxOutlineBlank = __webpack_require__(471);
 	
 	var _checkBoxOutlineBlank2 = _interopRequireDefault(_checkBoxOutlineBlank);
 	
-	var _checkBox = __webpack_require__(473);
+	var _checkBox = __webpack_require__(472);
 	
 	var _checkBox2 = _interopRequireDefault(_checkBox);
 	
@@ -45803,7 +45782,7 @@
 	exports.default = Checkbox;
 
 /***/ },
-/* 471 */
+/* 470 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -46246,7 +46225,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 472 */
+/* 471 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46283,7 +46262,7 @@
 	exports.default = ToggleCheckBoxOutlineBlank;
 
 /***/ },
-/* 473 */
+/* 472 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46320,7 +46299,7 @@
 	exports.default = ToggleCheckBox;
 
 /***/ },
-/* 474 */
+/* 473 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46491,7 +46470,7 @@
 	exports.default = TableRowColumn;
 
 /***/ },
-/* 475 */
+/* 474 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46610,7 +46589,7 @@
 	exports.default = ClickAwayListener;
 
 /***/ },
-/* 476 */
+/* 475 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46631,7 +46610,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _TableRowColumn = __webpack_require__(474);
+	var _TableRowColumn = __webpack_require__(473);
 	
 	var _TableRowColumn2 = _interopRequireDefault(_TableRowColumn);
 	
@@ -46748,7 +46727,7 @@
 	exports.default = TableFooter;
 
 /***/ },
-/* 477 */
+/* 476 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46767,11 +46746,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Checkbox = __webpack_require__(469);
+	var _Checkbox = __webpack_require__(468);
 	
 	var _Checkbox2 = _interopRequireDefault(_Checkbox);
 	
-	var _TableHeaderColumn = __webpack_require__(478);
+	var _TableHeaderColumn = __webpack_require__(477);
 	
 	var _TableHeaderColumn2 = _interopRequireDefault(_TableHeaderColumn);
 	
@@ -46988,7 +46967,7 @@
 	exports.default = TableHeader;
 
 /***/ },
-/* 478 */
+/* 477 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47009,7 +46988,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Tooltip = __webpack_require__(479);
+	var _Tooltip = __webpack_require__(478);
 	
 	var _Tooltip2 = _interopRequireDefault(_Tooltip);
 	
@@ -47178,7 +47157,7 @@
 	exports.default = TableHeaderColumn;
 
 /***/ },
-/* 479 */
+/* 478 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47393,7 +47372,7 @@
 	exports.default = Tooltip;
 
 /***/ },
-/* 480 */
+/* 479 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47659,7 +47638,7 @@
 	exports.default = TableRow;
 
 /***/ },
-/* 481 */
+/* 480 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47676,7 +47655,7 @@
 	
 	var _reactRedux = __webpack_require__(172);
 	
-	var _Table = __webpack_require__(466);
+	var _Table = __webpack_require__(465);
 	
 	var _socket = __webpack_require__(356);
 	
@@ -47742,7 +47721,7 @@
 	exports.default = (0, _reactRedux.connect)()(Products);
 
 /***/ },
-/* 482 */
+/* 481 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47761,7 +47740,7 @@
 	
 	var _Popover2 = _interopRequireDefault(_Popover);
 	
-	var _FloatingActionButton = __webpack_require__(461);
+	var _FloatingActionButton = __webpack_require__(460);
 	
 	var _FloatingActionButton2 = _interopRequireDefault(_FloatingActionButton);
 	
@@ -47781,7 +47760,7 @@
 	
 	var _socket2 = _interopRequireDefault(_socket);
 	
-	var _productsActions = __webpack_require__(483);
+	var _productsActions = __webpack_require__(482);
 	
 	var _productsActions2 = _interopRequireDefault(_productsActions);
 	
@@ -47876,7 +47855,7 @@
 	exports.default = AddProducts;
 
 /***/ },
-/* 483 */
+/* 482 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47886,7 +47865,7 @@
 	});
 	exports.deleteProducts = exports.updateProducts = exports.newProducts = exports.productsData = undefined;
 	
-	var _reduxFlowVariables = __webpack_require__(459);
+	var _reduxFlowVariables = __webpack_require__(489);
 	
 	var productsData = exports.productsData = function productsData(data) {
 		return {
@@ -47917,7 +47896,7 @@
 	};
 
 /***/ },
-/* 484 */
+/* 483 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47964,7 +47943,7 @@
 	};
 
 /***/ },
-/* 485 */
+/* 484 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48011,7 +47990,7 @@
 	};
 
 /***/ },
-/* 486 */
+/* 485 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48022,7 +48001,7 @@
 	
 	var _redux = __webpack_require__(179);
 	
-	var _reducers = __webpack_require__(487);
+	var _reducers = __webpack_require__(486);
 	
 	var _reducers2 = _interopRequireDefault(_reducers);
 	
@@ -48035,7 +48014,7 @@
 	exports.default = (0, _redux.createStore)(_reducers2.default);
 
 /***/ },
-/* 487 */
+/* 486 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48046,11 +48025,11 @@
 	
 	var _redux = __webpack_require__(179);
 	
-	var _palletReducer = __webpack_require__(488);
+	var _palletReducer = __webpack_require__(487);
 	
 	var _palletReducer2 = _interopRequireDefault(_palletReducer);
 	
-	var _productsReducer = __webpack_require__(489);
+	var _productsReducer = __webpack_require__(488);
 	
 	var _productsReducer2 = _interopRequireDefault(_productsReducer);
 	
@@ -48068,7 +48047,7 @@
 	exports.default = reducer;
 
 /***/ },
-/* 488 */
+/* 487 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48077,7 +48056,7 @@
 		value: true
 	});
 	
-	var _reduxFlowVariables = __webpack_require__(459);
+	var _reduxFlowVariables = __webpack_require__(489);
 	
 	function _toConsumableArray(arr) {
 		if (Array.isArray(arr)) {
@@ -48142,7 +48121,7 @@
 	exports.default = palletReducer;
 
 /***/ },
-/* 489 */
+/* 488 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48151,7 +48130,7 @@
 		value: true
 	});
 	
-	var _reduxFlowVariables = __webpack_require__(459);
+	var _reduxFlowVariables = __webpack_require__(489);
 	
 	function _toConsumableArray(arr) {
 		if (Array.isArray(arr)) {
@@ -48214,6 +48193,27 @@
 	};
 	
 	exports.default = productsReducer;
+
+/***/ },
+/* 489 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	// imported into all action and reducer files
+	
+	var PALLET_DATA = exports.PALLET_DATA = 'pallet:data';
+	var PALLET_INSERT = exports.PALLET_INSERT = 'pallet:insert';
+	var PALLET_UPDATE = exports.PALLET_UPDATE = 'pallet:update';
+	var PALLET_DELETE = exports.PALLET_DELETE = 'pallet:delete';
+	
+	var PRODUCTS_DATA = exports.PRODUCTS_DATA = 'products:data';
+	var PRODUCTS_INSERT = exports.PRODUCTS_INSERT = 'products:insert';
+	var PRODUCTS_UPDATE = exports.PRODUCTS_UPDATE = 'products:update';
+	var PRODUCTS_DELETE = exports.PRODUCTS_DELETE = 'products:delete';
 
 /***/ }
 /******/ ]);
