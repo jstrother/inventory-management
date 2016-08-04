@@ -30010,7 +30010,7 @@
 			key: 'render',
 			value: function render() {
 				{
-					console.log('pallet from Inventory.jsx', this.props.pallet);
+					console.log('props from Inventory.jsx', this.props);
 				}
 				return _react2.default.createElement(
 					'div',
@@ -30044,7 +30044,8 @@
 	
 	var mapStateToProps = function mapStateToProps(state, props) {
 		return {
-			pallet: JSON.stringify(state.palletReducer[0])
+			pallet: state.palletReducer[0],
+			products: state.productsReducer[0]
 		};
 	};
 	
@@ -48146,7 +48147,9 @@
 		};
 		switch (action.type) {
 			case _reduxFlowVariables.PRODUCTS_DATA:
-				return [].concat(_toConsumableArray(action.products), _toConsumableArray(state));
+				if (action.products !== state.products) {
+					return [].concat(_toConsumableArray(action.products), _toConsumableArray(state));
+				}
 	
 			case _reduxFlowVariables.PRODUCTS_INSERT:
 				return productsIndex() > 0 ? [].concat(_toConsumableArray(state), [action.products]) : state;

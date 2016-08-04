@@ -10,7 +10,9 @@ const productsReducer = (state = [], action) => {
 	};
 	switch (action.type) {
 		case PRODUCTS_DATA:
-			return [...action.products, ...state];
+			if (action.products !== state.products) {
+				return [...action.products, ...state];
+			}
 
 		case PRODUCTS_INSERT:
 			return productsIndex() > 0 ? [...state, action.products] : state;

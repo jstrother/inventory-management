@@ -10,7 +10,7 @@ window.socket = socket;
 
 class Inventory extends React.Component {
 	render() {
-		{console.log('pallet from Inventory.jsx', this.props.pallet)}
+		{console.log('props from Inventory.jsx', this.props)}
 		return (
 			<div>
 				<h1>Theo Inventory Management</h1>
@@ -36,7 +36,8 @@ class Inventory extends React.Component {
 
 const mapStateToProps = (state, props) => {
 	return {
-		pallet: JSON.stringify(state.palletReducer[0])
+		pallet: state.palletReducer[0],
+		products: state.productsReducer[0]
 	};
 };
 
