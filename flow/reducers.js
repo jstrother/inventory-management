@@ -4,13 +4,11 @@ import {combineReducers} from 'redux';
 import palletReducer from './palletReducer.js';
 import productsReducer from './productsReducer.js';
 
-const initialState = [];
-
-const reducer = combineReducers({
-	palletReducer,
-	productsReducer
-	},
-	initialState
+const reducer = combineReducers(
+	{
+		palletReducer,
+		productsReducer
+	}
 );
 
 export default reducer;

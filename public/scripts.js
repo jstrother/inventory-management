@@ -30007,10 +30007,25 @@
 		}
 	
 		_createClass(Inventory, [{
+			key: 'palletType',
+			value: function palletType() {
+				return this.props.pallet.type;
+			}
+		}, {
 			key: 'render',
 			value: function render() {
 				{
-					console.log('props from Inventory.jsx', this.props);
+					this.state.length > 0 ? _react2.default.createElement(
+						'div',
+						null,
+						'Loading...'
+					) : console.log('palletType', this.palletType());
+				}
+				{
+					console.log('pallet from Inventory.jsx', this.props.pallet);
+				}
+				{
+					console.log('products from Inventory.jsx', this.props.products);
 				}
 				return _react2.default.createElement(
 					'div',
@@ -30021,20 +30036,9 @@
 						'Theo Inventory Management'
 					),
 					_react2.default.createElement(_pallet2.default, {
-						type: this.props.type,
-						lot: this.props.lot,
-						expiration: this.props.expiration,
-						numCases: this.props.numCases,
-						numPops: this.props.numPops,
-						numBars: this.props.numBars,
-						country: this.props.country,
-						locationId: this.props.locationId }),
+						pallet: this.props.pallet }),
 					_react2.default.createElement(_productsList2.default, {
-						allTypes: this.props.allTypes,
-						allNumCases: this.props.allNumCases,
-						allNumPops: this.props.allNumPops,
-						allNumBars: this.props.allNumBars,
-						allLocations: this.props.allLocations })
+						products: this.props.products })
 				);
 			}
 		}]);
@@ -30048,6 +30052,21 @@
 			products: state.productsReducer[0]
 		};
 	};
+	
+	// type={this.props.type}
+	// lot={this.props.lot}
+	// expiration={this.props.expiration}
+	// numCases={this.props.numCases}
+	// numPops={this.props.numPops}
+	// numBars={this.props.numBars}
+	// country={this.props.country}
+	// locationId={this.props.locationId}
+	
+	// allTypes={this.props.allTypes}
+	// allNumCases={this.props.allNumCases}
+	// allNumPops={this.props.allNumPops}
+	// allNumBars={this.props.allNumBars}
+	// allLocations={this.props.allLocations}
 	
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(Inventory);
 
@@ -37543,6 +37562,9 @@
 		}, {
 			key: 'render',
 			value: function render() {
+				{
+					console.log('pallet from Pallet.jsx', this.props.pallet);
+				}
 				return _react2.default.createElement(
 					'div',
 					null,
@@ -48041,12 +48063,10 @@
 		return obj && obj.__esModule ? obj : { default: obj };
 	}
 	
-	var initialState = []; // imported into store.js
-	
 	var reducer = (0, _redux.combineReducers)({
 		palletReducer: _palletReducer2.default,
 		productsReducer: _productsReducer2.default
-	}, initialState);
+	}); // imported into store.js
 	
 	exports.default = reducer;
 

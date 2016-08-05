@@ -16,6 +16,7 @@ class Pallet extends React.Component {
 		socket.emit('pallet:client:data', palletData(pallet));
 	};
 	render() {
+		{console.log('pallet from Pallet.jsx', this.props.pallet)}
 		return (
 			<div>
 					<h3>Type: {this.props.type}</h3>
