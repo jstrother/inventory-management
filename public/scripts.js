@@ -30002,7 +30002,7 @@
 		},
 		componentDidMount: function componentDidMount() {
 			new _pallet2.default({ id: this.props.id }).fetch({
-				success: this.onSucess,
+				success: this.onSuccess,
 				error: this.onError
 			});
 			new _productsList2.default({ id: this.props.id }).fetch({
@@ -30010,7 +30010,7 @@
 				error: this.onError
 			});
 		},
-		onSucess: function onSucess() {
+		onSuccess: function onSuccess() {
 			this.setState({
 				pallet: pallet,
 				productsList: products,

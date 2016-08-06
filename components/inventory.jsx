@@ -15,7 +15,7 @@ const Inventory = React.createClass({
 	},
 	componentDidMount() {
 		new Pallet({id: this.props.id}).fetch({
-			success: this.onSucess,
+			success: this.onSuccess,
 			error: this.onError
 		})
 		new ProductsList({id: this.props.id}).fetch({
@@ -23,7 +23,7 @@ const Inventory = React.createClass({
 			error: this.onError
 		})
 	},
-	onSucess() {
+	onSuccess() {
 		this.setState({
 			pallet: pallet,
 			productsList: products,
