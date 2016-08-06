@@ -3,30 +3,55 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import io from 'socket.io-client';
+import Loader from 'react-loader';
 import Pallet from './pallet.jsx';
 import ProductsList from './productsList.jsx';
 const socket = io.connect('/');
 window.socket = socket;
 
-class Inventory extends React.Component {
-	palletType() {
-		return this.props.pallet.type;
-	}
+const Inventory = React.createClass({
+	getInitialState() {
+		return {loaded: false, pallet: null, productsList: null}
+	},
+	componentDidMount() {
+		new Pallet({id: this.props.id}).fetch({
+			success: this.onSucess,
+			error: this.onError
+		})
+		new ProductsList({id: this.props.id}).fetch({
+			success: this.onSucess,
+			error: this.onError
+		})
+	},
+	onSucess() {
+		this.setState({
+			pallet: pallet,
+			productsList: products,
+			loaded: true
+		})
+	},
+	onError() {
+		return (
+			<div>
+				`Uh-oh! Something went wrong! Please report the issue <a href="https://github.com/jstrother/inventory-management/issues">here</a>.`
+			</div>)
+	},
 	render() {
-		{this.state.length > 0 ? <div>Loading...</div> : console.log('palletType', this.palletType())}
 		{console.log('pallet from Inventory.jsx', this.props.pallet)}
 		{console.log('products from Inventory.jsx', this.props.products)}
 		return (
 			<div>
 				<h1>Theo Inventory Management</h1>
-				<Pallet
-					pallet={this.props.pallet} />
-				<ProductsList
-					products={this.props.products} />
+				<Loader loaded={this.state.loaded}>
+					<Pallet
+						pallet={this.state.pallet} />
+					<ProductsList
+						products={this.state.products} />
+				</Loader>
 			</div>
 		);
 	}
-}
+})
 
 const mapStateToProps = (state, props) => {
 	return {
